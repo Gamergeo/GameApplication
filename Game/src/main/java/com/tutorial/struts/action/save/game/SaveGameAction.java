@@ -9,8 +9,6 @@ public class SaveGameAction extends AbstractAction {
 	private static final long serialVersionUID = -6816837196571984771L;
 
 	final GameService gameService = new GameService();
-	
-	private String gameId;
 
 	private String gameName;
 	
@@ -19,28 +17,18 @@ public class SaveGameAction extends AbstractAction {
 	private String countryName;
 	
 	public String execute() throws GameException {
-		
 		gameService.createANewGame(gameName, devName, countryName);
 		
 		return SUCCESS;
 	}
 	
 	public String delete() throws GameException {
-		gameId = getRequest().getParameter("gameId");
 		
-		gameService.deleteGame(gameId);
+		gameService.deleteGame(getRequest().getParameter("gameId"));
 		
 		return SUCCESS;
 	}
 
-	public String getGameId() {
-		return gameId;
-	}
-
-	public void setGameId(String gameId) {
-		this.gameId = gameId;
-	}
-	
 	public String getGameName() {
 		return gameName;
 	}
@@ -64,4 +52,5 @@ public class SaveGameAction extends AbstractAction {
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
 	}
+
 }

@@ -33,4 +33,8 @@ public class Developper implements Serializable {
 	public void setCountry(Country country) {
 		this.country = country;
 	}
+	
+	public String getCountryNameIfExists() {
+		return country == null ? "" : country.getName(); 
+	}
 }

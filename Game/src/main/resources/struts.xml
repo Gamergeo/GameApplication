@@ -14,14 +14,16 @@
     
     	<!--  Gestion des interceptors communs à toutes les actions -->
         <interceptors>
-        	<interceptor name="exception" class="com.tutorial.struts.interceptor.ExceptionInterceptor"></interceptor>
+        	<interceptor name="gameException" class="com.tutorial.struts.interceptor.ExceptionInterceptor"></interceptor>
         
-	        <interceptor-stack name="default-interceptors">
-	            <interceptor-ref name="exception"/>
+	        <interceptor-stack name="gameApplicationStack">
+	        
+           		<interceptor-ref name="defaultStack"/>
+	            <interceptor-ref name="gameException"/>
 	       </interceptor-stack>
 	    </interceptors>
 	 
-	    <default-interceptor-ref name="default-interceptors"/>
+	    <default-interceptor-ref name="gameApplicationStack"/>
 	    
 	    <!-- Redirection globale -->
 		 <global-results>
