@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-        "http://struts.apache.org/dtds/struts-2.0.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
 
     <package name="com.tutorial.struts.action.save.game" extends="default">
 	    <action name="saveGame" class="com.tutorial.struts.action.save.game.SaveGameAction">
             <result name="success" type="chain">displayGameList</result>
-            <result name="error">/jsp/error.jsp</result>
+       		<allowed-methods>delete</allowed-methods>
         </action>
     </package>
-</struts>
-	 
-<!-- 	<action-mappings> -->
-	
-<!-- 		<action path = "/saveGame"  -->
-<!-- 				name      = "gameForm" -->
-<!--             	type      = "com.tutorial.struts.action.save.game.SaveGameAction" -->
-<!--             	scope     = "request" -->
-<!--             	attribute = "bean"> -->
-<!-- 			<forward name="success" path="/displayGameList.do"  /> -->
-<!-- 			<forward name="error" path="/jsp/error.jsp"  /> -->
-<!-- 		</action> -->
-
-<!-- 	    <action path	 = "/deleteGame"  -->
-<!-- 	    		name     = "gameForm" -->
-<!-- 	    		type	 = "com.tutorial.struts.action.save.game.DeleteGameAction"  -->
-<!-- 	    		scope	 = "request" -->
-<!--             	attribute = "bean"> -->
-<!-- 	        <forward name="success" path="/displayGameList.do"  /> -->
-<!-- 	    </action> -->
     
-<!-- 	</action-mappings> -->
-
-<!-- </struts-config> -->
+</struts>

@@ -10,6 +10,8 @@ public class SaveGameAction extends AbstractAction {
 
 	final GameService gameService = new GameService();
 	
+	private String gameId;
+
 	private String gameName;
 	
 	private String devName;
@@ -21,6 +23,22 @@ public class SaveGameAction extends AbstractAction {
 		gameService.createANewGame(gameName, devName, countryName);
 		
 		return SUCCESS;
+	}
+	
+	public String delete() throws GameException {
+		gameId = getRequest().getParameter("gameId");
+		
+		gameService.deleteGame(gameId);
+		
+		return SUCCESS;
+	}
+
+	public String getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(String gameId) {
+		this.gameId = gameId;
 	}
 	
 	public String getGameName() {

@@ -1,6 +1,8 @@
-<!DOCTYPE struts PUBLIC 
-"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-"http://struts.apache.org/dtds/struts-2.0.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
 
@@ -10,6 +12,7 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
     
+    	<!--  Gestion des interceptors communs à toutes les actions -->
         <interceptors>
         	<interceptor name="exception" class="com.tutorial.struts.interceptor.ExceptionInterceptor"></interceptor>
         
@@ -19,6 +22,18 @@
 	    </interceptors>
 	 
 	    <default-interceptor-ref name="default-interceptors"/>
+	    
+	    <!-- Redirection globale -->
+		 <global-results>
+            <result name="error">/jsp/error.jsp</result>
+		</global-results>
+		
+		<!--  Gestion des exceptions globales -->
+<!-- 		<global-exception-mappings> -->
+<!--     		<exception-mapping exception="java.lang.Exception" result="error" /> -->
+<!-- 		    <exception-mapping exception="com.tutorial.struts.exception.GameException" result="error" /> -->
+<!-- 		</global-exception-mappings> -->
+		
     </package>
 
 </struts>

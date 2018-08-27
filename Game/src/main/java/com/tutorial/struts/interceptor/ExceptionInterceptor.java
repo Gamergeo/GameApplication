@@ -12,7 +12,7 @@ public class ExceptionInterceptor implements Interceptor {
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		
-		String result;
+		String result = null;
 		
 		try {
 			result = invocation.invoke();

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-        "http://struts.apache.org/dtds/struts-2.0.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
 
@@ -12,7 +12,6 @@
     
 	    <action name="displayGameList" class="com.tutorial.struts.action.view.game.DisplayGameListAction">
             <result name="success">/jsp/gameList.jsp</result>
-            <result name="error">/jsp/error.jsp</result>
         </action>
         
         <action name="displayGameSave" class="com.tutorial.struts.action.view.game.DisplayGameSaveAction">

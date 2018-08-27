@@ -25,12 +25,11 @@
 						<td><s:property value="name"/></td>
 						<td><s:property value="developper.name"/></td>
 						<td><s:property value="developper.country.name"/></td>
-<!-- 						<td> -->
-<!-- 							<html:form action="/deleteGame.do"> -->
-<%-- 								<input type="hidden" name="gameId" value="<bean:write name="game" property="idNumber"/>"> --%>
-<!--     							<button type="submit">Submit</button> -->
-<!-- 							</html:form> -->
-<!-- 						</td> -->
+						<td>
+							<s:url action="saveGame" method="delete" var="urlDelete">
+    							<s:param name="gameId"><s:property value="idNumber" /></s:param>
+							</s:url>
+							<s:a href="%{urlDelete}"> X </s:a>
 					</tr>
 				</s:iterator>
 			</tbody>
