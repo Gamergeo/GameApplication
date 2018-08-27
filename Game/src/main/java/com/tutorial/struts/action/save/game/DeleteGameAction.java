@@ -1,30 +1,34 @@
 package com.tutorial.struts.action.save.game;
 
 import com.tutorial.struts.action.AbstractAction;
-import com.tutorial.struts.bean.form.GameForm;
 import com.tutorial.struts.exception.GameException;
 import com.tutorial.struts.service.game.GameService;
 
 public class DeleteGameAction extends AbstractAction {
-	
+
+	private static final long serialVersionUID = -6551243955341776431L;
+
 	final GameService gameService = new GameService();
 	
+	private String gameId;
+
 	public String execute() {
 		
-		GameForm gameForm = (GameForm) null;
-		
 		try {
-			gameService.deleteGame(gameForm.getGameId());
+			gameService.deleteGame(gameId);
 		} catch (GameException exception) {
-		//	request.setAttribute("ERROR_MESSAGE", exception.getErrorMessage());
-			//return mapping.findForward("error");
+			return ERROR;
 		}
 		
 		return SUCCESS;
-		
-			
-		// S'il n'y a pas d'erreurs, on retourne le forward "succes"
-		//return mapping.findForward("success");
+	}
+	
+	public String getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(String gameId) {
+		this.gameId = gameId;
 	}
 
 }

@@ -18,10 +18,9 @@ public class DisplayGameListAction extends AbstractAction {
 	public String execute() {
 		
 		try {
-			setListGame(gameService.getGamesWithDevelopperAndCountry());
+			listGame = gameService.getGamesWithDevelopperAndCountry();
 			
 		} catch (GameException exception) {
-			//request.setAttribute("ERROR_MESSAGE", exception.getErrorMessage());
 			return ERROR;
 		}
 			
@@ -31,10 +30,6 @@ public class DisplayGameListAction extends AbstractAction {
 	
 	public List<Game> getListGame() {
 		return listGame;
-	}
-
-	public void setListGame(List<Game> listGame) {
-		this.listGame = listGame;
 	}
 
 }

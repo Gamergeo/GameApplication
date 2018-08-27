@@ -11,6 +11,5 @@
 		<s:text name="jsp.index.libelle"/><br />
 		<s:text name="jsp.index.form"/><br />
 		<s:a action="displayGameList">Clique ici fdp</s:a>
-<!-- 		<a href="/game/displayGameList.do">Clique ici fdp</a> -->
 	</body>
 </html>

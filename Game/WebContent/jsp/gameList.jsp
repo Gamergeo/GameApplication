@@ -39,7 +39,7 @@
 		<br />
 		<br />
 		
-		<a href="/struts/displayGameSave.do"><s:text name="jsp.gameList.add"/></a>
+		<s:a action="displayGameSave"><s:text name="jsp.gameList.add"/></s:a>
 	</body>
 	
 </html>

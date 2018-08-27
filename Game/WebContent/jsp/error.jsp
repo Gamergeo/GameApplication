@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
-<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <html>
 	<head>
-		<title><bean:message bundle="label" key="jsp.index.title"/></title>
+		<title><s:text name="jsp.index.title"/></title>
 	</head>
 	<body>
-		TES NULLLLLLL <bean:write name="ERROR_MESSAGE" />
+		TES NULLLLLLL <s:property name="errorMessage" />
 	</body>
 </html>

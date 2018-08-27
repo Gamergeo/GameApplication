@@ -1,29 +1,54 @@
 package com.tutorial.struts.action.save.game;
 
 import com.tutorial.struts.action.AbstractAction;
-import com.tutorial.struts.bean.form.GameForm;
 import com.tutorial.struts.exception.GameException;
 import com.tutorial.struts.service.game.GameService;
 
 public class SaveGameAction extends AbstractAction {
-	
+
+	private static final long serialVersionUID = -6816837196571984771L;
+
 	final GameService gameService = new GameService();
+	
+	private String gameName;
+	
+	private String devName;
+	
+	private String countryName;
 	
 	public String execute() {
 		
-		GameForm gameForm = (GameForm) null;
-		
 		try {
-			gameService.createANewGame(gameForm.getGameName(), gameForm.getDevName(), gameForm.getCountryName());
+			gameService.createANewGame(gameName, devName, countryName);
 			
 		} catch (GameException exception) {
-			//request.setAttribute("ERROR_MESSAGE", exception.getErrorMessage());
-			//return mapping.findForward("error");
+			return ERROR;
 		}
-			
-		// S'il n'y a pas d'erreurs, on retourne le forward "succes"
-		//return mapping.findForward("success");
+		
 		return SUCCESS;
 	}
+	
+	public String getGameName() {
+		return gameName;
+	}
 
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+	public String getDevName() {
+		return devName;
+	}
+
+	public void setDevName(String devName) {
+		this.devName = devName;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
 }
