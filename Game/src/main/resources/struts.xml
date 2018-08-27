@@ -9,7 +9,16 @@
    
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-
+    
+        <interceptors>
+        	<interceptor name="exception" class="com.tutorial.struts.interceptor.ExceptionInterceptor"></interceptor>
+        
+	        <interceptor-stack name="default-interceptors">
+	            <interceptor-ref name="exception"/>
+	       </interceptor-stack>
+	    </interceptors>
+	 
+	    <default-interceptor-ref name="default-interceptors"/>
     </package>
 
 </struts>

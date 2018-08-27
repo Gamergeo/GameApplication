@@ -15,14 +15,9 @@ public class DisplayGameListAction extends AbstractAction {
 	
 	private List<Game> listGame;
 	
-	public String execute() {
+	public String execute() throws GameException {
 		
-		try {
-			listGame = gameService.getGamesWithDevelopperAndCountry();
-			
-		} catch (GameException exception) {
-			return ERROR;
-		}
+		listGame = gameService.getGamesWithDevelopperAndCountry();
 			
 		// S'il n'y a pas d'erreurs, on retourne le forward "succes"
 		return SUCCESS;

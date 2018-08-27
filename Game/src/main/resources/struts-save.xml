@@ -6,7 +6,7 @@
 
 <struts>
 
-    <package name="com.tutorial.struts.action.save.game" extends="struts-default">
+    <package name="com.tutorial.struts.action.save.game" extends="default">
 	    <action name="saveGame" class="com.tutorial.struts.action.save.game.SaveGameAction">
             <result name="success" type="chain">displayGameList</result>
             <result name="error">/jsp/error.jsp</result>

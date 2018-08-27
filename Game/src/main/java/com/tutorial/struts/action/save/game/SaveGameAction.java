@@ -16,14 +16,9 @@ public class SaveGameAction extends AbstractAction {
 	
 	private String countryName;
 	
-	public String execute() {
+	public String execute() throws GameException {
 		
-		try {
-			gameService.createANewGame(gameName, devName, countryName);
-			
-		} catch (GameException exception) {
-			return ERROR;
-		}
+		gameService.createANewGame(gameName, devName, countryName);
 		
 		return SUCCESS;
 	}

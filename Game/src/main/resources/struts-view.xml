@@ -7,7 +7,9 @@
 <struts>
 
 	<!--  Visualisation de jeu - List et Save (namespace si besoin de namespace) -->
-    <package name="com.tutorial.struts.action.view.game" extends="struts-default">
+    <package name="com.tutorial.struts.action.view.game" extends="default">
+    
+    
 	    <action name="displayGameList" class="com.tutorial.struts.action.view.game.DisplayGameListAction">
             <result name="success">/jsp/gameList.jsp</result>
             <result name="error">/jsp/error.jsp</result>

@@ -12,13 +12,9 @@ public class DeleteGameAction extends AbstractAction {
 	
 	private String gameId;
 
-	public String execute() {
+	public String execute() throws GameException {
 		
-		try {
-			gameService.deleteGame(gameId);
-		} catch (GameException exception) {
-			return ERROR;
-		}
+		gameService.deleteGame(gameId);
 		
 		return SUCCESS;
 	}

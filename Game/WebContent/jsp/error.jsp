@@ -7,6 +7,6 @@
 		<title><s:text name="jsp.index.title"/></title>
 	</head>
 	<body>
-		TES NULLLLLLL <s:property name="errorMessage" />
+		TES NULLLLLLL <s:property value="errorMessage" />
 	</body>
 </html>
