@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="com.tutorial.struts.action.view.game"  namespace="/" extends="struts-default">
+	    <action name="displayGameList" class="com.tutorial.struts.action.view.game.DisplayGameListAction">
+            <result name="success">/jsp/gameList.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+    </package>
+	
+
+<!--     <package name="list" namespace="/list" extends="struts-default"> -->
+<!--         <action name="displayGameList" class="com.tutorial.struts.action.view.game.DisplayGameListAction"> -->
+<!--             <result>/game/jsp/gameList</result> -->
+<!--         </action> -->
+<!--     </package> -->
+</struts>
+
+
+
+<!-- <struts-config> -->
+<!--   <action-mappings> -->
+<!--     <action path = "/displayGameList" type="com.tutorial.struts.action.view.game.DisplayGameListAction" scope="request"> -->
+<!--         <forward name="success" path="/jsp/gameList.jsp"  /> -->
+<!--         <forward name="error" path="/jsp/error.jsp"  /> -->
+<!--     </action> -->
+    
+
+<!--     <action path = "/displayGameSave" type="com.tutorial.struts.action.view.game.DisplayGameSaveAction" scope="request"> -->
+<!--         <forward name="success" path="/jsp/gameAdd.jsp"  /> -->
+<!--     </action> -->
+    
+<!--   </action-mappings> -->
+
+<!-- </struts-config> -->

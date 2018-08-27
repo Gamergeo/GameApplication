@@ -1,34 +1,40 @@
 package com.tutorial.struts.action.view.game;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
+import com.tutorial.struts.action.AbstractAction;
+import com.tutorial.struts.bean.dto.Game;
 import com.tutorial.struts.exception.GameException;
 import com.tutorial.struts.service.game.GameService;
 
-public class DisplayGameListAction extends Action {
-	
+public class DisplayGameListAction extends AbstractAction {
+
+	private static final long serialVersionUID = -8898371186242307450L;
+
 	final GameService gameService = new GameService();
 	
-	public ActionForward execute(final ActionMapping mapping, ActionForm form, final HttpServletRequest request, 
-			final HttpServletResponse response) {
+	private List<Game> listGame;
+	
+	public String execute() {
 		
 		try {
-			// Stocke les informations dans la requête
-			request.setAttribute("GAME_LIST", gameService.getGamesWithDevelopperAndCountry());
+			setListGame(gameService.getGamesWithDevelopperAndCountry());
 			
 		} catch (GameException exception) {
-			request.setAttribute("ERROR_MESSAGE", exception.getErrorMessage());
-			return mapping.findForward("error");
+			//request.setAttribute("ERROR_MESSAGE", exception.getErrorMessage());
+			return ERROR;
 		}
 			
 		// S'il n'y a pas d'erreurs, on retourne le forward "succes"
-		return mapping.findForward("success");
+		return SUCCESS;
+	}
+	
+	public List<Game> getListGame() {
+		return listGame;
+	}
+
+	public void setListGame(List<Game> listGame) {
+		this.listGame = listGame;
 	}
 
 }

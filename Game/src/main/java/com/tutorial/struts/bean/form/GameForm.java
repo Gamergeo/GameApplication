@@ -2,9 +2,7 @@ package com.tutorial.struts.bean.form;
 
 import java.io.Serializable;
 
-import org.apache.struts.action.ActionForm;
-
-public class GameForm extends ActionForm implements Serializable {
+public class GameForm implements Serializable {
 	
 	private static final long serialVersionUID = 6132151801393267607L;
 	

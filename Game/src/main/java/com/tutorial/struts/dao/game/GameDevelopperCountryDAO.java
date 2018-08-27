@@ -31,7 +31,7 @@ public class GameDevelopperCountryDAO extends AbstractDAO {
 					+ "SELECT GAME.ID AS ID, GAME.NAME AS GAME_NAME, DEVELOPPER.NAME AS DEV_NAME, COUNTRY.NAME AS COUNTRY_NAME " 
 					+ "FROM GAME "
 					+ "INNER JOIN DEVELOPPER ON GAME.idDev = DEVELOPPER.id "
-					+ "LEFT OUTER JOIN COUNTRY ON DEVELOPPER.idCountry = country.id; ");
+					+ "LEFT OUTER JOIN COUNTRY ON DEVELOPPER.idCountry = COUNTRY.id ORDER BY GAME.ID; ");
 			
 			return fecthResults(resultSet);
 			

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="example" namespace="/example" extends="struts-default">
+        <action name="HelloWorld" class="example.HelloWorld">
+            <result>/example/HelloWorld.jsp</result>
+        </action>
+    </package>
+</struts>
+
+
+<!-- <struts-config> -->
+
+<!-- 	<form-beans> -->
+<!-- 		<form-bean name="gameForm" type="com.tutorial.struts.bean.form.GameForm"> -->
+<!-- 			<form-property name="gameId" 		type="java.lang.String" /> -->
+<!-- 			<form-property name="gameName" 		type="java.lang.String" /> -->
+<!-- 			<form-property name="devName" 		type="java.lang.String" /> -->
+<!-- 			<form-property name="countryName" 	type="java.lang.String" /> -->
+<!-- 		</form-bean> -->
+<!-- 	 </form-beans> -->
+	 
+<!-- 	<action-mappings> -->
+	
+<!-- 		<action path = "/saveGame"  -->
+<!-- 				name      = "gameForm" -->
+<!--             	type      = "com.tutorial.struts.action.save.game.SaveGameAction" -->
+<!--             	scope     = "request" -->
+<!--             	attribute = "bean"> -->
+<!-- 			<forward name="success" path="/displayGameList.do"  /> -->
+<!-- 			<forward name="error" path="/jsp/error.jsp"  /> -->
+<!-- 		</action> -->
+
+<!-- 	    <action path	 = "/deleteGame"  -->
+<!-- 	    		name     = "gameForm" -->
+<!-- 	    		type	 = "com.tutorial.struts.action.save.game.DeleteGameAction"  -->
+<!-- 	    		scope	 = "request" -->
+<!--             	attribute = "bean"> -->
+<!-- 	        <forward name="success" path="/displayGameList.do"  /> -->
+<!-- 	    </action> -->
+    
+<!-- 	</action-mappings> -->
+
+<!-- </struts-config> -->
