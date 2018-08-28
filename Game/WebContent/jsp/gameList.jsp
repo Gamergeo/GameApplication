@@ -14,6 +14,7 @@
 					<th><s:text name="jsp.gameList.column.gameName"/></th>
 					<th><s:text name="jsp.gameList.column.devName"/></th>
 					<th><s:text name="jsp.gameList.column.countryName"/></th>
+					<th><s:text name="jsp.gameList.column.edit"/></th>
 					<th><s:text name="jsp.gameList.column.delete"/></th>
 				</tr>
 			</thead>
@@ -26,10 +27,17 @@
 						<td><s:property value="developper.name"/></td>
 						<td><s:property value="developper.country.name"/></td>
 						<td>
+							<s:url action="displayGameSave" var="urlEdit">
+    							<s:param name="gameForm.gameId"><s:property value="idNumber" /></s:param>
+							</s:url>
+							<s:a href="%{urlEdit}"> O </s:a>
+						</td>
+						<td>
 							<s:url action="saveGame" method="delete" var="urlDelete">
-    							<s:param name="gameId"><s:property value="idNumber" /></s:param>
+    							<s:param name="gameForm.gameId"><s:property value="idNumber" /></s:param>
 							</s:url>
 							<s:a href="%{urlDelete}"> X </s:a>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>

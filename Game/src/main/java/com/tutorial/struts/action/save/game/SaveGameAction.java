@@ -1,6 +1,9 @@
 package com.tutorial.struts.action.save.game;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.tutorial.struts.action.AbstractAction;
+import com.tutorial.struts.bean.form.GameForm;
 import com.tutorial.struts.exception.GameException;
 import com.tutorial.struts.service.game.GameService;
 
@@ -9,48 +12,36 @@ public class SaveGameAction extends AbstractAction {
 	private static final long serialVersionUID = -6816837196571984771L;
 
 	final GameService gameService = new GameService();
+	
+	private GameForm gameForm = new GameForm();
 
-	private String gameName;
-	
-	private String devName;
-	
-	private String countryName;
-	
 	public String execute() throws GameException {
-		gameService.createANewGame(gameName, devName, countryName);
+		
+		// update
+		if (StringUtils.isNotBlank(gameForm.getGameId())) {
+			gameService.updateGame(Integer.parseInt(gameForm.getGameId()), gameForm.getGameName(), gameForm.getDevName(), gameForm.getCountryName());
+		} else { // create
+			gameService.createANewGame(gameForm.getGameName(), gameForm.getDevName(), gameForm.getCountryName());
+		}
 		
 		return SUCCESS;
 	}
 	
 	public String delete() throws GameException {
-		
-		gameService.deleteGame(getRequest().getParameter("gameId"));
+		gameService.deleteGame(gameForm.getGameId());
 		
 		return SUCCESS;
 	}
-
-	public String getGameName() {
-		return gameName;
+	
+	public String update() throws GameException {
+		return SUCCESS;
+	}
+	
+	public GameForm getGameForm() {
+		return gameForm;
 	}
 
-	public void setGameName(String gameName) {
-		this.gameName = gameName;
+	public void setGameForm(GameForm gameForm) {
+		this.gameForm = gameForm;
 	}
-
-	public String getDevName() {
-		return devName;
-	}
-
-	public void setDevName(String devName) {
-		this.devName = devName;
-	}
-
-	public String getCountryName() {
-		return countryName;
-	}
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
 }

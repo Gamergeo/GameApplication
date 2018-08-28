@@ -31,9 +31,23 @@ public class GameService extends AbstractService {
 	}
 	
 	/**
+	 * @return the game with dev & country for the id
+	 */
+	public Game getGameWithDevelopperAndCountry(Integer id) throws GameException {
+		Game game = gameDAO.getGameById(id);
+		
+		game.setDevelopper(developperDAO.getDevelopperById(game.getDevelopper().getId()));
+		
+		if (game.getDevelopper().getCountry() != null)
+			game.getDevelopper().setCountry(countryDAO.getCountryById(game.getDevelopper().getCountry().getId()));
+		
+		return game;
+	}
+	
+	/**
 	 * Create a new game, developper, country if needed
 	 */
-	public void createANewGame(String gameName, String devName, String countryName) throws GameException {
+	public Game createANewGame(String gameName, String devName, String countryName) throws GameException {
 		
 		Country country = null;
 		Developper developper = null;
@@ -89,21 +103,30 @@ public class GameService extends AbstractService {
 
 		// Si le dev n'existe pas, il faut l'insérer en base
 		if (!isCountryAlreadyRegistered) {
-			final Integer countryId = countryDAO.addNewCountry(country);
-			country.setId(countryId);
+			country = addNewCountry(country);
 		}
 		
 		developper.setCountry(country);
 
 		// Si le dev n'existe pas, il faut l'insérer en base
 		if (!isDevAlreadyRegistered) {
-			final Integer devId = addNewDevelopper(developper);
-			developper.setId(devId);	
+			developper = addNewDevelopper(developper);
 		}
 		
 		game.setDevelopper(developper);
 
-		addNewGame(game);
+		return addNewGame(game);
+	}
+	
+	public Game updateGame(Integer gameId, String gameName, String devName, String countryName) throws GameException {
+		Game game = new Game();
+		
+		game.setId(gameId);
+		game.setName(gameName);
+		
+		gameDAO.updateGame(game);
+		
+		return game;
 	}
 	
 	public void deleteGame(String gameId) throws GameException {
@@ -122,15 +145,19 @@ public class GameService extends AbstractService {
 		return countryDAO.getCountryByName(name);
 	}
 	
-	public Integer addNewGame(Game game) throws GameException {
+	public Game addNewGame(Game game) throws GameException {
 		return gameDAO.addNewGame(game);
 	}
 	
-	public Integer addNewDevelopper(Developper developper) throws GameException {
+	public Game updateGame(Game game) throws GameException {
+		return gameDAO.updateGame(game);
+	}
+	
+	public Developper addNewDevelopper(Developper developper) throws GameException {
 		return developperDAO.addNewDevelopper(developper);
 	}
 	
-	public Integer addNewCountry(Country country) throws GameException {
+	public Country addNewCountry(Country country) throws GameException {
 		return countryDAO.addNewCountry(country);
 	}
 }
