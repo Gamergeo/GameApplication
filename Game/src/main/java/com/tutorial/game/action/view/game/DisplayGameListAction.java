@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 
@@ -16,8 +17,8 @@ import com.tutorial.game.bean.dto.impl.User;
 import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.game.GameService;
 
+@Namespace(value="/")
 @Action("displayGameList")
-@ResultPath(value="/")
 @Result(name="success", location="/jsp/gameList.jsp")
 public class DisplayGameListAction extends AbstractAction {
 
@@ -31,7 +32,6 @@ public class DisplayGameListAction extends AbstractAction {
 
 	private List<IGame> listGameTemp = new ArrayList<IGame>();
 
-//	@Action("/displayGameList")
 	public String execute() throws GameException {
 		
 		User user = new User();

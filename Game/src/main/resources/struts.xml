@@ -6,8 +6,6 @@
 
 <struts>
 
-    <include file="struts-view.xml"/>
-    <include file="struts-save.xml"/>
    
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">

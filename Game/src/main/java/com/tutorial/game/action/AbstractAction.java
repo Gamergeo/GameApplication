@@ -9,9 +9,11 @@ import java.util.TimeZone;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+@ParentPackage("default")
 public abstract class AbstractAction extends ActionSupport {
 	
 	private static final long serialVersionUID = -4083758616182790868L;

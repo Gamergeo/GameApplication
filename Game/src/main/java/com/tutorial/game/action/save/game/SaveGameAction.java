@@ -1,12 +1,16 @@
 package com.tutorial.game.action.save.game;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.Result;
 
 import com.tutorial.game.action.AbstractAction;
 import com.tutorial.game.bean.form.GameForm;
 import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.game.GameService;
 
+@Namespace(value="/")
 public class SaveGameAction extends AbstractAction {
 
 	private static final long serialVersionUID = -6816837196571984771L;
@@ -15,6 +19,11 @@ public class SaveGameAction extends AbstractAction {
 	
 	private GameForm gameForm = new GameForm();
 
+	@Action(value="saveGame", results = {
+			@Result(name="success", 
+					location="displayGameList", 
+			        type = "redirect")
+	})
 	public String execute() throws GameException {
 		
 		// update
@@ -27,6 +36,11 @@ public class SaveGameAction extends AbstractAction {
 		return SUCCESS;
 	}
 	
+	@Action(value="delete", results = {
+			@Result(name="success",
+					location="displayGameList", 
+			        type = "redirect")
+	})
 	public String delete() throws GameException {
 		gameService.deleteGame(gameForm.getGameId());
 		

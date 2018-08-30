@@ -12,7 +12,7 @@ import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.game.GameService;
 
 @Namespace(value="/")
-@Action(value = "displayGameSave")
+@Action("displayGameSave")
 @Result(name="success", location="/jsp/gameAdd.jsp")
 public class DisplayGameSaveAction extends AbstractAction {
 

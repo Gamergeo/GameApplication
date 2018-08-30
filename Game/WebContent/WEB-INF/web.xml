@@ -19,7 +19,7 @@
     	</init-param>
 <!--     	<init-param> -->
 <!-- 	        <param-name>actionPackages</param-name> -->
-<!-- 	        <param-value>com.tutorial.game.action.view.game</param-value> -->
+<!-- 	        <param-value>com.tutorial.game.action</param-value> -->
 <!-- 	    </init-param> -->
 	</filter>
 	
