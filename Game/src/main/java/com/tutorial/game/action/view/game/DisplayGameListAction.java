@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.ResultPath;
 
 import com.tutorial.game.action.AbstractAction;
 import com.tutorial.game.bean.dto.IGame;

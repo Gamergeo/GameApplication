@@ -24,13 +24,13 @@
 				<td>${game.developper.country.name}</td>
 				<td>
 					<s:url action="displayGameSave" var="urlEdit">
-  						<s:param name="gameForm.gameId">${game.id}</s:param>
+  						<s:param name="game.id">${game.id}</s:param>
 					</s:url>
 					<s:a href="%{urlEdit}"> O </s:a>
 				</td>
 				<td>
 					<s:url action="saveGame" method="delete" var="urlDelete">
-  						<s:param name="gameForm.gameId">${game.id}</s:param>
+  						<s:param name="game.id">${game.id}</s:param>
 					</s:url>
 					<s:a href="%{urlDelete}"> X </s:a>
 				</td>

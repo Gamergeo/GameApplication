@@ -47,6 +47,10 @@ public class GameService extends AbstractService {
 		return game;
 	}
 	
+	public IGame createANewGame(IGame game) throws GameException {
+		return createANewGame(game.getName(), game.getDevelopper().getName(), game.getDevelopper().getCountry().getName());
+	}
+	
 	/**
 	 * Create a new game, developper, country if needed
 	 */
@@ -132,7 +136,7 @@ public class GameService extends AbstractService {
 		return game;
 	}
 	
-	public void deleteGame(String gameId) throws GameException {
+	public void deleteGame(Integer gameId) throws GameException {
 		gameDAO.deleteGame(gameId);
 	}
 	

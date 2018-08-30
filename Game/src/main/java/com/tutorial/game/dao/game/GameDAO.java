@@ -180,7 +180,7 @@ public class GameDAO extends AbstractDAO {
 	 * Delete a game 
 	 * @throws GameException 
 	 */
-	public void deleteGame(String gameId) throws GameException {
+	public void deleteGame(Integer gameId) throws GameException {
 		
 		Connection connection = null;
 		

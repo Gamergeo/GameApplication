@@ -14,10 +14,10 @@
 </script>
 
 <s:form action="saveGame" method="post">
-	<s:textfield key="jsp.gameAdd.form.gameName" name="gameForm.gameName"/>
-	<s:textfield key="jsp.gameAdd.form.devName" name="gameForm.devName"/>
-	<s:textfield key="jsp.gameAdd.form.countryName" name="gameForm.countryName"/>
-	<s:hidden name="gameForm.gameId" />
+	<s:textfield key="jsp.gameAdd.form.gameName" name="game.name"/>
+	<s:textfield key="jsp.gameAdd.form.devName" name="game.developper.name"/>
+	<s:textfield key="jsp.gameAdd.form.countryName" name="game.developper.country.name"/>
+	<s:hidden name="game.id" />
 	<s:hidden name="method" />
 	<s:submit action="saveGame" value="Save" onclick="return setMethod('save');"/>
 	<s:submit action="saveGame" value="Save and Add"  onclick="return setMethod('saveAndAdd');"/>
