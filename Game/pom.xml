@@ -43,13 +43,6 @@
 		    <version>2.6</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
-<!-- 		<dependency> -->
-<!-- 		    <groupId>commons-logging</groupId> -->
-<!-- 		    <artifactId>commons-logging</artifactId> -->
-<!-- 		    <version>1.2</version> -->
-<!-- 		</dependency> -->
-		
 		<!-- Struts -->
 		<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
 		<dependency>
@@ -64,5 +57,14 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.12</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+		<!--  Tag du type ${ } -->
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		
 	</dependencies>
 </project>

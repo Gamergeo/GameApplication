@@ -1,12 +1,11 @@
 package com.tutorial.struts.dao.game;
 
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.tutorial.struts.bean.dto.IGame;
 import com.tutorial.struts.bean.dto.impl.Country;
@@ -21,7 +20,7 @@ public class GameDevelopperCountryDAO extends AbstractDAO {
 	 * @return liste des jeux avec developpeur et pays associé
 	 * @throws GameException 
 	 */
-	public Set<IGame> getGamesInfo() throws GameException {
+	public List<IGame> getGamesInfo() throws GameException {
 		
 		Connection connection = null;
 	
@@ -56,7 +55,7 @@ public class GameDevelopperCountryDAO extends AbstractDAO {
 	 * @return liste des jeux avec developpeur et pays associé
 	 * @throws GameException 
 	 */
-	public Set<IGame> getGamesInDevelopementInfo(int progressRate) throws GameException {
+	public List<IGame> getGamesInDevelopementInfo(int progressRate) throws GameException {
 		
 		Connection connection = null;
 	
@@ -92,7 +91,7 @@ public class GameDevelopperCountryDAO extends AbstractDAO {
 	 * @return liste des jeux avec developpeur et pays associé
 	 * @throws GameException 
 	 */
-	public Set<IGame> getReleasedGamesInfo() throws GameException {
+	public List<IGame> getReleasedGamesInfo() throws GameException {
 		
 		Connection connection = null;
 	
@@ -124,8 +123,8 @@ public class GameDevelopperCountryDAO extends AbstractDAO {
 		}
 	}
 	
-	private Set<IGame> fecthResults(ResultSet resultSet) throws SQLException {
-		Set<IGame> results = new HashSet<IGame>();
+	private List<IGame> fecthResults(ResultSet resultSet) throws SQLException {
+		List<IGame> results = new ArrayList<IGame>();
 		
 		while (resultSet.next()) {
 			final Game game = new Game();

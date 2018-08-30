@@ -1,6 +1,6 @@
 package com.tutorial.struts.service.game;
 
-import java.util.Set;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -12,6 +12,7 @@ import com.tutorial.struts.dao.country.CountryDAO;
 import com.tutorial.struts.dao.developper.DevelopperDAO;
 import com.tutorial.struts.dao.game.GameDAO;
 import com.tutorial.struts.dao.game.GameDevelopperCountryDAO;
+import com.tutorial.struts.dao.game.ReleasedGameDAO;
 import com.tutorial.struts.exception.GameException;
 import com.tutorial.struts.service.AbstractService;
 
@@ -20,13 +21,14 @@ public class GameService extends AbstractService {
 	private final GameDevelopperCountryDAO gameDevelopperCountryDAO  = new GameDevelopperCountryDAO();
 	
 	private final GameDAO gameDAO  = new GameDAO();
+	private final ReleasedGameDAO releasedGameDAO  = new ReleasedGameDAO();
 	private final DevelopperDAO developperDAO  = new DevelopperDAO();
 	private final CountryDAO countryDAO  = new CountryDAO();
 	
 	/**
 	 * @return All the game with developper and country (if exists)
 	 */
-	public Set<IGame> getGamesWithDevelopperAndCountry() throws GameException {
+	public List<IGame> getGamesWithDevelopperAndCountry() throws GameException {
 		
 		return gameDevelopperCountryDAO.getGamesInfo();
 	}
@@ -147,7 +149,9 @@ public class GameService extends AbstractService {
 	}
 	
 	public IGame addNewGame(IGame game) throws GameException {
-		return gameDAO.addNewGame(game);
+		game = gameDAO.addNewGame(game);
+		releasedGameDAO.addNewReleasedGame(game);
+		return game;
 	}
 	
 	public IGame updateGame(IGame game) throws GameException {

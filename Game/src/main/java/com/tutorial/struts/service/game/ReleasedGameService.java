@@ -1,6 +1,6 @@
 package com.tutorial.struts.service.game;
 
-import java.util.Set;
+import java.util.List;
 
 import com.tutorial.struts.bean.dto.IGame;
 import com.tutorial.struts.dao.game.GameDevelopperCountryDAO;
@@ -14,7 +14,7 @@ public class ReleasedGameService extends AbstractService {
 	/**
 	 * @return All the game in dev with developper and country (if exists)
 	 */
-	public Set<IGame> getReleasedtWithDevelopperAndCountry() throws GameException {
+	public List<IGame> getReleasedtWithDevelopperAndCountry() throws GameException {
 		
 		return gameDevelopperCountryDAO.getReleasedGamesInfo();
 	}

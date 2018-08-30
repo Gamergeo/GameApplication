@@ -1,6 +1,6 @@
 package com.tutorial.struts.bean.dto.impl;
 
-import java.util.Set;
+import java.util.List;
 
 import com.tutorial.struts.bean.dto.IGame;
 import com.tutorial.struts.bean.dto.IUser;
@@ -24,7 +24,7 @@ public class User implements IUser {
 	}
 
 	@Override
-	public Set<IGame> getGames() throws GameException {
+	public List<IGame> getGames() throws GameException {
 		return releasedGameService.getReleasedtWithDevelopperAndCountry();
 	}
 }

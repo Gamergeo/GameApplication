@@ -1,8 +1,8 @@
 package com.tutorial.struts.action.view.game;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Consumer;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import com.tutorial.struts.action.AbstractAction;
@@ -19,11 +19,11 @@ public class DisplayGameListAction extends AbstractAction {
 
 	final GameService gameService = new GameService();
 	
-	private Set<IGame> listGame;
+	private List<IGame> listGame;
 	
-	private Set<IGame> listGameTest;
+	private List<IGame> listGameTest;
 
-	private Set<IGame> listGameTemp = new HashSet<IGame>();
+	private List<IGame> listGameTemp = new ArrayList<IGame>();
 	
 	public String execute() throws GameException {
 		
@@ -39,25 +39,19 @@ public class DisplayGameListAction extends AbstractAction {
 			devUser = new DevUser(user);
 			managerUser = new ManagerUser(user);
 			
-			listGameTest = new HashSet<IGame>();
+			listGameTest = new ArrayList<IGame>();
 			
 			listGame = managerUser.getGames();
-			listGameTemp = new HashSet<IGame>(listGame);
+			listGameTemp = new ArrayList<IGame>(listGame);
 			
 			Stream<IGame> gameStream = listGame.stream();
 			
 			gameStream = gameStream.filter( (game) -> game.getName().contains("test") );
 			
-			Consumer<IGame> consumeGame = new Consumer<IGame>() {
-	
-				@Override
-				public void accept(IGame game) {
-					listGameTest.add(game);
-					listGameTemp.remove(game);
-				}
-			};
-			
-			gameStream.forEach(consumeGame);
+			gameStream.forEach((game) -> {
+											listGameTest.add(game);
+											listGameTemp.remove(game);
+										 });
 			
 			listGame = listGameTemp;
 		} else {
@@ -68,12 +62,12 @@ public class DisplayGameListAction extends AbstractAction {
 		return SUCCESS;
 	}
 	
-	public Set<IGame> getListGame() {
+	public List<IGame> getListGame() {
 		return listGame;
 	}
 	
 	
-	public Set<IGame> getListGameTest() {
+	public List<IGame> getListGameTest() {
 		return listGameTest;
 	}
 

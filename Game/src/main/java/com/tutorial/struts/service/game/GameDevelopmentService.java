@@ -1,6 +1,6 @@
 package com.tutorial.struts.service.game;
 
-import java.util.Set;
+import java.util.List;
 
 import com.tutorial.struts.bean.dto.IGame;
 import com.tutorial.struts.dao.game.GameDevelopperCountryDAO;
@@ -14,7 +14,7 @@ public class GameDevelopmentService extends AbstractService {
 	/**
 	 * @return All the game in dev with developper and country (if exists)
 	 */
-	public Set<IGame> getGamesInDeveloppmentWithDevelopperAndCountry() throws GameException {
+	public List<IGame> getGamesInDeveloppmentWithDevelopperAndCountry() throws GameException {
 		
 		return getGamesInDeveloppmentWithDevelopperAndCountry(0);
 	}
@@ -22,7 +22,7 @@ public class GameDevelopmentService extends AbstractService {
 	/**
 	 * @return All the game in dev with developper and country (if exists)
 	 */
-	public Set<IGame> getGamesInDeveloppmentWithDevelopperAndCountry(int progressRate) throws GameException {
+	public List<IGame> getGamesInDeveloppmentWithDevelopperAndCountry(int progressRate) throws GameException {
 		return gameDevelopperCountryDAO.getGamesInDevelopementInfo(progressRate);
 	}
 }

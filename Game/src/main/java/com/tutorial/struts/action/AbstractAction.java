@@ -1,5 +1,7 @@
 package com.tutorial.struts.action;
 
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -21,6 +23,10 @@ public abstract class AbstractAction extends ActionSupport {
 	protected HttpServletRequest getRequest() {
 
 		return ServletActionContext.getRequest();
+	}
+	
+	public LocalDateTime getLocalDate() {
+		return LocalDateTime.now();
 	}
 
 }

@@ -188,7 +188,9 @@ public class GameDAO extends AbstractDAO {
 			connection = getConnection();
 			
 			final Statement statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM GAME WHERE ID = " + gameId);
+			statement.executeUpdate("DELETE FROM RELEASED_GAME WHERE ID = " + gameId + ";");
+			statement.executeUpdate("DELETE FROM GAME_DEVELOPMENT WHERE ID = " + gameId + ";");
+			statement.executeUpdate("DELETE FROM GAME WHERE ID = " + gameId + ";");
 
 		}  catch (Exception exception) {
 			

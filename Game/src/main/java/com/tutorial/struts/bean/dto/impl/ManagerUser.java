@@ -1,6 +1,6 @@
 package com.tutorial.struts.bean.dto.impl;
 
-import java.util.Set;
+import java.util.List;
 
 import com.tutorial.struts.bean.dto.IDevUser;
 import com.tutorial.struts.bean.dto.IGame;
@@ -24,8 +24,8 @@ public class ManagerUser extends User implements IDevUser {
 	}
 	
 	@Override
-	public Set<IGame> getGames() throws GameException {
-		Set<IGame> listGames = user.getGames();
+	public List<IGame> getGames() throws GameException {
+		List<IGame> listGames = user.getGames();
 		listGames.addAll(gameDevelopmentService.getGamesInDeveloppmentWithDevelopperAndCountry());
 		
 		return listGames;
