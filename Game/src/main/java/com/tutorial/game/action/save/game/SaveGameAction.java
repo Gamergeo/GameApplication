@@ -18,11 +18,16 @@ public class SaveGameAction extends AbstractAction {
 	final GameService gameService = new GameService();
 	
 	private GameForm gameForm = new GameForm();
+	
+	private String method;
 
 	@Action(value="saveGame", results = {
 			@Result(name="success", 
 					location="displayGameList", 
-			        type = "redirect")
+			        type = "redirect"),
+			@Result(name="successAdd", 
+					location="displayGameSave", 
+					type = "redirect")
 	})
 	public String execute() throws GameException {
 		
@@ -33,6 +38,9 @@ public class SaveGameAction extends AbstractAction {
 			gameService.createANewGame(gameForm.getGameName(), gameForm.getDevName(), gameForm.getCountryName());
 		}
 		
+		if (method.equals("saveAndAdd")) {
+			return "successAdd";
+		}
 		return SUCCESS;
 	}
 	
@@ -57,5 +65,13 @@ public class SaveGameAction extends AbstractAction {
 
 	public void setGameForm(GameForm gameForm) {
 		this.gameForm = gameForm;
+	}
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
 	}
 }
