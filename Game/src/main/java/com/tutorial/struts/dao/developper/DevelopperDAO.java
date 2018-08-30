@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.tutorial.struts.bean.dto.Country;
-import com.tutorial.struts.bean.dto.Developper;
+import com.tutorial.struts.bean.dto.impl.Country;
+import com.tutorial.struts.bean.dto.impl.Developper;
 import com.tutorial.struts.dao.AbstractDAO;
 import com.tutorial.struts.exception.GameException;
 

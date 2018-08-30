@@ -47,6 +47,11 @@
 		<br />
 		
 		<s:a action="displayGameSave"><s:text name="jsp.gameList.add"/></s:a>
+		
+		
+		<s:if test="listGameTest != null && !listGameTest.isEmpty()">
+			<jsp:include page="gameList_test.jsp" />
+		</s:if>
 	</body>
 	
 </html>

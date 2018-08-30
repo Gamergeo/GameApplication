@@ -1,12 +1,13 @@
 package com.tutorial.struts.service.game;
 
-import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.tutorial.struts.bean.dto.Country;
-import com.tutorial.struts.bean.dto.Developper;
-import com.tutorial.struts.bean.dto.Game;
+import com.tutorial.struts.bean.dto.IGame;
+import com.tutorial.struts.bean.dto.impl.Country;
+import com.tutorial.struts.bean.dto.impl.Developper;
+import com.tutorial.struts.bean.dto.impl.Game;
 import com.tutorial.struts.dao.country.CountryDAO;
 import com.tutorial.struts.dao.developper.DevelopperDAO;
 import com.tutorial.struts.dao.game.GameDAO;
@@ -25,16 +26,16 @@ public class GameService extends AbstractService {
 	/**
 	 * @return All the game with developper and country (if exists)
 	 */
-	public List<Game> getGamesWithDevelopperAndCountry() throws GameException {
+	public Set<IGame> getGamesWithDevelopperAndCountry() throws GameException {
 		
-		return gameDevelopperCountryDAO.getResults();
+		return gameDevelopperCountryDAO.getGamesInfo();
 	}
 	
 	/**
 	 * @return the game with dev & country for the id
 	 */
-	public Game getGameWithDevelopperAndCountry(Integer id) throws GameException {
-		Game game = gameDAO.getGameById(id);
+	public IGame getGameWithDevelopperAndCountry(Integer id) throws GameException {
+		IGame game = gameDAO.getGameById(id);
 		
 		game.setDevelopper(developperDAO.getDevelopperById(game.getDevelopper().getId()));
 		
@@ -47,11 +48,11 @@ public class GameService extends AbstractService {
 	/**
 	 * Create a new game, developper, country if needed
 	 */
-	public Game createANewGame(String gameName, String devName, String countryName) throws GameException {
+	public IGame createANewGame(String gameName, String devName, String countryName) throws GameException {
 		
 		Country country = null;
 		Developper developper = null;
-		Game game = null;
+		IGame game = null;
 		
 		boolean isDevAlreadyRegistered = true;
 		boolean isCountryAlreadyRegistered = true;
@@ -118,8 +119,8 @@ public class GameService extends AbstractService {
 		return addNewGame(game);
 	}
 	
-	public Game updateGame(Integer gameId, String gameName, String devName, String countryName) throws GameException {
-		Game game = new Game();
+	public IGame updateGame(Integer gameId, String gameName, String devName, String countryName) throws GameException {
+		IGame game = new Game();
 		
 		game.setId(gameId);
 		game.setName(gameName);
@@ -133,7 +134,7 @@ public class GameService extends AbstractService {
 		gameDAO.deleteGame(gameId);
 	}
 	
-	public Game getGameByName(String name) throws GameException {
+	public IGame getGameByName(String name) throws GameException {
 		return gameDAO.getGameByName(name);
 	}
 	
@@ -145,11 +146,11 @@ public class GameService extends AbstractService {
 		return countryDAO.getCountryByName(name);
 	}
 	
-	public Game addNewGame(Game game) throws GameException {
+	public IGame addNewGame(IGame game) throws GameException {
 		return gameDAO.addNewGame(game);
 	}
 	
-	public Game updateGame(Game game) throws GameException {
+	public IGame updateGame(IGame game) throws GameException {
 		return gameDAO.updateGame(game);
 	}
 	

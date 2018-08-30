@@ -5,16 +5,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.tutorial.struts.bean.dto.Developper;
-import com.tutorial.struts.bean.dto.Game;
+import com.tutorial.struts.bean.dto.IGame;
+import com.tutorial.struts.bean.dto.impl.Developper;
+import com.tutorial.struts.bean.dto.impl.Game;
 import com.tutorial.struts.dao.AbstractDAO;
 import com.tutorial.struts.exception.GameException;
 
 public class GameDAO extends AbstractDAO {
 	
-	public Game getGameById(Integer id) throws GameException {
+	public IGame getGameById(Integer id) throws GameException {
 		Connection connection = null;
-		Game game = null;
+		IGame game = null;
 		
 		try {
 			connection = getConnection();
@@ -58,9 +59,9 @@ public class GameDAO extends AbstractDAO {
 	 * @return the country if exists, null in other case
 	 * @throws GameException
 	 */
-	public Game getGameByName(String name) throws GameException {
+	public IGame getGameByName(String name) throws GameException {
 		Connection connection = null;
-		Game game = null;
+		IGame game = null;
 		
 		try {
 			connection = getConnection();
@@ -104,7 +105,7 @@ public class GameDAO extends AbstractDAO {
 	 * Add a new country without no check
 	 * @throws GameException 
 	 */
-	public Game addNewGame(Game game) throws GameException {
+	public IGame addNewGame(IGame game) throws GameException {
 		
 		if (game.getDevelopper() == null) {
 			throw new GameException("Developper is not set !");
@@ -145,7 +146,7 @@ public class GameDAO extends AbstractDAO {
 	 * Add a new country without no check
 	 * @throws GameException 
 	 */
-	public Game updateGame(Game game) throws GameException {
+	public IGame updateGame(IGame game) throws GameException {
 		
 		Connection connection = null;
 		

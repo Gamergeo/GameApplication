@@ -3,7 +3,7 @@ package com.tutorial.struts.action.view.game;
 import org.apache.commons.lang.StringUtils;
 
 import com.tutorial.struts.action.AbstractAction;
-import com.tutorial.struts.bean.dto.Game;
+import com.tutorial.struts.bean.dto.IGame;
 import com.tutorial.struts.bean.form.GameForm;
 import com.tutorial.struts.exception.GameException;
 import com.tutorial.struts.service.game.GameService;
@@ -19,7 +19,7 @@ public class DisplayGameSaveAction extends AbstractAction {
 	public String execute() throws NumberFormatException, GameException {
 		
 		if (StringUtils.isNotBlank(gameForm.getGameId())) {
-			Game game = gameService.getGameWithDevelopperAndCountry(Integer.parseInt(gameForm.getGameId()));	
+			IGame game = gameService.getGameWithDevelopperAndCountry(Integer.parseInt(gameForm.getGameId()));	
 		
 			gameForm.setGameName(game.getName());
 			gameForm.setDevName(game.getDevelopper().getName());

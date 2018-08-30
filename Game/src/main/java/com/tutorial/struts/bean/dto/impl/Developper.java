@@ -1,4 +1,4 @@
-package com.tutorial.struts.bean.dto;
+package com.tutorial.struts.bean.dto.impl;
 
 import java.io.Serializable;
 
