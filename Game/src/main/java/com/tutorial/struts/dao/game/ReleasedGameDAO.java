@@ -1,13 +1,10 @@
 package com.tutorial.struts.dao.game;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.tutorial.struts.bean.dto.IGame;
-import com.tutorial.struts.bean.dto.impl.Developper;
-import com.tutorial.struts.bean.dto.impl.Game;
 import com.tutorial.struts.dao.AbstractDAO;
 import com.tutorial.struts.exception.GameException;
 

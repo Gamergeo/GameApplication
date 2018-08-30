@@ -14,13 +14,6 @@ public abstract class AbstractDAO {
 	Connection connexion = null;
 
 	protected Connection getConnection() throws NamingException, SQLException {
-		/* Chargement du driver JDBC pour MySQL */
-		try {
-		    Class.forName( "com.mysql.cj.jdbc.Driver" );
-		} catch ( ClassNotFoundException e ) {
-		    /* Gérer les éventuelles erreurs ici. */
-		}
-		
 		connexion = DriverManager.getConnection(URL, USER, PASSWORD);
 		
 		return connexion;

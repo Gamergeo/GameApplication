@@ -1,6 +1,5 @@
 package com.tutorial.struts.action.view.game;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -12,6 +11,7 @@ import com.tutorial.struts.bean.dto.impl.ManagerUser;
 import com.tutorial.struts.bean.dto.impl.User;
 import com.tutorial.struts.exception.GameException;
 import com.tutorial.struts.service.game.GameService;
+
 
 public class DisplayGameListAction extends AbstractAction {
 
