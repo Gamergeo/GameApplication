@@ -1,30 +1,46 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.test</groupId>
-	<artifactId>strutshibernate</artifactId>
-	<version>1.0</version>
+	<groupId>com.tutorial</groupId>
+	<artifactId>game</artifactId>
+	<version>2.8</version>
 	<packaging>war</packaging>
 	<name>StrutsHibernate</name>
-	<description>Struts 1.0 Hibernate</description>
+	<description>The MegaGameApp</description>
+	
+	<properties>
+	    <servlet.version>4.0.1</servlet.version>
+	    <commons.version>3.6</commons.version>
+	    <struts.version>2.5.17</struts.version>
+	    <mysql-connector.version>8.0.12</mysql-connector.version>
+	    <jstl.version>1.2</jstl.version>
+	</properties>
 	
 	<build>
-    	<finalName>game</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
-				<configuration>
-					<release>10</release>
-      			</configuration>
-   			</plugin>
-    		<plugin>
-      			<artifactId>maven-war-plugin</artifactId>
-      			<version>3.2.1</version>
-      			<configuration>
-        			<warSourceDirectory>WebContent</warSourceDirectory>
-      			</configuration>
-    		</plugin>
-  		</plugins>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+    	<finalName>${project.artifactId}-${project.version}</finalName>
+    	<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.7.0</version>
+					<configuration>
+						<release>10</release>
+	      			</configuration>
+	   			</plugin>
+	    		<plugin>
+	      			<artifactId>maven-war-plugin</artifactId>
+	      			<version>3.2.1</version>
+	      			<configuration>
+	        			<warSourceDirectory>WebContent</warSourceDirectory>
+	      			</configuration>
+	    		</plugin>
+	  		</plugins>
+  		</pluginManagement>
 	</build>
 	
 	<dependencies>
@@ -34,16 +50,23 @@
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
-		    <version>4.0.1</version>
+		    <version>${servlet.version}</version>
 		    <scope>provided</scope>
 		</dependency>
 
-		
 		<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
 		<dependency>
-		    <groupId>commons-lang</groupId>
-		    <artifactId>commons-lang</artifactId>
-		    <version>2.6</version>
+		    <groupId>org.apache.commons</groupId>
+    		<artifactId>commons-lang3</artifactId>
+		    <version>${commons.version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.ow2.asm/asm-commons -->
+		<!--  Obligatoire !!! Sinon le asm fournis par struts n'est pas compatible avec java 8 ... -->
+		<dependency>
+		    <groupId>org.ow2.asm</groupId>
+		    <artifactId>asm-commons</artifactId>
+		    <version>6.2.1</version>
 		</dependency>
 		
 		<!-- Struts -->
@@ -51,14 +74,21 @@
 		<dependency>
 		    <groupId>org.apache.struts</groupId>
 		    <artifactId>struts2-core</artifactId>
-		    <version>2.5.17</version>
+		    <version>${struts.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-convention-plugin -->
+		<dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-convention-plugin</artifactId>
+		    <version>${struts.version}</version>
+		</dependency>
+		
 		
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.12</version>
+		    <version>${mysql-connector.version}</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
@@ -66,7 +96,7 @@
 		<dependency>
 		    <groupId>jstl</groupId>
 		    <artifactId>jstl</artifactId>
-		    <version>1.2</version>
+		    <version>${jstl.version}</version>
 		</dependency>
 		
 	</dependencies>

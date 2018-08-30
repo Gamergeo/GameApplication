@@ -6,8 +6,8 @@
 
 <struts>
 
-    <package name="com.tutorial.struts.action.save.game" extends="default">
-	    <action name="saveGame" class="com.tutorial.struts.action.save.game.SaveGameAction">
+    <package name="com.tutorial.game.action.save.game" extends="default">
+	    <action name="saveGame" class="com.tutorial.game.action.save.game.SaveGameAction">
             <result name="success" type="chain">displayGameList</result>
        		<allowed-methods>delete</allowed-methods>
         </action>

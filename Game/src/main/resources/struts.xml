@@ -14,7 +14,7 @@
     
     	<!--  Gestion des interceptors communs à toutes les actions -->
         <interceptors>
-        	<interceptor name="gameException" class="com.tutorial.struts.interceptor.ExceptionInterceptor"></interceptor>
+        	<interceptor name="gameException" class="com.tutorial.game.interceptor.ExceptionInterceptor"></interceptor>
         
 	        <interceptor-stack name="gameApplicationStack">
 	        
@@ -33,7 +33,7 @@
 		<!--  Gestion des exceptions globales -->
 <!-- 		<global-exception-mappings> -->
 <!--     		<exception-mapping exception="java.lang.Exception" result="error" /> -->
-<!-- 		    <exception-mapping exception="com.tutorial.struts.exception.GameException" result="error" /> -->
+<!-- 		    <exception-mapping exception="com.tutorial.game.exception.GameException" result="error" /> -->
 <!-- 		</global-exception-mappings> -->
 		
     </package>

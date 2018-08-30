@@ -7,15 +7,11 @@
 <struts>
 
 	<!--  Visualisation de jeu - List et Save (namespace si besoin de namespace) -->
-    <package name="com.tutorial.struts.action.view.game" extends="default">
+    <package name="com.tutorial.game.action.view.game" extends="default">
     
     
-	    <action name="displayGameList" class="com.tutorial.struts.action.view.game.DisplayGameListAction">
+	    <action name="displayGameList" class="com.tutorial.game.action.view.game.DisplayGameListAction">
             <result name="success">/jsp/gameList.jsp</result>
-        </action>
-        
-        <action name="displayGameSave" class="com.tutorial.struts.action.view.game.DisplayGameSaveAction">
-            <result name="success">/jsp/gameAdd.jsp</result>
         </action>
     </package>
 </struts>
