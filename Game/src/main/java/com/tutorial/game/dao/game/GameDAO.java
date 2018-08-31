@@ -1,6 +1,7 @@
 package com.tutorial.game.dao.game;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -153,11 +154,17 @@ public class GameDAO extends AbstractDAO {
 		try {
 			connection = getConnection();
 			
-			final Statement statement = connection.createStatement();
-			statement.executeUpdate("UPDATE GAME SET GAME.NAME = '" + game.getName() + "' WHERE GAME.ID = " + game.getId() + ";");
-
-			final ResultSet resultSet = statement.executeQuery("SELECT ID FROM GAME WHERE name = '" + game.getName() + "';");
-			resultSet.next();
+			String query = "SELECT id, name FROM GAME WHERE id = ?";
+			
+			final PreparedStatement prepareStatement = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			
+			prepareStatement.setString(1, game.getId().toString());
+			final ResultSet resultSet = prepareStatement.executeQuery();
+			
+			resultSet.first();
+			resultSet.updateString("name", game.getName());
+			
+			resultSet.updateRow();
 			
 			return game;
 
