@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.stereotype.Controller;
 
 import com.tutorial.game.action.AbstractAction;
 import com.tutorial.game.bean.dto.game.Game;
@@ -17,6 +18,7 @@ import com.tutorial.game.exception.GameException;
 @Namespace(value="/")
 @Action("displayGameList")
 @Result(name="success", location="/jsp/gameList.jsp")
+@Controller
 public class DisplayGameListAction extends AbstractAction {
 
 	private static final long serialVersionUID = -8898371186242307450L;

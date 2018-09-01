@@ -20,6 +20,7 @@
 	    <log4j.version>2.11.1</log4j.version>
 	    <spring.version>5.0.8.RELEASE</spring.version>
 	    <dbcp.version>2.5.0</dbcp.version>
+	    <struts-spring.version>2.5.17</struts-spring.version>
 	</properties>
 
   	<groupId>com.tutorial</groupId>
@@ -178,6 +179,15 @@
 			    <artifactId>struts2-convention-plugin</artifactId>
 			    <version>${struts.version}</version>
 			</dependency>
+			
+			<!-- Struts spring -->
+			<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-spring-plugin -->
+			<dependency>
+			    <groupId>org.apache.struts</groupId>
+			    <artifactId>struts2-spring-plugin</artifactId>
+			    <version>${struts-spring.version}</version>
+			</dependency>
+			
 			
 			<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 			<dependency>

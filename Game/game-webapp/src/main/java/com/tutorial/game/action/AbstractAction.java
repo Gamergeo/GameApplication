@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.ParentPackage;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.tutorial.game.service.IServiceFactory;
@@ -19,24 +20,14 @@ public abstract class AbstractAction extends ActionSupport {
 	
 	private static final long serialVersionUID = -4083758616182790868L;
 	
-	/**
-	 * Definit dans application-context.xml
-	 */
-	protected static IServiceFactory serviceFactory;
+	@Autowired
+	protected IServiceFactory serviceFactory;
 
 	private String errorMessage;
 	
 	final private DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
 	
 	final private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-	
-	public static IServiceFactory getServiceFactory() {
-		return serviceFactory;
-	}
-
-	public static void setServiceFactory(IServiceFactory nServiceFactory) {
-		serviceFactory = nServiceFactory;
-	}
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
@@ -47,7 +38,6 @@ public abstract class AbstractAction extends ActionSupport {
 	}
 	
 	protected HttpServletRequest getRequest() {
-
 		return ServletActionContext.getRequest();
 	}
 	

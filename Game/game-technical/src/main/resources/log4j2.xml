@@ -7,11 +7,11 @@
 	</Appenders>
 	
 	<Loggers>
-		<Logger name="org.springframework" level="warn" additivity="false">
+		<Logger name="org.springframework" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 
-        <Logger name="org.example.demo.ticket" level="warn" additivity="false">
+        <Logger name="com.tutorial.game" level="warn" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
         
