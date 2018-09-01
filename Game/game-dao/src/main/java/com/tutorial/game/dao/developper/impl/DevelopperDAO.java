@@ -8,8 +8,8 @@ import java.sql.Statement;
 import com.tutorial.game.bean.dto.country.ICountry;
 import com.tutorial.game.bean.dto.country.impl.Country;
 import com.tutorial.game.bean.dto.developper.impl.Developper;
-import com.tutorial.game.dao.AbstractDAO;
 import com.tutorial.game.dao.developper.IDevelopperDAO;
+import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
 
 public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {

@@ -12,8 +12,8 @@ import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.bean.dto.game.impl.Game;
 import com.tutorial.game.bean.dto.user.IUser;
 import com.tutorial.game.exception.GameException;
-import com.tutorial.game.service.AbstractService;
 import com.tutorial.game.service.game.IGameService;
+import com.tutorial.game.service.impl.AbstractService;
 
 public class GameService extends AbstractService implements IGameService {
 	

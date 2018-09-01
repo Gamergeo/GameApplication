@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.tutorial.game.bean.dto.game.IGame;
-import com.tutorial.game.dao.AbstractDAO;
 import com.tutorial.game.dao.game.IReleasedGameDAO;
+import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
 
 public class ReleasedGameDAO extends AbstractDAO implements IReleasedGameDAO {

@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.exception.GameException;
-import com.tutorial.game.service.AbstractService;
 import com.tutorial.game.service.game.IGameDevelopmentService;
+import com.tutorial.game.service.impl.AbstractService;
 
 public class GameDevelopmentService extends AbstractService implements IGameDevelopmentService {
 	

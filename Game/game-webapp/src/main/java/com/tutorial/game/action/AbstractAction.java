@@ -12,14 +12,14 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.tutorial.game.service.ServiceFactory;
+import com.tutorial.game.service.IServiceFactory;
 
 @ParentPackage("default")
 public abstract class AbstractAction extends ActionSupport {
 	
 	private static final long serialVersionUID = -4083758616182790868L;
 	
-	protected static ServiceFactory serviceFactory;
+	protected static IServiceFactory serviceFactory;
 
 	private String errorMessage;
 	
@@ -27,11 +27,11 @@ public abstract class AbstractAction extends ActionSupport {
 	
 	final private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 	
-	public static ServiceFactory getServiceFactory() {
+	public static IServiceFactory getServiceFactory() {
 		return serviceFactory;
 	}
 
-	public static void setServiceFactory(ServiceFactory nServiceFactory) {
+	public static void setServiceFactory(IServiceFactory nServiceFactory) {
 		serviceFactory = nServiceFactory;
 	}
 

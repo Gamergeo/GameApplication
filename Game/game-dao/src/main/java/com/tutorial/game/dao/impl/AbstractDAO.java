@@ -1,4 +1,4 @@
-package com.tutorial.game.dao;
+package com.tutorial.game.dao.impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

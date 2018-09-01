@@ -12,8 +12,8 @@ import com.tutorial.game.bean.dto.country.impl.Country;
 import com.tutorial.game.bean.dto.developper.impl.Developper;
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.bean.dto.game.impl.Game;
-import com.tutorial.game.dao.AbstractDAO;
 import com.tutorial.game.dao.game.IGameDevelopperCountryDAO;
+import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
 
 public class GameDevelopperCountryDAO extends AbstractDAO implements IGameDevelopperCountryDAO {
