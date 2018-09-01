@@ -5,6 +5,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import com.tutorial.game.action.AbstractAction;
+import com.tutorial.game.action.view.game.DisplayGameListAction;
 import com.tutorial.game.dao.IDAOFactory;
 import com.tutorial.game.dao.country.impl.CountryDAO;
 import com.tutorial.game.dao.developper.impl.DevelopperDAO;
@@ -32,7 +33,9 @@ public class DependencyInjectionListener implements ServletContextListener {
 		serviceFactory.setGameDevelopmentService(new GameDevelopmentService());
 		serviceFactory.setReleasedGameService(new ReleasedGameService());
 
-		AbstractAction.setServiceFactory(serviceFactory);		
+//		AbstractAction.setServiceFactory(serviceFactory);
+		DisplayGameListAction.setGameService(serviceFactory.getGameService());
+		
 		AbstractService.setServiceFactory(serviceFactory);
 		
 		IDAOFactory daoFactory = new DAOFactory();

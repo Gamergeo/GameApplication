@@ -19,6 +19,10 @@
             <groupId>com.tutorial</groupId>
             <artifactId>game-model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tutorial</groupId>
+            <artifactId>game-technical</artifactId>
+        </dependency>
 	
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>

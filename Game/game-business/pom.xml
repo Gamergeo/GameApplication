@@ -23,6 +23,10 @@
             <groupId>com.tutorial</groupId>
             <artifactId>game-model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tutorial</groupId>
+            <artifactId>game-technical</artifactId>
+        </dependency>
         
        	<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
 		<dependency>
