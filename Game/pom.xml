@@ -4,7 +4,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	    
     <properties>
-    	<revision>4.0.1-SNAPSHOT</revision>
+    	<revision>4.0.2-SNAPSHOT</revision>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <servlet.version>4.0.1</servlet.version>
 	    <commons.version>3.6</commons.version>
@@ -41,6 +41,24 @@
                     <version>${maven-war-plugin.version}</version>
 	      			<configuration>
 	        			<warSourceDirectory>WebContent</warSourceDirectory>
+	        			<webResources>
+	        				<!-- Non filtered resources -->
+	                        <resource>
+	                            <directory>src\main\webapp</directory>
+	                            <excludes>
+	                                <exclude>jsp\header\header.jsp</exclude>
+	                            </excludes>
+	                        </resource>
+	                        
+	        				<!-- Filtered resources -->
+	                        <resource>
+	                            <filtering>true</filtering>
+	                            <directory>src\main\webapp</directory>
+	                            <includes>
+	                                <include>jsp\header\header.jsp</include>
+	                            </includes>
+	                        </resource>
+                    	</webResources>
 	      			</configuration>
                 </plugin>
                 <plugin>

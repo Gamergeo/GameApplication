@@ -12,14 +12,22 @@
 	
 	<name>game-webapp</name>
 	
-		<profiles>
+	<profiles>
         <!-- Profil pour l'environnement de dev -->
         <profile>
             <id>dev</id>
             <build>
                 <resources>
                     <resource>
-                        <directory>src/main/resources/conf-dev</directory>
+                        <directory>src/main/resources</directory>
+                        <excludes>
+                        	<exclude>conf-prod/*.*</exclude>
+<!--                         	<exclude>conf-dev/*.*</exclude> -->
+                        </excludes>
+                         <includes>
+                        	<include>*.*</include>
+                        	<include>conf-dev/*.*</include>
+                        </includes>
                     </resource>
                 </resources>
             </build>

@@ -14,6 +14,9 @@
 
 <table>
 	<tr>
+		<td>Version ${revision}</td>
+	</tr>
+	<tr>
 		<td>Date : <s:property value="localDate" /></td>
 		<td>Time : <s:property value="localTime" /></td>
 	</tr>	
