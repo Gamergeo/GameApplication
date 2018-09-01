@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Repository;
+
 import com.tutorial.game.bean.dto.developper.impl.Developper;
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.bean.dto.game.impl.Game;
@@ -13,6 +15,7 @@ import com.tutorial.game.dao.game.IGameDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
 
+@Repository
 public class GameDAO extends AbstractDAO implements IGameDAO {
 	
 	/* (non-Javadoc)

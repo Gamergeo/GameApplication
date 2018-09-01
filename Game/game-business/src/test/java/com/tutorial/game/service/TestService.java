@@ -6,7 +6,7 @@ import com.tutorial.game.dao.developper.impl.DevelopperDAO;
 import com.tutorial.game.dao.game.impl.GameDAO;
 import com.tutorial.game.dao.game.impl.GameDevelopperCountryDAO;
 import com.tutorial.game.dao.game.impl.ReleasedGameDAO;
-import com.tutorial.game.dao.impl.DAOFactory;
+import com.tutorial.game.dao.impl.DaoFactory;
 import com.tutorial.game.service.game.IGameService;
 import com.tutorial.game.service.game.impl.GameDevelopmentService;
 import com.tutorial.game.service.game.impl.GameService;
@@ -30,7 +30,7 @@ public abstract class TestService extends TestCase {
 
 		AbstractService.setServiceFactory(serviceFactory);
 		
-		IDAOFactory daoFactory = new DAOFactory();
+		IDAOFactory daoFactory = new DaoFactory();
 		
 		daoFactory.setCountryDAO(new CountryDAO());
 		daoFactory.setDevelopperDAO(new DevelopperDAO());
@@ -52,7 +52,7 @@ public abstract class TestService extends TestCase {
 
 		AbstractService.setServiceFactory(serviceFactory);
 		
-		IDAOFactory daoFactory = new DAOFactory();
+		IDAOFactory daoFactory = new DaoFactory();
 		
 		daoFactory.setCountryDAO(new CountryDAO());
 		daoFactory.setDevelopperDAO(new DevelopperDAO());

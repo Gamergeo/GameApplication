@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.tutorial.game.bean.dto.country.ICountry;
 import com.tutorial.game.bean.dto.country.impl.Country;
 import com.tutorial.game.bean.dto.developper.impl.Developper;
@@ -16,6 +18,7 @@ import com.tutorial.game.dao.game.IGameDevelopperCountryDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
 
+@Repository
 public class GameDevelopperCountryDAO extends AbstractDAO implements IGameDevelopperCountryDAO {
 	
 	/* (non-Javadoc)

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.tutorial.game.bean.dto.country.ICountry;
 import com.tutorial.game.bean.dto.country.impl.Country;
@@ -15,6 +16,7 @@ import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.game.IGameService;
 import com.tutorial.game.service.impl.AbstractService;
 
+@Service
 public class GameService extends AbstractService implements IGameService {
 	
 	/* (non-Javadoc)
@@ -55,7 +57,7 @@ public class GameService extends AbstractService implements IGameService {
 		
 		game.setDevelopper(daoFactory.getDevelopperDAO().getDevelopperById(game.getDevelopper().getId()));
 		
-		if (game.getDevelopper().getCountry() != null)
+		if (game.getDevelopper().getCountry() != null && game.getDevelopper().getCountry().getId() != null)
 			game.getDevelopper().setCountry(daoFactory.getCountryDAO().getCountryById(game.getDevelopper().getCountry().getId()));
 		
 		return game;

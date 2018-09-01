@@ -2,11 +2,14 @@ package com.tutorial.game.service.game.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.game.IReleasedGameService;
 import com.tutorial.game.service.impl.AbstractService;
 
+@Service
 public class ReleasedGameService extends AbstractService implements IReleasedGameService {
 	
 	/* (non-Javadoc)

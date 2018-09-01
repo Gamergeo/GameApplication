@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tutorial.game.action.AbstractAction;
 import com.tutorial.game.bean.dto.game.IGame;
@@ -23,8 +24,6 @@ public class DisplayGameListAction extends AbstractAction {
 
 	private static final long serialVersionUID = -8898371186242307450L;
 	
-	private static IGameService gameService;
-	
 	private List<IGame> listGame;
 	
 	private List<IGame> listGameTest = new ArrayList<IGame>();
@@ -34,7 +33,7 @@ public class DisplayGameListAction extends AbstractAction {
 		IUser user = new User();
 		user.setName(GameConstants.USER_NAME_MANAGER);
 		
-		listGame = gameService.getDisplayedGames(user);
+		listGame = serviceFactory.getGameService().getDisplayedGames(user);
 		
 		if (user.isDevUser() || user.isManagerUser()) {
 			List<IGame> listGameTemp = new ArrayList<IGame>(listGame);
@@ -55,8 +54,8 @@ public class DisplayGameListAction extends AbstractAction {
 		return SUCCESS;
 	}
 	
-	public static void setGameService(IGameService gameService) {
-		DisplayGameListAction.gameService = gameService;
+	public void setGameService(IGameService nGameService) {
+		gameService = nGameService;
 	}
 
 	public List<IGame> getListGame() {

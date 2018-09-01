@@ -1,16 +1,23 @@
 package com.tutorial.game.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.tutorial.game.service.IServiceFactory;
 import com.tutorial.game.service.game.IGameDevelopmentService;
 import com.tutorial.game.service.game.IGameService;
 import com.tutorial.game.service.game.IReleasedGameService;
 
+@Component
 public final class ServiceFactory implements IServiceFactory {
 	
+	@Autowired
 	private IGameService gameService;
 	
+	@Autowired
 	private IReleasedGameService releasedGameService;
 	
+	@Autowired
 	private IGameDevelopmentService gameDevelopmentService;
 
 	/* (non-Javadoc)

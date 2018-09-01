@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Repository;
+
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.dao.game.IReleasedGameDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
 
+@Repository
 public class ReleasedGameDAO extends AbstractDAO implements IReleasedGameDAO {
 	
 	/* (non-Javadoc)

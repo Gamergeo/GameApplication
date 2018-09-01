@@ -1,25 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans.xsd">
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+            
+     <!-- Prend en compte la configuration des injections (@Inject...) -->
+    <context:annotation-config/>
 
-    <!-- ===== Déclaration des Managers ===== -->
-    <bean id="gameService"   			class="com.tutorial.game.service.game.impl.GameService" />
-    <bean id="gameDevelopmentService"   class="com.tutorial.game.service.game.impl.GameDevelopmentService" />
-    <bean id="releasedGameService"		class="com.tutorial.game.service.game.impl.ReleasedGameService" />
+    <!-- Scanne les packages pour trouver les beans qui se déclarent (@Named...) -->
+    <context:component-scan base-package="com.tutorial.game.dao"/>
+    <context:component-scan base-package="com.tutorial.game.service"/>
+
+    <!-- ===== Déclaration des Services ===== -->
+    
+<!--     <bean id="gameService"   			class="com.tutorial.game.service.game.impl.GameService" /> -->
+<!--     <bean id="gameDevelopmentService"   class="com.tutorial.game.service.game.impl.GameDevelopmentService" /> -->
+<!--     <bean id="releasedGameService"		class="com.tutorial.game.service.game.impl.ReleasedGameService" /> -->
 
     <!-- ===== ServiceFactory ===== -->
-    <bean id="serviceFactory" class="com.tutorial.game.service.impl.ServiceFactory">
-        <property name="gameService" ref="gameService"/>
-        <property name="gameDevelopmentService" ref="gameDevelopmentService"/>
-        <property name="releasedGameService" ref="releasedGameService"/>
-    </bean>
+    
+<!--     <bean id="serviceFactory" class="com.tutorial.game.service.impl.ServiceFactory"> -->
+<!--         <property name="gameService" ref="gameService"/> -->
+<!--         <property name="gameDevelopmentService" ref="gameDevelopmentService"/> -->
+<!--         <property name="releasedGameService" ref="releasedGameService"/> -->
+<!--     </bean> -->
 
-    <!-- ==== AbstractResource ===== -->
+    <!-- ==== AbstractAction ===== -->
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="targetClass" value="com.tutorial.game.action.AbstractAction"/>
+        <property name="targetMethod" value="setServiceFactory"/>
+        <property name="arguments" ref="serviceFactory"/>
+    </bean>
+    
+    <!-- ==== AbstractService ===== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.tutorial.game.service.impl.AbstractService"/>
+        <property name="targetMethod" value="setDaoFactory"/>
+        <property name="arguments" ref="daoFactory"/>
+    </bean>
+    
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.tutorial.game.service.impl.AbstractService"/>
         <property name="targetMethod" value="setServiceFactory"/>
         <property name="arguments" ref="serviceFactory"/>
     </bean>

@@ -19,6 +19,9 @@ public abstract class AbstractAction extends ActionSupport {
 	
 	private static final long serialVersionUID = -4083758616182790868L;
 	
+	/**
+	 * Definit dans application-context.xml
+	 */
 	protected static IServiceFactory serviceFactory;
 
 	private String errorMessage;

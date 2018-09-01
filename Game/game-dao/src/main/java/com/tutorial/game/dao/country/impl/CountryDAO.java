@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Repository;
+
 import com.tutorial.game.bean.dto.country.ICountry;
 import com.tutorial.game.bean.dto.country.impl.Country;
 import com.tutorial.game.dao.country.ICountryDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
 
+@Repository
 public class CountryDAO extends AbstractDAO implements ICountryDAO {
 	
 	/* (non-Javadoc)
