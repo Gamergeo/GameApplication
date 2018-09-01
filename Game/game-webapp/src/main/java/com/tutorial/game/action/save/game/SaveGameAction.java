@@ -8,15 +8,12 @@ import com.tutorial.game.action.AbstractAction;
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.bean.dto.game.impl.Game;
 import com.tutorial.game.exception.GameException;
-import com.tutorial.game.service.game.GameService;
 
 @Namespace(value="/")
 public class SaveGameAction extends AbstractAction {
 
 	private static final long serialVersionUID = -6816837196571984771L;
 
-	final GameService gameService = new GameService();
-	
 	private IGame game = new Game();
 	
 	private String method;
@@ -33,9 +30,9 @@ public class SaveGameAction extends AbstractAction {
 		
 		// update
 		if (game.getId() != null) {
-			gameService.updateGame(game);
+			serviceFactory.getGameService().updateGame(game);
 		} else { // create
-			gameService.createANewGame(game);
+			serviceFactory.getGameService().createANewGame(game);
 		}
 		
 		if (method.equals("saveAndAdd")) {
@@ -50,7 +47,7 @@ public class SaveGameAction extends AbstractAction {
 			        type = "redirect")
 	})
 	public String delete() throws GameException {
-		gameService.deleteGame(game.getId());
+		serviceFactory.getGameService().deleteGame(game.getId());
 		
 		return SUCCESS;
 	}

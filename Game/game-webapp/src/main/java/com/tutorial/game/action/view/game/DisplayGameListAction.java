@@ -14,7 +14,6 @@ import com.tutorial.game.bean.dto.user.IUser;
 import com.tutorial.game.bean.dto.user.impl.User;
 import com.tutorial.game.constants.GameConstants;
 import com.tutorial.game.exception.GameException;
-import com.tutorial.game.service.game.GameService;
 
 @Namespace(value="/")
 @Action("displayGameList")
@@ -22,8 +21,6 @@ import com.tutorial.game.service.game.GameService;
 public class DisplayGameListAction extends AbstractAction {
 
 	private static final long serialVersionUID = -8898371186242307450L;
-
-	private final GameService gameService = new GameService();
 	
 	private List<IGame> listGame;
 	
@@ -34,7 +31,7 @@ public class DisplayGameListAction extends AbstractAction {
 		IUser user = new User();
 		user.setName(GameConstants.USER_NAME_MANAGER);
 		
-		listGame = gameService.getDisplayedGames(user);
+		listGame = serviceFactory.getGameService().getDisplayedGames(user);
 		
 		if (user.isDevUser() || user.isManagerUser()) {
 			List<IGame> listGameTemp = new ArrayList<IGame>(listGame);

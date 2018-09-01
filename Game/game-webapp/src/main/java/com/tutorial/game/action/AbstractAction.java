@@ -12,17 +12,28 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.tutorial.game.service.ServiceFactory;
 
 @ParentPackage("default")
 public abstract class AbstractAction extends ActionSupport {
 	
 	private static final long serialVersionUID = -4083758616182790868L;
+	
+	protected static ServiceFactory serviceFactory;
 
 	private String errorMessage;
 	
-	private DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
+	final private DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
 	
-	private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+	final private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+	
+	public static ServiceFactory getServiceFactory() {
+		return serviceFactory;
+	}
+
+	public static void setServiceFactory(ServiceFactory nServiceFactory) {
+		serviceFactory = nServiceFactory;
+	}
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
