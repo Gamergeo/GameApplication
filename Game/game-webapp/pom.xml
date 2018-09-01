@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	 <modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+	    <groupId>com.tutorial</groupId>
+	    <artifactId>game</artifactId>
+	    <version>${revision}</version>
+	</parent>
+	<artifactId>game-webapp</artifactId>
+  	<packaging>war</packaging>
+	
+	<name>game-webapp</name>
+	
+		<profiles>
+        <!-- Profil pour l'environnement de dev -->
+        <profile>
+            <id>dev</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/conf-dev</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <!-- Profil pour l'environnement de production -->
+        <profile>
+            <id>prod</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/conf-prod</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+	
+	<build>
+    	<finalName>game</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources/global</directory>
+			</resource>
+		</resources>
+		<plugins>
+    		<plugin>
+	    		<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+	    	</plugin>
+  		</plugins>
+	</build>
+	
+	<dependencies>
+		
+		<!--  Project dependency -->
+		<dependency>
+            <groupId>com.tutorial</groupId>
+            <artifactId>game-business</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tutorial</groupId>
+            <artifactId>game-model</artifactId>
+        </dependency>
+        
+     	<!-- java servlet --> 
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.ow2.asm</groupId>
+		    <artifactId>asm-commons</artifactId>
+		</dependency>
+        
+     	<!-- Struts -->
+		<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
+		<dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-core</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-convention-plugin -->
+		<dependency>
+		    <groupId>org.apache.struts</groupId>
+		    <artifactId>struts2-convention-plugin</artifactId>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+		<!--  Tag du type ${ } -->
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		</dependency>
+	</dependencies>
+</project>

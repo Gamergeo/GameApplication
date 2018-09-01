@@ -1,103 +1,169 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.tutorial</groupId>
-	<artifactId>gameOld</artifactId>
-	<version>3.4</version>
-	<packaging>war</packaging>
-	<name>StrutsHibernate</name>
-	<description>The MegaGameApp</description>
-	
-	<properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	
+  	<modelVersion>4.0.0</modelVersion>
+  	    
+    <properties>
+    	<revision>4.0.1-SNAPSHOT</revision>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <servlet.version>4.0.1</servlet.version>
 	    <commons.version>3.6</commons.version>
 	    <struts.version>2.5.17</struts.version>
 	    <mysql-connector.version>8.0.12</mysql-connector.version>
 	    <jstl.version>1.2</jstl.version>
+	    <asm.version>6.2.1</asm.version>
+	    <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+	    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+	    <java.version>10</java.version>
+	    <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
 	</properties>
+
+  	<groupId>com.tutorial</groupId>
+  	<artifactId>game</artifactId>
+  	<version>${revision}</version>
+  	<packaging>pom</packaging>
+
+  	<name>game</name>
+  	
+	<modules>
+	    <module>game-webapp</module>
+	    <module>game-business</module>
+	    <module>game-dao</module>
+	    <module>game-model</module>
+	</modules>
 	
-	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
-    	<finalName>${project.artifactId}-${project.version}</finalName>
-    	<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.7.0</version>
-					<configuration>
-						<release>10</release>
-	      			</configuration>
-	   			</plugin>
-	    		<plugin>
-	      			<artifactId>maven-war-plugin</artifactId>
-	      			<version>3.2.1</version>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven-war-plugin.version}</version>
 	      			<configuration>
 	        			<warSourceDirectory>WebContent</warSourceDirectory>
 	      			</configuration>
-	    		</plugin>
-	  		</plugins>
-  		</pluginManagement>
-	</build>
-	
-	<dependencies>
-	
-		<!-- java servlet --> 
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>${servlet.version}</version>
-		    <scope>provided</scope>
-		</dependency>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+	      			<dependencies>
+				        <dependency>
+				            <groupId>org.ow2.asm</groupId>
+				            <artifactId>asm</artifactId>
+				            <version>${asm.version}</version> <!-- Use newer version of ASM -->
+				        </dependency>
+				    </dependencies>
+					<configuration>
+						<release>${java.version}</release>
+	                    <showDeprecation>true</showDeprecation>
+	                    <showWarnings>true</showWarnings>
+	      			</configuration>
+                </plugin>
+                <plugin>
+		    		<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+			        <version>${maven-enforcer-plugin.version}</version>
+			        <executions>
+						<execution>
+						    <id>enforce-profile-target</id>
+							<phase>validate</phase>
+			            	<goals>
+			            		<goal>enforce</goal>
+			            	</goals>
+			            	<configuration>
+			              		<rules>
+			                		<requireActiveProfile>
+			                  			<profiles>prod,dev</profiles>
+			                  			<all>false</all>
+			                		</requireActiveProfile>
+			              		</rules>
+			              		<fail>true</fail>
+			            	</configuration>
+			          	</execution>
+			        </executions>
+		    	</plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    
+    <dependencyManagement>
+    	<dependencies>
+    	
+    		<!-- Project Modules dependecy -->
+	        <dependency>
+	            <groupId>com.tutorial</groupId>
+	            <artifactId>game-webapp</artifactId>
+	    		<version>${revision}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>com.tutorial</groupId>
+	            <artifactId>game-business</artifactId>
+	    		<version>${revision}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>com.tutorial</groupId>
+	            <artifactId>game-model</artifactId>
+	    		<version>${revision}</version>
+	        </dependency>
+    		<dependency>
+	            <groupId>com.tutorial</groupId>
+	            <artifactId>game-dao</artifactId>
+	    		<version>${revision}</version>
+	        </dependency>
 
-		<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
-		<dependency>
-		    <groupId>org.apache.commons</groupId>
-    		<artifactId>commons-lang3</artifactId>
-		    <version>${commons.version}</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.ow2.asm/asm-commons -->
-		<!--  Obligatoire !!! Sinon le asm fournis par struts n'est pas compatible avec java 8 ... -->
-		<dependency>
-		    <groupId>org.ow2.asm</groupId>
-		    <artifactId>asm-commons</artifactId>
-		    <version>6.2.1</version>
-		</dependency>
-		
-		<!-- Struts -->
-		<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
-		<dependency>
-		    <groupId>org.apache.struts</groupId>
-		    <artifactId>struts2-core</artifactId>
-		    <version>${struts.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-convention-plugin -->
-		<dependency>
-		    <groupId>org.apache.struts</groupId>
-		    <artifactId>struts2-convention-plugin</artifactId>
-		    <version>${struts.version}</version>
-		</dependency>
-		
-		
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>${mysql-connector.version}</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
-		<!--  Tag du type ${ } -->
-		<dependency>
-		    <groupId>jstl</groupId>
-		    <artifactId>jstl</artifactId>
-		    <version>${jstl.version}</version>
-		</dependency>
-		
-	</dependencies>
+			<!-- java servlet --> 
+			<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+			<dependency>
+			    <groupId>javax.servlet</groupId>
+			    <artifactId>javax.servlet-api</artifactId>
+			    <version>${servlet.version}</version>
+			    <scope>provided</scope>
+			</dependency>
+	
+			<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+			<dependency>
+			    <groupId>org.apache.commons</groupId>
+	    		<artifactId>commons-lang3</artifactId>
+			    <version>${commons.version}</version>
+			</dependency>
+			
+			<!-- https://mvnrepository.com/artifact/org.ow2.asm/asm-commons -->
+			<!--  Obligatoire !!! Sinon le asm fournis par struts n'est pas compatible avec java 8 ... -->
+			<dependency>
+			    <groupId>org.ow2.asm</groupId>
+			    <artifactId>asm-commons</artifactId>
+			    <version>${asm.version}</version>
+			</dependency>
+			
+			<!-- Struts -->
+			<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
+			<dependency>
+			    <groupId>org.apache.struts</groupId>
+			    <artifactId>struts2-core</artifactId>
+			    <version>${struts.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-convention-plugin -->
+			<dependency>
+			    <groupId>org.apache.struts</groupId>
+			    <artifactId>struts2-convention-plugin</artifactId>
+			    <version>${struts.version}</version>
+			</dependency>
+			
+			<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+			<dependency>
+			    <groupId>mysql</groupId>
+			    <artifactId>mysql-connector-java</artifactId>
+			    <version>${mysql-connector.version}</version>
+			</dependency>
+			
+			<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+			<!--  Tag du type ${ } -->
+			<dependency>
+			    <groupId>jstl</groupId>
+			    <artifactId>jstl</artifactId>
+			    <version>${jstl.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	 <modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+	    <groupId>com.tutorial</groupId>
+	    <artifactId>game</artifactId>
+	    <version>${revision}</version>
+	</parent>
+	<artifactId>game-business</artifactId>
+  	<packaging>jar</packaging>
+	
+	<name>game-business</name>
+	 
+	<dependencies>
+	
+		<!--  Project dependency -->
+		<dependency>
+            <groupId>com.tutorial</groupId>
+            <artifactId>game-dao</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tutorial</groupId>
+            <artifactId>game-model</artifactId>
+        </dependency>
+        
+       	<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+    		<artifactId>commons-lang3</artifactId>
+		</dependency>
+	</dependencies>
+</project>
