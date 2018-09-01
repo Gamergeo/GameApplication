@@ -8,14 +8,8 @@ public interface IServiceFactory {
 
 	IGameService getGameService();
 
-	void setGameService(IGameService gameService);
-
 	IReleasedGameService getReleasedGameService();
 
-	void setReleasedGameService(IReleasedGameService releasedGameService);
-
 	IGameDevelopmentService getGameDevelopmentService();
-
-	void setGameDevelopmentService(IGameDevelopmentService gameDevelopmentService);
 
 }

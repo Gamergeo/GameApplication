@@ -22,45 +22,11 @@ public abstract class TestService extends TestCase {
 	
 	public TestService() {		
 		super();
-		IServiceFactory serviceFactory = new ServiceFactory();
-		
-		serviceFactory.setGameService(new GameService());
-		serviceFactory.setGameDevelopmentService(new GameDevelopmentService());
-		serviceFactory.setReleasedGameService(new ReleasedGameService());
-
-		AbstractService.setServiceFactory(serviceFactory);
-		
-		IDAOFactory daoFactory = new DaoFactory();
-		
-		daoFactory.setCountryDAO(new CountryDAO());
-		daoFactory.setDevelopperDAO(new DevelopperDAO());
-		daoFactory.setGameDAO(new GameDAO());
-		daoFactory.setGameDevelopperCountryDAO(new GameDevelopperCountryDAO());
-		daoFactory.setReleasedGameDAO(new ReleasedGameDAO());
-		
-		AbstractService.setDaoFactory(daoFactory);
 
 	}
 	
 	public TestService(String method) {
 		super(method);
-		IServiceFactory serviceFactory = new ServiceFactory();
-		
-		serviceFactory.setGameService(new GameService());
-		serviceFactory.setGameDevelopmentService(new GameDevelopmentService());
-		serviceFactory.setReleasedGameService(new ReleasedGameService());
-
-		AbstractService.setServiceFactory(serviceFactory);
-		
-		IDAOFactory daoFactory = new DaoFactory();
-		
-		daoFactory.setCountryDAO(new CountryDAO());
-		daoFactory.setDevelopperDAO(new DevelopperDAO());
-		daoFactory.setGameDAO(new GameDAO());
-		daoFactory.setGameDevelopperCountryDAO(new GameDevelopperCountryDAO());
-		daoFactory.setReleasedGameDAO(new ReleasedGameDAO());
-		
-		AbstractService.setDaoFactory(daoFactory);
 	}
 	
 }

@@ -29,14 +29,6 @@ public final class ServiceFactory implements IServiceFactory {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.tutorial.game.service.IServiceFactory#setGameService(com.tutorial.game.service.game.IGameService)
-	 */
-	@Override
-	public void setGameService(IGameService gameService) {
-		this.gameService = gameService;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.tutorial.game.service.IServiceFactory#getReleasedGameService()
 	 */
 	@Override
@@ -45,26 +37,10 @@ public final class ServiceFactory implements IServiceFactory {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.tutorial.game.service.IServiceFactory#setReleasedGameService(com.tutorial.game.service.game.IReleasedGameService)
-	 */
-	@Override
-	public void setReleasedGameService(IReleasedGameService releasedGameService) {
-		this.releasedGameService = releasedGameService;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.tutorial.game.service.IServiceFactory#getGameDevelopmentService()
 	 */
 	@Override
 	public IGameDevelopmentService getGameDevelopmentService() {
 		return gameDevelopmentService;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.tutorial.game.service.IServiceFactory#setGameDevelopmentService(com.tutorial.game.service.game.IGameDevelopmentService)
-	 */
-	@Override
-	public void setGameDevelopmentService(IGameDevelopmentService gameDevelopmentService) {
-		this.gameDevelopmentService = gameDevelopmentService;
 	}
 }
