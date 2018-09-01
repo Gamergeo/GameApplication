@@ -1,4 +1,4 @@
-package com.tutorial.game.dao.game;
+package com.tutorial.game.dao.game.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,14 +6,15 @@ import java.sql.Statement;
 
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.dao.AbstractDAO;
+import com.tutorial.game.dao.game.IReleasedGameDAO;
 import com.tutorial.game.exception.GameException;
 
-public class ReleasedGameDAO extends AbstractDAO {
+public class ReleasedGameDAO extends AbstractDAO implements IReleasedGameDAO {
 	
-	/**
-	 * Add a new country without no check
-	 * @throws GameException 
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IReleasedGameDAO#addNewReleasedGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
+	@Override
 	public void addNewReleasedGame(IGame game) throws GameException {
 		
 		if (game.getDevelopper() == null) {

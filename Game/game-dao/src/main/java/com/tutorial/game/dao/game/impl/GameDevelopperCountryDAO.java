@@ -1,4 +1,4 @@
-package com.tutorial.game.dao.game;
+package com.tutorial.game.dao.game.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,14 +13,15 @@ import com.tutorial.game.bean.dto.developper.impl.Developper;
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.bean.dto.game.impl.Game;
 import com.tutorial.game.dao.AbstractDAO;
+import com.tutorial.game.dao.game.IGameDevelopperCountryDAO;
 import com.tutorial.game.exception.GameException;
 
-public class GameDevelopperCountryDAO extends AbstractDAO {
+public class GameDevelopperCountryDAO extends AbstractDAO implements IGameDevelopperCountryDAO {
 	
-	/**
-	 * @return liste des jeux avec developpeur et pays associé
-	 * @throws GameException 
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IGameDevelopperCountryDAO#getGamesInfo()
 	 */
+	@Override
 	public List<IGame> getGamesInfo() throws GameException {
 		
 		Connection connection = null;
@@ -52,10 +53,10 @@ public class GameDevelopperCountryDAO extends AbstractDAO {
 		}
 	}
 	
-	/**
-	 * @return liste des jeux avec developpeur et pays associé
-	 * @throws GameException 
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IGameDevelopperCountryDAO#getGamesInDevelopementInfo(int)
 	 */
+	@Override
 	public List<IGame> getGamesInDevelopementInfo(int progressRate) throws GameException {
 		
 		Connection connection = null;
@@ -88,10 +89,10 @@ public class GameDevelopperCountryDAO extends AbstractDAO {
 		}
 	}
 	
-	/**
-	 * @return liste des jeux avec developpeur et pays associé
-	 * @throws GameException 
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IGameDevelopperCountryDAO#getReleasedGamesInfo()
 	 */
+	@Override
 	public List<IGame> getReleasedGamesInfo() throws GameException {
 		
 		Connection connection = null;

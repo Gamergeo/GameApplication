@@ -1,4 +1,4 @@
-package com.tutorial.game.service.game;
+package com.tutorial.game.service.game.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,28 +11,16 @@ import com.tutorial.game.bean.dto.developper.impl.Developper;
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.bean.dto.game.impl.Game;
 import com.tutorial.game.bean.dto.user.IUser;
-import com.tutorial.game.dao.country.CountryDAO;
-import com.tutorial.game.dao.developper.DevelopperDAO;
-import com.tutorial.game.dao.game.GameDAO;
-import com.tutorial.game.dao.game.ReleasedGameDAO;
 import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.AbstractService;
+import com.tutorial.game.service.game.IGameService;
 
-public class GameService extends AbstractService {
+public class GameService extends AbstractService implements IGameService {
 	
-	private final GameDAO gameDAO  = new GameDAO();
-	private final ReleasedGameDAO releasedGameDAO  = new ReleasedGameDAO();
-	private final DevelopperDAO developperDAO  = new DevelopperDAO();
-	private final CountryDAO countryDAO  = new CountryDAO();
-	
-	private final ReleasedGameService releasedGameService = new ReleasedGameService();
-	private final GameDevelopmentService gameDevelopmentService = new GameDevelopmentService();
-	
-	/**
-	 * 
-	 * @param user (needed for rights test)
-	 * @return the list of released games or all the game, depending the user rights
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#getDisplayedGames(com.tutorial.game.bean.dto.user.IUser)
 	 */
+	@Override
 	public List<IGame> getDisplayedGames(IUser user) throws GameException {
 		
 		List<IGame> listGames = new ArrayList<IGame>();
@@ -45,40 +33,46 @@ public class GameService extends AbstractService {
 		}
 		
 		// Tous les utilisateurs peuvent voir les released game
-		listGames = releasedGameService.getReleasedtWithDevelopperAndCountry();
+		listGames = serviceFactory.getReleasedGameService().getReleasedtWithDevelopperAndCountry();
 		
 		// L'utilisateur est un developpeur : il doit voir les jeux en developpement à moitié terminé
 		if (user.isDevUser()) {
-			listGames.addAll(gameDevelopmentService.getGamesInDeveloppmentWithDevelopperAndCountry(50));
+			listGames.addAll(serviceFactory.getGameDevelopmentService().getGamesInDeveloppmentWithDevelopperAndCountry(50));
 			
 		} else if (user.isManagerUser()) { 
-			listGames.addAll(gameDevelopmentService.getGamesInDeveloppmentWithDevelopperAndCountry());
+			listGames.addAll(serviceFactory.getGameDevelopmentService().getGamesInDeveloppmentWithDevelopperAndCountry());
 		}
 			
 		return listGames;
 	}
 	
-	/**
-	 * @return the game with dev & country for the id
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#getGameWithDevelopperAndCountry(java.lang.Integer)
 	 */
+	@Override
 	public IGame getGameWithDevelopperAndCountry(Integer id) throws GameException {
-		IGame game = gameDAO.getGameById(id);
+		IGame game = daoFactory.getGameDAO().getGameById(id);
 		
-		game.setDevelopper(developperDAO.getDevelopperById(game.getDevelopper().getId()));
+		game.setDevelopper(daoFactory.getDevelopperDAO().getDevelopperById(game.getDevelopper().getId()));
 		
 		if (game.getDevelopper().getCountry() != null)
-			game.getDevelopper().setCountry(countryDAO.getCountryById(game.getDevelopper().getCountry().getId()));
+			game.getDevelopper().setCountry(daoFactory.getCountryDAO().getCountryById(game.getDevelopper().getCountry().getId()));
 		
 		return game;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#createANewGame(com.tutorial.game.bean.dto.game.IGame)
+	 */
+	@Override
 	public IGame createANewGame(IGame game) throws GameException {
 		return createANewGame(game.getName(), game.getDevelopper().getName(), game.getDevelopper().getCountry().getName());
 	}
 	
-	/**
-	 * Create a new game, developper, country if needed
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#createANewGame(java.lang.String, java.lang.String, java.lang.String)
 	 */
+	@Override
 	public IGame createANewGame(String gameName, String devName, String countryName) throws GameException {
 		
 		ICountry country = null;
@@ -150,49 +144,85 @@ public class GameService extends AbstractService {
 		return addNewGame(game);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#updateGame(java.lang.Integer, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
 	public IGame updateGame(Integer gameId, String gameName, String devName, String countryName) throws GameException {
 		IGame game = new Game();
 		
 		game.setId(gameId);
 		game.setName(gameName);
 		
-		gameDAO.updateGame(game);
+		daoFactory.getGameDAO().updateGame(game);
 		
 		return game;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#deleteGame(java.lang.Integer)
+	 */
+	@Override
 	public void deleteGame(Integer gameId) throws GameException {
-		gameDAO.deleteGame(gameId);
+		daoFactory.getGameDAO().deleteGame(gameId);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#getGameByName(java.lang.String)
+	 */
+	@Override
 	public IGame getGameByName(String name) throws GameException {
-		return gameDAO.getGameByName(name);
+		return daoFactory.getGameDAO().getGameByName(name);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#getDevelopperByName(java.lang.String)
+	 */
+	@Override
 	public Developper getDevelopperByName(String name) throws GameException {
-		return developperDAO.getDevelopperByName(name);
+		return daoFactory.getDevelopperDAO().getDevelopperByName(name);
 	}	
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#getCountryByName(java.lang.String)
+	 */
+	@Override
 	public ICountry getCountryByName(String name) throws GameException {
-		return countryDAO.getCountryByName(name);
+		return daoFactory.getCountryDAO().getCountryByName(name);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#addNewGame(com.tutorial.game.bean.dto.game.IGame)
+	 */
+	@Override
 	public IGame addNewGame(IGame game) throws GameException {
-		game = gameDAO.addNewGame(game);
-		releasedGameDAO.addNewReleasedGame(game);
+		game = daoFactory.getGameDAO().addNewGame(game);
+		daoFactory.getReleasedGameDAO().addNewReleasedGame(game);
 		return game;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#updateGame(com.tutorial.game.bean.dto.game.IGame)
+	 */
+	@Override
 	public IGame updateGame(IGame game) throws GameException {
-		return gameDAO.updateGame(game);
+		return daoFactory.getGameDAO().updateGame(game);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#addNewDevelopper(com.tutorial.game.bean.dto.developper.impl.Developper)
+	 */
+	@Override
 	public Developper addNewDevelopper(Developper developper) throws GameException {
-		return developperDAO.addNewDevelopper(developper);
+		return daoFactory.getDevelopperDAO().addNewDevelopper(developper);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.service.game.IGameService#addNewCountry(com.tutorial.game.bean.dto.country.ICountry)
+	 */
+	@Override
 	public ICountry addNewCountry(ICountry country) throws GameException {
-		return countryDAO.addNewCountry(country);
+		return daoFactory.getCountryDAO().addNewCountry(country);
 	}
 }
  

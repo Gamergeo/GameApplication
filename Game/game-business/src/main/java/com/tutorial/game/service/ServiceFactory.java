@@ -1,38 +1,38 @@
 package com.tutorial.game.service;
 
-import com.tutorial.game.service.game.GameDevelopmentService;
-import com.tutorial.game.service.game.GameService;
-import com.tutorial.game.service.game.ReleasedGameService;
+import com.tutorial.game.service.game.IGameDevelopmentService;
+import com.tutorial.game.service.game.IGameService;
+import com.tutorial.game.service.game.IReleasedGameService;
 
 public final class ServiceFactory {
 	
-	private GameService gameService;
+	private IGameService gameService;
 	
-	private ReleasedGameService releasedGameService;
+	private IReleasedGameService releasedGameService;
 	
-	private GameDevelopmentService gameDevelopmentService;
+	private IGameDevelopmentService gameDevelopmentService;
 
-	public GameService getGameService() {
+	public IGameService getGameService() {
 		return gameService;
 	}
 
-	public void setGameService(GameService gameService) {
+	public void setGameService(IGameService gameService) {
 		this.gameService = gameService;
 	}
 
-	public ReleasedGameService getReleasedGameService() {
+	public IReleasedGameService getReleasedGameService() {
 		return releasedGameService;
 	}
 
-	public void setReleasedGameService(ReleasedGameService releasedGameService) {
+	public void setReleasedGameService(IReleasedGameService releasedGameService) {
 		this.releasedGameService = releasedGameService;
 	}
 
-	public GameDevelopmentService getGameDevelopmentService() {
+	public IGameDevelopmentService getGameDevelopmentService() {
 		return gameDevelopmentService;
 	}
 
-	public void setGameDevelopmentService(GameDevelopmentService gameDevelopmentService) {
+	public void setGameDevelopmentService(IGameDevelopmentService gameDevelopmentService) {
 		this.gameDevelopmentService = gameDevelopmentService;
 	}
 }

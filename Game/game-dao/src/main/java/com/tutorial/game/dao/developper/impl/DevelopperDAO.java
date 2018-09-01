@@ -1,4 +1,4 @@
-package com.tutorial.game.dao.developper;
+package com.tutorial.game.dao.developper.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,14 +9,15 @@ import com.tutorial.game.bean.dto.country.ICountry;
 import com.tutorial.game.bean.dto.country.impl.Country;
 import com.tutorial.game.bean.dto.developper.impl.Developper;
 import com.tutorial.game.dao.AbstractDAO;
+import com.tutorial.game.dao.developper.IDevelopperDAO;
 import com.tutorial.game.exception.GameException;
 
-public class DevelopperDAO extends AbstractDAO {
+public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {
 	
-	/**
-	 * @return the country if exists, null in other case
-	 * @throws GameException
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.developper.IDevelopperDAO#getDevelopperById(java.lang.Integer)
 	 */
+	@Override
 	public Developper getDevelopperById(Integer id) throws GameException {
 		Connection connection = null;
 		Developper developper = null;
@@ -62,10 +63,10 @@ public class DevelopperDAO extends AbstractDAO {
 		return developper;
 	}
 	
-	/**
-	 * @return the country if exists, null in other case
-	 * @throws GameException
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.developper.IDevelopperDAO#getDevelopperByName(java.lang.String)
 	 */
+	@Override
 	public Developper getDevelopperByName(String name) throws GameException {
 		Connection connection = null;
 		Developper developper = null;
@@ -111,10 +112,10 @@ public class DevelopperDAO extends AbstractDAO {
 		return developper;
 	}
 	
-	/**
-	 * Add a new country without no check
-	 * @throws GameException 
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.developper.IDevelopperDAO#addNewDevelopper(com.tutorial.game.bean.dto.developper.impl.Developper)
 	 */
+	@Override
 	public Developper addNewDevelopper(Developper developper) throws GameException {
 		Connection connection = null;
 		

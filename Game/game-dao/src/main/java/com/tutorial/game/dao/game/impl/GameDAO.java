@@ -1,4 +1,4 @@
-package com.tutorial.game.dao.game;
+package com.tutorial.game.dao.game.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +10,15 @@ import com.tutorial.game.bean.dto.developper.impl.Developper;
 import com.tutorial.game.bean.dto.game.IGame;
 import com.tutorial.game.bean.dto.game.impl.Game;
 import com.tutorial.game.dao.AbstractDAO;
+import com.tutorial.game.dao.game.IGameDAO;
 import com.tutorial.game.exception.GameException;
 
-public class GameDAO extends AbstractDAO {
+public class GameDAO extends AbstractDAO implements IGameDAO {
 	
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IGameDAO#getGameById(java.lang.Integer)
+	 */
+	@Override
 	public IGame getGameById(Integer id) throws GameException {
 		Connection connection = null;
 		IGame game = null;
@@ -56,10 +61,10 @@ public class GameDAO extends AbstractDAO {
 		return game;
 	}
 	
-	/**
-	 * @return the country if exists, null in other case
-	 * @throws GameException
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IGameDAO#getGameByName(java.lang.String)
 	 */
+	@Override
 	public IGame getGameByName(String name) throws GameException {
 		Connection connection = null;
 		IGame game = null;
@@ -102,10 +107,10 @@ public class GameDAO extends AbstractDAO {
 		return game;
 	}
 	
-	/**
-	 * Add a new country without no check
-	 * @throws GameException 
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IGameDAO#addNewGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
+	@Override
 	public IGame addNewGame(IGame game) throws GameException {
 		
 		if (game.getDevelopper() == null) {
@@ -143,10 +148,10 @@ public class GameDAO extends AbstractDAO {
 	}
 	
 	
-	/**
-	 * Add a new country without no check
-	 * @throws GameException 
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IGameDAO#updateGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
+	@Override
 	public IGame updateGame(IGame game) throws GameException {
 		
 		Connection connection = null;
@@ -183,10 +188,10 @@ public class GameDAO extends AbstractDAO {
 		}	
 	}
 	
-	/**
-	 * Delete a game 
-	 * @throws GameException 
+	/* (non-Javadoc)
+	 * @see com.tutorial.game.dao.game.IGameDAO#deleteGame(java.lang.Integer)
 	 */
+	@Override
 	public void deleteGame(Integer gameId) throws GameException {
 		
 		Connection connection = null;
