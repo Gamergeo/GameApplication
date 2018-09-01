@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.tutorial.game.bean.dto.game.IGame;
+import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.game.IGameDevelopmentService;
 import com.tutorial.game.service.impl.AbstractService;
@@ -16,7 +16,7 @@ public class GameDevelopmentService extends AbstractService implements IGameDeve
 	 * @see com.tutorial.game.service.game.IGameDevelopmentService#getGamesInDeveloppmentWithDevelopperAndCountry()
 	 */
 	@Override
-	public List<IGame> getGamesInDeveloppmentWithDevelopperAndCountry() throws GameException {
+	public List<Game> getGamesInDeveloppmentWithDevelopperAndCountry() throws GameException {
 		return getGamesInDeveloppmentWithDevelopperAndCountry(0);
 	}
 	
@@ -24,7 +24,7 @@ public class GameDevelopmentService extends AbstractService implements IGameDeve
 	 * @see com.tutorial.game.service.game.IGameDevelopmentService#getGamesInDeveloppmentWithDevelopperAndCountry(int)
 	 */
 	@Override
-	public List<IGame> getGamesInDeveloppmentWithDevelopperAndCountry(int progressRate) throws GameException {
+	public List<Game> getGamesInDeveloppmentWithDevelopperAndCountry(int progressRate) throws GameException {
 		return daoFactory.getGameDevelopperCountryDAO().getGamesInDevelopementInfo(progressRate);
 	}
 }

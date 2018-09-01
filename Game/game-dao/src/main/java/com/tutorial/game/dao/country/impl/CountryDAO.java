@@ -7,8 +7,7 @@ import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
 
-import com.tutorial.game.bean.dto.country.ICountry;
-import com.tutorial.game.bean.dto.country.impl.Country;
+import com.tutorial.game.bean.dto.country.Country;
 import com.tutorial.game.dao.country.ICountryDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
@@ -20,9 +19,9 @@ public class CountryDAO extends AbstractDAO implements ICountryDAO {
 	 * @see com.tutorial.game.dao.country.ICountryDAO#getCountryById(java.lang.Integer)
 	 */
 	@Override
-	public ICountry getCountryById(Integer id) throws GameException {
+	public Country getCountryById(Integer id) throws GameException {
 		Connection connection = null;
-		ICountry country = null;
+		Country country = null;
 		
 		try {
 			connection = getConnection();
@@ -61,9 +60,9 @@ public class CountryDAO extends AbstractDAO implements ICountryDAO {
 	 * @see com.tutorial.game.dao.country.ICountryDAO#getCountryByName(java.lang.String)
 	 */
 	@Override
-	public ICountry getCountryByName(String name) throws GameException {
+	public Country getCountryByName(String name) throws GameException {
 		Connection connection = null;
-		ICountry country = null;
+		Country country = null;
 		
 		try {
 			connection = getConnection();
@@ -102,7 +101,7 @@ public class CountryDAO extends AbstractDAO implements ICountryDAO {
 	 * @see com.tutorial.game.dao.country.ICountryDAO#addNewCountry(com.tutorial.game.bean.dto.country.ICountry)
 	 */
 	@Override
-	public ICountry addNewCountry(ICountry country) throws GameException {
+	public Country addNewCountry(Country country) throws GameException {
 		Connection connection = null;
 		
 		try {

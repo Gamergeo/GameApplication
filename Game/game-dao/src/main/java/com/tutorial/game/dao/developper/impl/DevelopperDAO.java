@@ -7,9 +7,8 @@ import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
 
-import com.tutorial.game.bean.dto.country.ICountry;
-import com.tutorial.game.bean.dto.country.impl.Country;
-import com.tutorial.game.bean.dto.developper.impl.Developper;
+import com.tutorial.game.bean.dto.country.Country;
+import com.tutorial.game.bean.dto.developper.Developper;
 import com.tutorial.game.dao.developper.IDevelopperDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
@@ -43,7 +42,7 @@ public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {
 				final int countryId = resultSet.getInt("COUNTRY_ID");
 
 				if (countryId != 0) {
-					ICountry country = new Country();
+					Country country = new Country();
 					country.setId(countryId);
 					developper.setCountry(country);
 				}
@@ -92,7 +91,7 @@ public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {
 				final int countryId = resultSet.getInt("COUNTRY_ID");
 
 				if (countryId != 0) {
-					ICountry country = new Country();
+					Country country = new Country();
 					country.setId(countryId);
 					developper.setCountry(country);
 				}

@@ -1,4 +1,4 @@
-package com.tutorial.game.bean.dto.game.impl;
+package com.tutorial.game.bean.dto.game;
 
 import java.util.Date;
 

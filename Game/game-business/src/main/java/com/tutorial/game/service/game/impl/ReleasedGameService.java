@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.tutorial.game.bean.dto.game.IGame;
+import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.game.IReleasedGameService;
 import com.tutorial.game.service.impl.AbstractService;
@@ -16,7 +16,7 @@ public class ReleasedGameService extends AbstractService implements IReleasedGam
 	 * @see com.tutorial.game.service.game.IReleasedGameService#getReleasedtWithDevelopperAndCountry()
 	 */
 	@Override
-	public List<IGame> getReleasedtWithDevelopperAndCountry() throws GameException {
+	public List<Game> getReleasedtWithDevelopperAndCountry() throws GameException {
 		
 		return daoFactory.getGameDevelopperCountryDAO().getReleasedGamesInfo();
 	}

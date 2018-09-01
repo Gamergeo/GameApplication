@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
 
-import com.tutorial.game.bean.dto.game.IGame;
+import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.dao.game.IReleasedGameDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
@@ -18,7 +18,7 @@ public class ReleasedGameDAO extends AbstractDAO implements IReleasedGameDAO {
 	 * @see com.tutorial.game.dao.game.IReleasedGameDAO#addNewReleasedGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
-	public void addNewReleasedGame(IGame game) throws GameException {
+	public void addNewReleasedGame(Game game) throws GameException {
 		
 		if (game.getDevelopper() == null) {
 			throw new GameException("Developper is not set !");

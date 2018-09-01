@@ -6,12 +6,10 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import com.tutorial.game.bean.dto.country.ICountry;
-import com.tutorial.game.bean.dto.country.impl.Country;
-import com.tutorial.game.bean.dto.developper.impl.Developper;
-import com.tutorial.game.bean.dto.game.IGame;
-import com.tutorial.game.bean.dto.game.impl.Game;
-import com.tutorial.game.bean.dto.user.IUser;
+import com.tutorial.game.bean.dto.country.Country;
+import com.tutorial.game.bean.dto.developper.Developper;
+import com.tutorial.game.bean.dto.game.Game;
+import com.tutorial.game.bean.dto.user.User;
 import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.game.IGameService;
 import com.tutorial.game.service.impl.AbstractService;
@@ -23,9 +21,9 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#getDisplayedGames(com.tutorial.game.bean.dto.user.IUser)
 	 */
 	@Override
-	public List<IGame> getDisplayedGames(IUser user) throws GameException {
+	public List<Game> getDisplayedGames(User user) throws GameException {
 		
-		List<IGame> listGames = new ArrayList<IGame>();
+		List<Game> listGames = new ArrayList<Game>();
 		
 		if (user == null) {
 			throw new GameException("User is not setted !");
@@ -52,8 +50,8 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#getGameWithDevelopperAndCountry(java.lang.Integer)
 	 */
 	@Override
-	public IGame getGameWithDevelopperAndCountry(Integer id) throws GameException {
-		IGame game = daoFactory.getGameDAO().getGameById(id);
+	public Game getGameWithDevelopperAndCountry(Integer id) throws GameException {
+		Game game = daoFactory.getGameDAO().getGameById(id);
 		
 		game.setDevelopper(daoFactory.getDevelopperDAO().getDevelopperById(game.getDevelopper().getId()));
 		
@@ -67,7 +65,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#createANewGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
-	public IGame createANewGame(IGame game) throws GameException {
+	public Game createANewGame(Game game) throws GameException {
 		return createANewGame(game.getName(), game.getDevelopper().getName(), game.getDevelopper().getCountry().getName());
 	}
 	
@@ -75,11 +73,11 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#createANewGame(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public IGame createANewGame(String gameName, String devName, String countryName) throws GameException {
+	public Game createANewGame(String gameName, String devName, String countryName) throws GameException {
 		
-		ICountry country = null;
+		Country country = null;
 		Developper developper = null;
-		IGame game = null;
+		Game game = null;
 		
 		boolean isDevAlreadyRegistered = true;
 		boolean isCountryAlreadyRegistered = true;
@@ -150,8 +148,8 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#updateGame(java.lang.Integer, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public IGame updateGame(Integer gameId, String gameName, String devName, String countryName) throws GameException {
-		IGame game = new Game();
+	public Game updateGame(Integer gameId, String gameName, String devName, String countryName) throws GameException {
+		Game game = new Game();
 		
 		game.setId(gameId);
 		game.setName(gameName);
@@ -173,7 +171,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#getGameByName(java.lang.String)
 	 */
 	@Override
-	public IGame getGameByName(String name) throws GameException {
+	public Game getGameByName(String name) throws GameException {
 		return daoFactory.getGameDAO().getGameByName(name);
 	}
 	
@@ -189,7 +187,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#getCountryByName(java.lang.String)
 	 */
 	@Override
-	public ICountry getCountryByName(String name) throws GameException {
+	public Country getCountryByName(String name) throws GameException {
 		return daoFactory.getCountryDAO().getCountryByName(name);
 	}
 	
@@ -197,7 +195,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#addNewGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
-	public IGame addNewGame(IGame game) throws GameException {
+	public Game addNewGame(Game game) throws GameException {
 		game = daoFactory.getGameDAO().addNewGame(game);
 		daoFactory.getReleasedGameDAO().addNewReleasedGame(game);
 		return game;
@@ -207,7 +205,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#updateGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
-	public IGame updateGame(IGame game) throws GameException {
+	public Game updateGame(Game game) throws GameException {
 		return daoFactory.getGameDAO().updateGame(game);
 	}
 	
@@ -223,7 +221,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#addNewCountry(com.tutorial.game.bean.dto.country.ICountry)
 	 */
 	@Override
-	public ICountry addNewCountry(ICountry country) throws GameException {
+	public Country addNewCountry(Country country) throws GameException {
 		return daoFactory.getCountryDAO().addNewCountry(country);
 	}
 }

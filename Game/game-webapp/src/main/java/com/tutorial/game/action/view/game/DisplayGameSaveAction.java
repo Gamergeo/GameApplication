@@ -5,8 +5,7 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 
 import com.tutorial.game.action.AbstractAction;
-import com.tutorial.game.bean.dto.game.IGame;
-import com.tutorial.game.bean.dto.game.impl.Game;
+import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.exception.GameException;
 
 @Namespace(value="/")
@@ -16,7 +15,7 @@ public class DisplayGameSaveAction extends AbstractAction {
 	
 	private static final long serialVersionUID = 5257907639559001732L;
 	
-	private IGame game = new Game();
+	private Game game = new Game();
 
 	public String execute() throws NumberFormatException, GameException {
 		if (game.getId() != null) {
@@ -27,11 +26,11 @@ public class DisplayGameSaveAction extends AbstractAction {
 		return SUCCESS;
 	}
 
-	public IGame getGame() {
+	public Game getGame() {
 		return game;
 	}
 
-	public void setGame(IGame game) {
+	public void setGame(Game game) {
 		this.game = game;
 	}
 

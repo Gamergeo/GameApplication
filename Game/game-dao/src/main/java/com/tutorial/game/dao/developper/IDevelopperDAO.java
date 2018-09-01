@@ -1,6 +1,6 @@
 package com.tutorial.game.dao.developper;
 
-import com.tutorial.game.bean.dto.developper.impl.Developper;
+import com.tutorial.game.bean.dto.developper.Developper;
 import com.tutorial.game.exception.GameException;
 
 public interface IDevelopperDAO {

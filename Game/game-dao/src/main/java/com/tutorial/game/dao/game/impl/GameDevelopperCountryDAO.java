@@ -9,11 +9,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.tutorial.game.bean.dto.country.ICountry;
-import com.tutorial.game.bean.dto.country.impl.Country;
-import com.tutorial.game.bean.dto.developper.impl.Developper;
-import com.tutorial.game.bean.dto.game.IGame;
-import com.tutorial.game.bean.dto.game.impl.Game;
+import com.tutorial.game.bean.dto.country.Country;
+import com.tutorial.game.bean.dto.developper.Developper;
+import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.dao.game.IGameDevelopperCountryDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.exception.GameException;
@@ -25,7 +23,7 @@ public class GameDevelopperCountryDAO extends AbstractDAO implements IGameDevelo
 	 * @see com.tutorial.game.dao.game.IGameDevelopperCountryDAO#getGamesInfo()
 	 */
 	@Override
-	public List<IGame> getGamesInfo() throws GameException {
+	public List<Game> getGamesInfo() throws GameException {
 		
 		Connection connection = null;
 	
@@ -60,7 +58,7 @@ public class GameDevelopperCountryDAO extends AbstractDAO implements IGameDevelo
 	 * @see com.tutorial.game.dao.game.IGameDevelopperCountryDAO#getGamesInDevelopementInfo(int)
 	 */
 	@Override
-	public List<IGame> getGamesInDevelopementInfo(int progressRate) throws GameException {
+	public List<Game> getGamesInDevelopementInfo(int progressRate) throws GameException {
 		
 		Connection connection = null;
 	
@@ -96,7 +94,7 @@ public class GameDevelopperCountryDAO extends AbstractDAO implements IGameDevelo
 	 * @see com.tutorial.game.dao.game.IGameDevelopperCountryDAO#getReleasedGamesInfo()
 	 */
 	@Override
-	public List<IGame> getReleasedGamesInfo() throws GameException {
+	public List<Game> getReleasedGamesInfo() throws GameException {
 		
 		Connection connection = null;
 	
@@ -128,8 +126,8 @@ public class GameDevelopperCountryDAO extends AbstractDAO implements IGameDevelo
 		}
 	}
 	
-	private List<IGame> fecthResults(ResultSet resultSet) throws SQLException {
-		List<IGame> results = new ArrayList<IGame>();
+	private List<Game> fecthResults(ResultSet resultSet) throws SQLException {
+		List<Game> results = new ArrayList<Game>();
 		
 		while (resultSet.next()) {
 			final Game game = new Game();
@@ -139,7 +137,7 @@ public class GameDevelopperCountryDAO extends AbstractDAO implements IGameDevelo
 			final String devName = resultSet.getString("DEV_NAME");
 			final String countryName = resultSet.getString("COUNTRY_NAME");
 			
-			final ICountry country = new Country();
+			final Country country = new Country();
 			country.setName(countryName);
 			
 			final Developper developper = new Developper();
