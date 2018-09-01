@@ -15,7 +15,7 @@
 	</welcome-file-list>
 	
 	<listener>
-	    <listener-class>com.tutorial.game.listener.GameExceptionListener</listener-class>
+	    <listener-class>com.tutorial.game.listener.GameInitialisationListener</listener-class>
 	</listener>
 	
 	<!--  Spring listener -->
