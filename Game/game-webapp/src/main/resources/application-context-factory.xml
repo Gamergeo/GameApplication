@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- ==== AbstractAction ===== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.tutorial.game.action.AbstractAction"/>
+        <property name="targetMethod" value="setServiceFactory"/>
+        <property name="arguments" ref="serviceFactory"/>
+    </bean>
+    
+	<!--    ==== AbstractService ===== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.tutorial.game.service.impl.AbstractService"/>
+        <property name="targetMethod" value="setDaoFactory"/>
+        <property name="arguments" ref="daoFactory"/>
+    </bean>
+    
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.tutorial.game.service.impl.AbstractService"/>
+        <property name="targetMethod" value="setServiceFactory"/>
+        <property name="arguments" ref="serviceFactory"/>
+    </bean>
+</beans>

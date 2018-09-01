@@ -4,7 +4,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	    
     <properties>
-    	<revision>5.2-SNAPSHOT</revision>
+    	<revision>5.4-SNAPSHOT</revision>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <servlet.version>4.0.1</servlet.version>
 	    <commons.version>3.6</commons.version>
@@ -19,6 +19,7 @@
 	    <junit.version>4.12</junit.version>
 	    <log4j.version>2.11.1</log4j.version>
 	    <spring.version>5.0.8.RELEASE</spring.version>
+	    <dbcp.version>2.5.0</dbcp.version>
 	</properties>
 
   	<groupId>com.tutorial</groupId>
@@ -202,11 +203,6 @@
 			</dependency>
 			
 			<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-<!-- 			<dependency> -->
-<!-- 			    <groupId>log4j</groupId> -->
-<!-- 			    <artifactId>log4j</artifactId> -->
-<!-- 			    <version>${log4j.version}</version> -->
-<!-- 			</dependency> -->
 			<dependency>
 			    <groupId>org.apache.logging.log4j</groupId>
 			    <artifactId>log4j-core</artifactId>
@@ -218,7 +214,6 @@
 			    <version>${log4j.version}</version>
 			</dependency>
 
-			
 			<!-- Spring BOM -->
 			<dependency>
                 <groupId>org.springframework</groupId>
@@ -227,6 +222,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
+            <!-- Pool de connection -->
+			<dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-dbcp2</artifactId>
+			    <version>${dbcp.version}</version>
+			</dependency>
+            
 		</dependencies>
 	</dependencyManagement>
 </project>

@@ -15,38 +15,8 @@
     <context:component-scan base-package="com.tutorial.game.dao"/>
     <context:component-scan base-package="com.tutorial.game.service"/>
     <context:component-scan base-package="com.tutorial.game.action"/>
-
-    <!-- ===== Déclaration des Services ===== -->
     
-<!--     <bean id="gameService"   			class="com.tutorial.game.service.game.impl.GameService" /> -->
-<!--     <bean id="gameDevelopmentService"   class="com.tutorial.game.service.game.impl.GameDevelopmentService" /> -->
-<!--     <bean id="releasedGameService"		class="com.tutorial.game.service.game.impl.ReleasedGameService" /> -->
-
-    <!-- ===== ServiceFactory ===== -->
-    
-<!--     <bean id="serviceFactory" class="com.tutorial.game.service.impl.ServiceFactory"> -->
-<!--         <property name="gameService" ref="gameService"/> -->
-<!--         <property name="gameDevelopmentService" ref="gameDevelopmentService"/> -->
-<!--         <property name="releasedGameService" ref="releasedGameService"/> -->
-<!--     </bean> -->
-
-    <!-- ==== AbstractAction ===== -->
-    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetClass" value="com.tutorial.game.action.AbstractAction"/>
-        <property name="targetMethod" value="setServiceFactory"/>
-        <property name="arguments" ref="serviceFactory"/>
-    </bean>
-    
-	<!--    ==== AbstractService ===== -->
-    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetClass" value="com.tutorial.game.service.impl.AbstractService"/>
-        <property name="targetMethod" value="setDaoFactory"/>
-        <property name="arguments" ref="daoFactory"/>
-    </bean>
-    
-    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetClass" value="com.tutorial.game.service.impl.AbstractService"/>
-        <property name="targetMethod" value="setServiceFactory"/>
-        <property name="arguments" ref="serviceFactory"/>
-    </bean>
+    <!-- Import -->
+    <import resource="classpath:/application-context-datasource.xml" />
+    <import resource="classpath:/application-context-factory.xml" />
 </beans>
