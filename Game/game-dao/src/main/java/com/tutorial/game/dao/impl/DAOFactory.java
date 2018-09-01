@@ -1,5 +1,7 @@
 package com.tutorial.game.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.tutorial.game.dao.IDAOFactory;
 import com.tutorial.game.dao.country.ICountryDAO;
 import com.tutorial.game.dao.developper.IDevelopperDAO;
@@ -9,14 +11,19 @@ import com.tutorial.game.dao.game.IReleasedGameDAO;
 
 public class DAOFactory implements IDAOFactory {
 	
+	@Autowired
 	private IGameDAO gameDAO;
 	
+	@Autowired
 	private IGameDevelopperCountryDAO gameDevelopperCountryDAO;
 	
+	@Autowired
 	private IReleasedGameDAO releasedGameDAO;
 	
+	@Autowired
 	private ICountryDAO countryDAO;
 	
+	@Autowired
 	private IDevelopperDAO developperDAO;
 
 	/* (non-Javadoc)
