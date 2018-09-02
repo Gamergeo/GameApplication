@@ -13,7 +13,6 @@ import com.tutorial.game.bean.dto.country.Country;
 import com.tutorial.game.dao.contract.country.ICountryDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.dao.impl.rowmapper.country.CountryRowMapper;
-import com.tutorial.game.dao.impl.rowmapper.game.DevelopmentGameRowMapper;
 import com.tutorial.game.exception.GameException;
 
 @Repository

@@ -1,6 +1,5 @@
 package com.tutorial.game.dao.impl.developper;
 
-import java.sql.Types;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.tutorial.game.bean.dto.developper.Developper;
 import com.tutorial.game.dao.contract.developper.IDevelopperDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
-import com.tutorial.game.dao.impl.country.CountryDAO;
 import com.tutorial.game.dao.impl.rowmapper.developper.DevelopperRowMapper;
 import com.tutorial.game.exception.GameException;
 
