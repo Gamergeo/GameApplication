@@ -23,11 +23,11 @@
             <groupId>com.tutorial</groupId>
             <artifactId>game-technical</artifactId>
         </dependency>
-	
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
+        
+        <!-- Spring -->
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
 		</dependency>
 	</dependencies>
 </project>

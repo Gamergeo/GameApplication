@@ -194,6 +194,7 @@
 			    <groupId>mysql</groupId>
 			    <artifactId>mysql-connector-java</artifactId>
 			    <version>${mysql-connector.version}</version>
+			    <scope>runtime</scope>
 			</dependency>
 			
 			<!-- https://mvnrepository.com/artifact/jstl/jstl -->
@@ -239,6 +240,7 @@
 			    <groupId>org.apache.commons</groupId>
 			    <artifactId>commons-dbcp2</artifactId>
 			    <version>${dbcp.version}</version>
+			    <scope>runtime</scope>
 			</dependency>
             
 		</dependencies>
