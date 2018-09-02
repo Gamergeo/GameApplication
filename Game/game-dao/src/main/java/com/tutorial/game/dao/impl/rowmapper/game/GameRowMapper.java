@@ -24,9 +24,12 @@ public class GameRowMapper implements RowMapper<Game> {
 		
 		int devId = rs.getInt("DEV_ID");
 		
-		game.setDevelopper(new Developper());
-		game.getDevelopper().setId(devId);
-		
+		if (devId != 0) {
+			
+			game.setDevelopper(new Developper());
+			game.getDevelopper().setId(devId);
+		}
+			
 		return game;
 	}
 

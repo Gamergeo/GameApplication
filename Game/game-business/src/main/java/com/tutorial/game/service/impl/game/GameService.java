@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tutorial.game.bean.dto.country.Country;
 import com.tutorial.game.bean.dto.developper.Developper;
@@ -16,6 +17,7 @@ import com.tutorial.game.service.contract.game.IGameService;
 import com.tutorial.game.service.impl.AbstractService;
 
 @Service
+@Transactional
 public class GameService extends AbstractService implements IGameService {
 	
 	final private static Logger LOG = Logger.getLogger(GameService.class.getName());
@@ -24,6 +26,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#getDisplayedGames(com.tutorial.game.bean.dto.user.IUser)
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public List<Game> getDisplayedGames(User user) throws GameException {
 		
 		List<Game> listGames = new ArrayList<Game>();
@@ -55,6 +58,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#getGameWithDevelopperAndCountry(java.lang.int)
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public Game getGameWithDevelopperAndCountry(int id) throws GameException {
 		Game game = daoFactory.getGameDAO().getGameById(id);
 		
@@ -71,13 +75,14 @@ public class GameService extends AbstractService implements IGameService {
 	 */
 	@Override
 	public Game createANewGame(Game game) throws GameException {
-		return createANewGame(game.getName(), game.getDevelopper().getName(), game.getDevelopper().getCountry().getName());
+		return serviceFactory.getGameService().createANewGame(game.getName(), game.getDevelopper().getName(), game.getDevelopper().getCountry().getName());
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.service.game.IGameService#createANewGame(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
+	@Transactional
 	public Game createANewGame(String gameName, String devName, String countryName) throws GameException {
 		
 		Country country = null;
@@ -142,6 +147,8 @@ public class GameService extends AbstractService implements IGameService {
 		// Si le dev n'existe pas, il faut l'insérer en base
 		if (!isDevAlreadyRegistered) {
 			serviceFactory.getDevelopperService().addNewDevelopper(developper);
+			
+//			throw new GameException("");
 		}
 		
 		game.setDevelopper(developper);
@@ -155,6 +162,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#updateGame(java.lang.int, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
+	@Transactional
 	public Game updateGame(int gameId, String gameName, String devName, String countryName) throws GameException {
 		Game game = new Game();
 		
@@ -170,6 +178,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#deleteGame(java.lang.int)
 	 */
 	@Override
+	@Transactional
 	public void deleteGame(int gameId) throws GameException {
 		daoFactory.getGameDAO().deleteGame(gameId);
 	}
@@ -178,6 +187,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#getGameByName(java.lang.String)
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public Game getGameByName(String name) throws GameException {
 		return daoFactory.getGameDAO().getGameByName(name);
 	}
@@ -186,6 +196,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#addNewGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
+	@Transactional
 	public void insertGame(Game game) throws GameException {
 		daoFactory.getGameDAO().insertGame(game);
 		
@@ -200,6 +211,7 @@ public class GameService extends AbstractService implements IGameService {
 	 * @see com.tutorial.game.service.game.IGameService#updateGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
+	@Transactional
 	public void updateGame(Game game) throws GameException {
 		daoFactory.getGameDAO().updateGame(game);
 	}

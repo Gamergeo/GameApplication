@@ -24,11 +24,4 @@
         <property name="username" value="${database.game.username}"/>
         <property name="password" value="${database.game.password}"/>
     </bean>
-
-    <!-- Création de la fatasource MySQL : déconseillé car ne gère par le pool de connection -->
-<!--     <bean id="dataSource" class="com.mysql.cj.jdbc.MysqlDataSource"> -->
-<!--         <property name="url" value="${database.ticket.url}"/> -->
-<!--         <property name="user" value="${database.ticket.username}"/> -->
-<!--         <property name="password" value="${database.ticket.password}"/> -->
-<!--     </bean> -->
 </beans>

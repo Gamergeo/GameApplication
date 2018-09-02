@@ -25,8 +25,10 @@ public class ReleasedGameRowMapper implements RowMapper<ReleasedGame> {
 		
 		int devId = resultSet.getInt("DEV_ID");
 		
-		releasedGame.setDevelopper(new Developper());
-		releasedGame.getDevelopper().setId(devId);
+		if (devId != 0) {
+			releasedGame.setDevelopper(new Developper());
+			releasedGame.getDevelopper().setId(devId);
+		}
 		
 		if (resultSet.findColumn("DEVELOPPER.NAME") > 0) {
 			releasedGame.getDevelopper().setName(resultSet.getString("DEVELOPPER.NAME"));

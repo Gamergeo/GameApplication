@@ -10,7 +10,7 @@ public class Game implements Serializable {
 	
 	protected int id;
 	protected String name;
-	protected Developper developper = new Developper();
+	protected Developper developper;
 	
 	public int getId() {
 		return id;

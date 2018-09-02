@@ -4,7 +4,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	    
     <properties>
-    	<revision>5.8-SNAPSHOT</revision>
+    	<revision>6.0-SNAPSHOT</revision>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <servlet.version>4.0.1</servlet.version>
 	    <commons.version>3.6</commons.version>
@@ -21,6 +21,7 @@
 	    <spring.version>5.0.8.RELEASE</spring.version>
 	    <dbcp.version>2.5.0</dbcp.version>
 	    <struts-spring.version>2.5.17</struts-spring.version>
+	    <aspectj.version>1.8.9</aspectj.version>
 	</properties>
 
   	<groupId>com.tutorial</groupId>
@@ -233,6 +234,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            
+            <!--  Aspect J -->
+            <dependency>
+			    <groupId>org.aspectj</groupId>
+			    <artifactId>aspectjrt</artifactId>
+			    <version>${aspectj.version}</version>
+			</dependency>
             
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
             <!-- Pool de connection -->

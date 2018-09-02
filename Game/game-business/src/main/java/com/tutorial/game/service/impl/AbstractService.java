@@ -1,6 +1,7 @@
 package com.tutorial.game.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import com.tutorial.game.dao.contract.factory.IDAOFactory;
 import com.tutorial.game.service.contract.factory.IServiceFactory;
@@ -12,5 +13,7 @@ public abstract class AbstractService {
 	
 	@Autowired
 	protected IDAOFactory daoFactory;
- 
+	
+	@Autowired
+    protected PlatformTransactionManager transactionManager;
 }

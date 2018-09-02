@@ -39,5 +39,11 @@
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
 		</dependency>
+		
+		<!-- Spring -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		</dependency>
 	</dependencies>
 </project>

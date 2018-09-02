@@ -2,6 +2,8 @@ package com.tutorial.game.interceptor;
 
 import java.util.logging.Logger;
 
+import org.springframework.transaction.UnexpectedRollbackException;
+
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.tutorial.game.action.AbstractAction;
@@ -29,6 +31,14 @@ public class ExceptionInterceptor implements Interceptor {
 
 			AbstractAction action = (AbstractAction) invocation.getAction();
 			action.setErrorMessage(exception.getErrorMessage());
+			return "error";
+		} catch (UnexpectedRollbackException exception) {
+			LOG.severe("Transaction rollback");
+			
+			exception.printStackTrace();
+
+			AbstractAction action = (AbstractAction) invocation.getAction();
+			action.setErrorMessage(exception.getMessage());
 			return "error";
 		}
 		

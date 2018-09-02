@@ -4,14 +4,16 @@ import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tutorial.game.bean.dto.developper.Developper;
 import com.tutorial.game.exception.GameException;
-import com.tutorial.game.service.contract.country.CountryService;
 import com.tutorial.game.service.contract.developper.IDevelopperService;
 import com.tutorial.game.service.impl.AbstractService;
+import com.tutorial.game.service.impl.country.CountryService;
 
 @Service
+@Transactional
 public class DevelopperService extends AbstractService implements IDevelopperService {
 	
 	final private static Logger LOG = Logger.getLogger(DevelopperService.class.getName());
@@ -20,6 +22,7 @@ public class DevelopperService extends AbstractService implements IDevelopperSer
 	 * @see com.tutorial.game.service.game.IDevelopperService#addNewDevelopper(com.tutorial.game.bean.dto.developper.impl.Developper)
 	 */
 	@Override
+	@Transactional
 	public void addNewDevelopper(Developper developper) throws GameException {
 		
 		// Country is null or name is not setted
@@ -41,6 +44,7 @@ public class DevelopperService extends AbstractService implements IDevelopperSer
 	 * @see com.tutorial.game.service.game.IDevelopperService#getDevelopperByName(java.lang.String)
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public Developper getDevelopperByName(String name) throws GameException {
 		Developper developper = daoFactory.getDevelopperDAO().getDevelopperByName(name);
 		
@@ -52,5 +56,4 @@ public class DevelopperService extends AbstractService implements IDevelopperSer
 		return developper;
 	}
 	
-
 }

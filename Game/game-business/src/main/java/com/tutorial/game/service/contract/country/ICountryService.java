@@ -1,4 +1,4 @@
-package com.tutorial.game.service.impl.country;
+package com.tutorial.game.service.contract.country;
 
 import com.tutorial.game.bean.dto.country.Country;
 import com.tutorial.game.exception.GameException;

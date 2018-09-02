@@ -10,7 +10,7 @@ public class Developper implements Serializable {
 	
 	private int id;
 	private String name;
-	private Country country = new Country();
+	private Country country;
 	
 	public int getId() {
 		return id;

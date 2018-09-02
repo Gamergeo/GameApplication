@@ -13,18 +13,17 @@
 			http://www.springframework.org/schema/tx/spring-tx.xsd
 			http://www.springframework.org/schema/aop 
 			http://www.springframework.org/schema/aop/spring-aop.xsd">
-            
-     <!-- Prend en compte la configuration des injections (@Autowired...) -->
-    <context:annotation-config/>
-    
-    <aop:aspectj-autoproxy/>
 
-    <!-- Scanne les packages pour trouver les beans qui se déclarent (@Named...) -->
-    <context:component-scan base-package="com.tutorial.game.dao"/>
-    <context:component-scan base-package="com.tutorial.game.service"/>
-    <context:component-scan base-package="com.tutorial.game.action"/>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
     
-    <!-- Import -->
-    <import resource="classpath:/application-context-datasource.xml" />
-    <import resource="classpath:/application-context-tx.xml" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="com.tutorial.game.exception.GameException"/>
+			<tx:method name="get*" read-only="true" rollback-for="com.tutorial.game.exception.GameException"/>
+		</tx:attributes>
+	</tx:advice>
 </beans>
