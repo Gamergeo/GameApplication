@@ -1,5 +1,7 @@
 package com.tutorial.game.service.contract.country;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,8 @@ import com.tutorial.game.service.impl.country.ICountryService;
 
 @Service
 public class CountryService extends AbstractService implements ICountryService {
+
+	final private static Logger LOG = Logger.getLogger(CountryService.class.getName());
 	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.service.game.ICountryService#addNewCountry(com.tutorial.game.bean.dto.country.ICountry)
@@ -19,6 +23,7 @@ public class CountryService extends AbstractService implements ICountryService {
 		
 		// Country is null or name is not setted
 		if (country == null || StringUtils.isEmpty(country.getName())) {
+			LOG.severe("Country cannot be inserted : he is not correctky set");
 			throw new GameException("Country cannot be inserted : he is not correctky set");
 		}
 		

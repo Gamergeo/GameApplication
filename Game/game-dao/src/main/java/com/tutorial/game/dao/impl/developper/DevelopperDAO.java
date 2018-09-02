@@ -1,6 +1,8 @@
 package com.tutorial.game.dao.impl.developper;
 
+import java.sql.Types;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -8,11 +10,14 @@ import org.springframework.stereotype.Repository;
 import com.tutorial.game.bean.dto.developper.Developper;
 import com.tutorial.game.dao.contract.developper.IDevelopperDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
+import com.tutorial.game.dao.impl.country.CountryDAO;
 import com.tutorial.game.dao.impl.rowmapper.developper.DevelopperRowMapper;
 import com.tutorial.game.exception.GameException;
 
 @Repository
 public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {
+	
+	final private static Logger LOG = Logger.getLogger(DevelopperDAO.class.getName());
 	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.dao.developper.IDevelopperDAO#getDevelopperById(java.lang.int)
@@ -32,9 +37,11 @@ public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {
 		List<Developper> listDev = jdbcTemplate.query(sql, new DevelopperRowMapper(), id);
 		
 		if (listDev.isEmpty()) {
+			LOG.severe("Cannot retrieve developper");
 			throw new GameException("Cannot retrieve developper");
 			
 		} else if (listDev.size() > 1) {
+			LOG.severe("Multiple developper found for this ID : Check database");
 			throw new GameException("Multiple developper found for this ID : Check database");
 			
 		} else {
@@ -59,6 +66,7 @@ public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {
 			return null;
 			
 		} else if (listDev.size() > 1) {
+			LOG.severe("Multiple developper found for this ID : Check database");
 			throw new GameException("Multiple developper found for this ID : Check database");
 			
 		} else {

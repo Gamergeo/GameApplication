@@ -1,18 +1,25 @@
 package com.tutorial.game.dao.impl.country;
 
+import java.sql.Types;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.tutorial.game.bean.dto.country.Country;
 import com.tutorial.game.dao.contract.country.ICountryDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
 import com.tutorial.game.dao.impl.rowmapper.country.CountryRowMapper;
+import com.tutorial.game.dao.impl.rowmapper.game.DevelopmentGameRowMapper;
 import com.tutorial.game.exception.GameException;
 
 @Repository
 public class CountryDAO extends AbstractDAO implements ICountryDAO {
+	
+	final private static Logger LOG = Logger.getLogger(CountryDAO.class.getName());
 	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.dao.country.ICountryDAO#getCountryById(java.lang.int)
@@ -22,16 +29,22 @@ public class CountryDAO extends AbstractDAO implements ICountryDAO {
 		String sql = 
 				"SELECT COUNTRY.ID, COUNTRY.NAME " 
 				+ "FROM COUNTRY "
-				+ "WHERE COUNTRY.ID = ?;";
+				+ "WHERE COUNTRY.ID = :id;";
 		
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		NamedParameterJdbcTemplate jdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
 		
-		List<Country> listCountry = jdbcTemplate.query(sql, new CountryRowMapper(), id);
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		
+		params.addValue("id", id, Types.INTEGER);
+		
+		List<Country> listCountry = jdbcTemplate.query(sql, params, new CountryRowMapper());
 		
 		if (listCountry.isEmpty()) {
+			LOG.severe("Cannot retrieve country");
 			throw new GameException("Cannot retrieve country");
 			
 		} else if (listCountry.size() > 1) {
+			LOG.severe("Multiple country found for this ID : Check database");
 			throw new GameException("Multiple country found for this ID : Check database");
 			
 		} else {
@@ -57,7 +70,8 @@ public class CountryDAO extends AbstractDAO implements ICountryDAO {
 			return null;
 			
 		} else if (listCountry.size() > 1) {
-			throw new GameException("Multiple developper found for this ID : Check database");
+			LOG.severe("Multiple country found for this ID : Check database");
+			throw new GameException("Multiple country found for this ID : Check database");
 			
 		} else {
 			return listCountry.get(0);

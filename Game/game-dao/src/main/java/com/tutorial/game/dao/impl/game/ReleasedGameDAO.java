@@ -1,6 +1,7 @@
 package com.tutorial.game.dao.impl.game;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,8 @@ import com.tutorial.game.exception.GameException;
 @Repository
 public class ReleasedGameDAO extends AbstractDAO implements IReleasedGameDAO {
 	
+	final private static Logger LOG = Logger.getLogger(ReleasedGameDAO.class.toString());
+	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.dao.game.IReleasedGameDAO#addNewReleasedGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
@@ -21,6 +24,7 @@ public class ReleasedGameDAO extends AbstractDAO implements IReleasedGameDAO {
 	public void insertReleasedGame(ReleasedGame releasedGame) throws GameException {
 		
 		if (releasedGame.getDevelopper() == null || releasedGame.getDevelopper().getId() == 0) {
+			LOG.severe("Developper is not set !");
 			throw new GameException("Developper is not set !");
 		}
 		

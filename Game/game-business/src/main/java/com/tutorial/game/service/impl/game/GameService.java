@@ -2,6 +2,7 @@ package com.tutorial.game.service.impl.game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ import com.tutorial.game.service.impl.AbstractService;
 @Service
 public class GameService extends AbstractService implements IGameService {
 	
+	final private static Logger LOG = Logger.getLogger(GameService.class.getName());
+	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.service.game.IGameService#getDisplayedGames(com.tutorial.game.bean.dto.user.IUser)
 	 */
@@ -26,9 +29,11 @@ public class GameService extends AbstractService implements IGameService {
 		List<Game> listGames = new ArrayList<Game>();
 		
 		if (user == null) {
+			LOG.severe("User is not setted !");
 			throw new GameException("User is not setted !");
 			
 		} else if (StringUtils.isEmpty(user.getName())) {
+			LOG.severe("User has no name !");
 			throw new GameException("User has no name !");
 		}
 		

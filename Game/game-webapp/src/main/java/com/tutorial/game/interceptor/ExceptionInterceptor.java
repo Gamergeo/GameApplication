@@ -10,7 +10,7 @@ import com.tutorial.game.exception.GameException;
 //@InterceptorRef(value = "gameException")
 public class ExceptionInterceptor implements Interceptor {
 	
-	private static Logger LOG = Logger.getLogger(ExceptionInterceptor.class.toString());
+	final private static Logger LOG = Logger.getLogger(ExceptionInterceptor.class.toString());
 
 	private static final long serialVersionUID = -2359432534149972463L;
 

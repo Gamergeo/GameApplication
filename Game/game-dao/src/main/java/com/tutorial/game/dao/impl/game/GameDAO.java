@@ -1,6 +1,8 @@
 package com.tutorial.game.dao.impl.game;
 
+import java.sql.Types;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -10,11 +12,14 @@ import org.springframework.stereotype.Repository;
 import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.dao.contract.game.IGameDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
+import com.tutorial.game.dao.impl.developper.DevelopperDAO;
 import com.tutorial.game.dao.impl.rowmapper.game.GameRowMapper;
 import com.tutorial.game.exception.GameException;
 
 @Repository
 public class GameDAO extends AbstractDAO implements IGameDAO {
+
+	final private static Logger LOG = Logger.getLogger(DevelopperDAO.class.getName());
 	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.dao.game.IGameDAO#getGameById(java.lang.int)
@@ -31,10 +36,12 @@ public class GameDAO extends AbstractDAO implements IGameDAO {
 		List<Game> listGame = jdbcTemplate.query(sql, new GameRowMapper(), id);
 		
 		if (listGame.isEmpty()) {
-			throw new GameException("Cannot retrieve country");
+			LOG.severe("Cannot retrieve game");
+			throw new GameException("Cannot retrieve game");
 			
 		} else if (listGame.size() > 1) {
-			throw new GameException("Multiple country found for this ID : Check database");
+			LOG.severe("Multiple game found for this ID : Check database");
+			throw new GameException("Multiple game found for this ID : Check database");
 			
 		} else {
 			return listGame.get(0);
@@ -59,6 +66,7 @@ public class GameDAO extends AbstractDAO implements IGameDAO {
 			return null;
 			
 		} else if (listGame.size() > 1) {
+			LOG.severe("Multiple game found for this ID : Check database");
 			throw new GameException("Multiple country found for this ID : Check database");
 			
 		} else {
@@ -81,8 +89,8 @@ public class GameDAO extends AbstractDAO implements IGameDAO {
 		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
 		
 		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("name", game.getName());
-		params.addValue("devId", game.getDevelopper().getId());
+		params.addValue("name", game.getName(), Types.VARCHAR);
+		params.addValue("devId", game.getDevelopper().getId(), Types.INTEGER);
 		
 		namedParameterJdbcTemplate.update(sql, params);
 	}
@@ -103,8 +111,8 @@ public class GameDAO extends AbstractDAO implements IGameDAO {
 		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
 		
 		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("id", game.getId());
-		params.addValue("name", game.getName());
+		params.addValue("id", game.getId(), Types.INTEGER);
+		params.addValue("name", game.getName(), Types.VARCHAR);
 //		params.addValue("devId", game.getDevelopper().getId());
 		
 		namedParameterJdbcTemplate.update(sql, params);
@@ -123,7 +131,7 @@ public class GameDAO extends AbstractDAO implements IGameDAO {
 		
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		
-		params.addValue("id", gameId);
+		params.addValue("id", gameId, Types.INTEGER);
 		
 		namedParameterJdbcTemplate.update(developmentSql, params);
 		namedParameterJdbcTemplate.update(releasedSql, params);

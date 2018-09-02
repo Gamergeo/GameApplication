@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class GameInitialisationListener implements ServletContextListener {
 	
-	private static Logger LOG = Logger.getLogger(GameInitialisationListener.class.getName());
+	final private static Logger LOG = Logger.getLogger(GameInitialisationListener.class.getName());
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {

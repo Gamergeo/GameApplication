@@ -1,15 +1,20 @@
 package com.tutorial.game.service.impl.developper;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.tutorial.game.bean.dto.developper.Developper;
 import com.tutorial.game.exception.GameException;
+import com.tutorial.game.service.contract.country.CountryService;
 import com.tutorial.game.service.contract.developper.IDevelopperService;
 import com.tutorial.game.service.impl.AbstractService;
 
 @Service
 public class DevelopperService extends AbstractService implements IDevelopperService {
+	
+	final private static Logger LOG = Logger.getLogger(DevelopperService.class.getName());
 
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.service.game.IDevelopperService#addNewDevelopper(com.tutorial.game.bean.dto.developper.impl.Developper)
@@ -19,6 +24,8 @@ public class DevelopperService extends AbstractService implements IDevelopperSer
 		
 		// Country is null or name is not setted
 		if (developper == null || StringUtils.isEmpty(developper.getName())) {
+			LOG.severe("Developper cannot be inserted : he is not correctky set");
+			
 			throw new GameException("Developper cannot be inserted : he is not correctky set");
 		}
 		
