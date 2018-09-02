@@ -13,7 +13,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.tutorial.game.service.IServiceFactory;
+import com.tutorial.game.service.contract.factory.IServiceFactory;
 
 @ParentPackage("default")
 public abstract class AbstractAction extends ActionSupport {

@@ -41,9 +41,6 @@
         <dependent-module archiveName="game-model-5.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-model/game-model">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="game-technical-5.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-technical/game-technical">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
                                                         
         
         

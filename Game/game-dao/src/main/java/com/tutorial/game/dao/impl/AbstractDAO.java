@@ -8,6 +8,8 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.tutorial.game.exception.GameException;
+
 public abstract class AbstractDAO {
 	
 	@Autowired
@@ -18,7 +20,12 @@ public abstract class AbstractDAO {
 		return dataSource.getConnection();
 	}
 	
-	protected DataSource getDataSource() {
+	protected DataSource getDataSource() throws GameException {
+		
+		if (dataSource == null) {
+			throw new GameException("dataSource is not correctly setted");
+		}
+		
 		return dataSource;
 	}
 }
