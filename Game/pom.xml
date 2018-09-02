@@ -4,7 +4,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	    
     <properties>
-    	<revision>6.1-SNAPSHOT</revision>
+    	<revision>6.2-SNAPSHOT</revision>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <servlet.version>4.0.1</servlet.version>
 	    <commons.version>3.6</commons.version>
@@ -240,7 +240,6 @@
 			    <groupId>org.aspectj</groupId>
 			    <artifactId>aspectjrt</artifactId>
 			    <version>${aspectj.version}</version>
-			    <scope>runtime</scope>
 			</dependency>
             <dependency>
 			    <groupId>org.aspectj</groupId>
@@ -248,6 +247,7 @@
 			    <version>${aspectj.version}</version>
 			    <scope>runtime</scope>
 			</dependency>
+			
             
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
             <!-- Pool de connection -->

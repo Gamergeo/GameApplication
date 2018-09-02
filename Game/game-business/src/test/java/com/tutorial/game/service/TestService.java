@@ -1,7 +1,7 @@
 package com.tutorial.game.service;
 
 import com.tutorial.game.service.contract.game.IGameService;
-import com.tutorial.game.service.impl.game.test.GameService;
+import com.tutorial.game.service.impl.game.GameService;
 
 import junit.framework.TestCase;
 

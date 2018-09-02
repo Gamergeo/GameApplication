@@ -1,4 +1,4 @@
-package com.tutorial.game.service.impl.game.test;
+package com.tutorial.game.service.impl.game;
 
 import java.util.ArrayList;
 import java.util.List;

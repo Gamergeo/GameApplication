@@ -17,7 +17,7 @@ public class GameDevelopmentService extends AbstractService implements IGameDeve
 	 */
 	@Override
 	public List<DevelopmentGame> getGamesInDeveloppmentWithDevelopperAndCountry() throws GameException {
-		return getGamesInDeveloppmentWithDevelopperAndCountry(0);
+		return serviceFactory.getGameDevelopmentService().getGamesInDeveloppmentWithDevelopperAndCountry(0);
 	}
 	
 	/* (non-Javadoc)
