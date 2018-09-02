@@ -22,13 +22,15 @@ public class DevelopperRowMapper implements RowMapper<Developper> {
 		developper.setId(rs.getInt("DEVELOPPER.ID"));
 		developper.setName(rs.getString("DEVELOPPER.NAME"));
 		
-		int countryId = rs.getInt("DEVELOPPER.COUNTRY_ID");
+		int countryId = rs.getInt("DEVELOPPER.COU_ID");
 		
-		// On insert le country
-		Country country = new Country();
-		
-		country.setId(countryId);
-		developper.setCountry(country);
+		if (countryId != 0) {
+			// On insert le country
+			Country country = new Country();
+			
+			country.setId(countryId);
+			developper.setCountry(country);
+		}
 		
 		return developper;
 	}

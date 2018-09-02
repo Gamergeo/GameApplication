@@ -15,12 +15,12 @@ import com.tutorial.game.exception.GameException;
 public class CountryDAO extends AbstractDAO implements ICountryDAO {
 	
 	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.country.ICountryDAO#getCountryById(java.lang.Integer)
+	 * @see com.tutorial.game.dao.country.ICountryDAO#getCountryById(java.lang.int)
 	 */
 	@Override
-	public Country getCountryById(Integer id) throws GameException {
+	public Country getCountryById(int id) throws GameException {
 		String sql = 
-				"SELECT COUNTRY.ID AS ID, COUNTRY.NAME AS NAME " 
+				"SELECT COUNTRY.ID, COUNTRY.NAME " 
 				+ "FROM COUNTRY "
 				+ "WHERE COUNTRY.ID = ?;";
 		
@@ -45,7 +45,7 @@ public class CountryDAO extends AbstractDAO implements ICountryDAO {
 	@Override
 	public Country getCountryByName(String name) throws GameException {
 		String sql = 
-				"SELECT COUNTRY.ID AS ID, COUNTRY.NAME AS NAME " 
+				"SELECT COUNTRY.ID, COUNTRY.NAME " 
 				+ "FROM COUNTRY "
 				+ "WHERE COUNTRY.NAME = ?;";
 		

@@ -1,5 +1,7 @@
 package com.tutorial.game.interceptor;
 
+import java.util.logging.Logger;
+
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.tutorial.game.action.AbstractAction;
@@ -7,6 +9,8 @@ import com.tutorial.game.exception.GameException;
 
 //@InterceptorRef(value = "gameException")
 public class ExceptionInterceptor implements Interceptor {
+	
+	private static Logger LOG = Logger.getLogger(ExceptionInterceptor.class.toString());
 
 	private static final long serialVersionUID = -2359432534149972463L;
 
@@ -19,6 +23,9 @@ public class ExceptionInterceptor implements Interceptor {
 			result = invocation.invoke();
 		
 		} catch (GameException exception) {
+			
+			LOG.warning("GameException ! Is this normal ?");
+			exception.printStackTrace();
 
 			AbstractAction action = (AbstractAction) invocation.getAction();
 			action.setErrorMessage(exception.getErrorMessage());

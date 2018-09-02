@@ -16,6 +16,6 @@ public interface ICountryService {
 	 */
 	Country getCountryByName(String name) throws GameException;
 	
-	public Country getCountryById(Integer id) throws GameException;
+	public Country getCountryById(int id) throws GameException;
 
 }

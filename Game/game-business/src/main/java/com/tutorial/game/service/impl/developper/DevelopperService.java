@@ -38,7 +38,7 @@ public class DevelopperService extends AbstractService implements IDevelopperSer
 		Developper developper = daoFactory.getDevelopperDAO().getDevelopperByName(name);
 		
 		// Le developper a un pays associé, on va le chercher aussi
-		if (developper != null && developper.getCountry() != null && developper.getCountry().getId() != null) {
+		if (developper != null && developper.getCountry() != null && developper.getCountry().getId() != 0) {
 			developper.setCountry(serviceFactory.getCountryService().getCountryById(developper.getCountry().getId()));
 		}
 		

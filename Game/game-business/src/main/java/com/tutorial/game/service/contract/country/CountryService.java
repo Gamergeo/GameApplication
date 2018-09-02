@@ -29,7 +29,7 @@ public class CountryService extends AbstractService implements ICountryService {
 	 * @see com.tutorial.game.service.impl.country.ICountryService#getCountryByName(java.lang.String)
 	 */
 	@Override
-	public Country getCountryById(Integer id) throws GameException {
+	public Country getCountryById(int id) throws GameException {
 		return daoFactory.getCountryDAO().getCountryById(id);
 	}
 	

@@ -8,15 +8,15 @@ public class Game implements Serializable {
 
 	private static final long serialVersionUID = -494900350388110375L;
 	
-	private Integer id;
-	private String name;
-	private Developper developper = new Developper();
+	protected int id;
+	protected String name;
+	protected Developper developper = new Developper();
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -5,7 +5,7 @@ import com.tutorial.game.exception.GameException;
 
 public interface IGameDAO {
 
-	Game getGameById(Integer id) throws GameException;
+	Game getGameById(int id) throws GameException;
 
 	/**
 	 * @return the country if exists, null in other case
@@ -17,18 +17,18 @@ public interface IGameDAO {
 	 * Add a new country without no check
 	 * @throws GameException 
 	 */
-	Game addNewGame(Game game) throws GameException;
+	void insertGame(Game game) throws GameException;
 
 	/**
 	 * Add a new country without no check
 	 * @throws GameException 
 	 */
-	Game updateGame(Game game) throws GameException;
+	void updateGame(Game game) throws GameException;
 
 	/**
 	 * Delete a game 
 	 * @throws GameException 
 	 */
-	void deleteGame(Integer gameId) throws GameException;
+	void deleteGame(int gameId) throws GameException;
 
 }

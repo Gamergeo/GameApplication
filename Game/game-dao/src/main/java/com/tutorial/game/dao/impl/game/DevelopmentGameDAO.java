@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.tutorial.game.bean.dto.game.ReleasedGame;
-import com.tutorial.game.dao.contract.game.IReleasedGameDAO;
+import com.tutorial.game.bean.dto.game.DevelopmentGame;
+import com.tutorial.game.dao.contract.game.IDevelopmentGameDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
-import com.tutorial.game.dao.impl.rowmapper.game.ReleasedGameRowMapper;
+import com.tutorial.game.dao.impl.rowmapper.game.DevelopmentGameRowMapper;
 import com.tutorial.game.exception.GameException;
 
 @Repository
-public class ReleasedGameDAO extends AbstractDAO implements IReleasedGameDAO {
+public class DevelopmentGameDAO extends AbstractDAO implements IDevelopmentGameDAO {
 	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.dao.game.IReleasedGameDAO#addNewReleasedGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
-	public void insertReleasedGame(ReleasedGame releasedGame) throws GameException {
+	public void insertDevelopmentGame(DevelopmentGame developmentGame) throws GameException {
 		
-		if (releasedGame.getDevelopper() == null || releasedGame.getDevelopper().getId() == 0) {
+		if (developmentGame.getDevelopper() == null || developmentGame.getDevelopper().getId() == 0) {
 			throw new GameException("Developper is not set !");
 		}
 		
@@ -28,23 +28,23 @@ public class ReleasedGameDAO extends AbstractDAO implements IReleasedGameDAO {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		
-		jdbcTemplate.update(sql, releasedGame.getId());
+		jdbcTemplate.update(sql, developmentGame.getId());
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.game.IReleasedGameDAO#getGamesInDevelopementInfo(int)
+	 * @see com.tutorial.game.dao.game.IReleasedGameDAO#getAllDevelopmentGameWhitInfos(int)
 	 */
 	@Override
-	public List<ReleasedGame> getAllReleasedGameWhitInfos() throws GameException {
+	public List<DevelopmentGame> getAllDevelopmentGameWhitInfos(int minProgressRate) throws GameException {
 		String sql =
 					"SELECT GAME.ID, GAME.NAME, GAME.DEV_ID, DEVELOPPER.NAME, COUNTRY.NAME " 
 				  + "FROM GAME "
-				  + "INNER JOIN RELEASED_GAME ON RELEASED_GAME.ID = GAME.ID "
+				  + "INNER JOIN GAME_DEVELOPMENT ON GAME_DEVELOPMENT.ID = GAME.ID AND GAME_DEVELOPMENT.PROGRESSRATE > ? "
 				  + "INNER JOIN DEVELOPPER ON GAME.DEV_ID = DEVELOPPER.id "
 				  + "LEFT OUTER JOIN COUNTRY ON DEVELOPPER.COU_ID = COUNTRY.id ORDER BY GAME.ID; ";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		
-		return jdbcTemplate.query(sql, new ReleasedGameRowMapper());
+		return jdbcTemplate.query(sql, new DevelopmentGameRowMapper(), minProgressRate);
 	}
 }

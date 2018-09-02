@@ -18,7 +18,7 @@ public interface IGameService {
 	/**
 	 * @return the game with dev & country for the id
 	 */
-	Game getGameWithDevelopperAndCountry(Integer id) throws GameException;
+	Game getGameWithDevelopperAndCountry(int id) throws GameException;
 
 	Game createANewGame(Game game) throws GameException;
 
@@ -27,14 +27,14 @@ public interface IGameService {
 	 */
 	Game createANewGame(String gameName, String devName, String countryName) throws GameException;
 
-	Game updateGame(Integer gameId, String gameName, String devName, String countryName) throws GameException;
+	Game updateGame(int gameId, String gameName, String devName, String countryName) throws GameException;
 
-	void deleteGame(Integer gameId) throws GameException;
+	void deleteGame(int gameId) throws GameException;
 
 	Game getGameByName(String name) throws GameException;
 
-	Game addNewGame(Game game) throws GameException;
+	void insertGame(Game game) throws GameException;
 
-	Game updateGame(Game game) throws GameException;
+	void updateGame(Game game) throws GameException;
 
 }

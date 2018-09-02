@@ -30,7 +30,7 @@ public class SaveGameAction extends AbstractAction {
 	public String execute() throws GameException {
 		
 		// update
-		if (game.getId() != null) {
+		if (game.getId() != 0) {
 			serviceFactory.getGameService().updateGame(game);
 		} else { // create
 			serviceFactory.getGameService().createANewGame(game);

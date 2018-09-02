@@ -9,7 +9,7 @@ public interface IDevelopperDAO {
 	 * @return the developper if exists, ERROR in other case
 	 * @throws GameException
 	 */
-	Developper getDevelopperById(Integer id) throws GameException;
+	Developper getDevelopperById(int id) throws GameException;
 
 	/**
 	 * @return the developper if exists, null in other case

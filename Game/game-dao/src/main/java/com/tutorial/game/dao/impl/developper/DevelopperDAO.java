@@ -15,15 +15,15 @@ import com.tutorial.game.exception.GameException;
 public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {
 	
 	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.developper.IDevelopperDAO#getDevelopperById(java.lang.Integer)
+	 * @see com.tutorial.game.dao.developper.IDevelopperDAO#getDevelopperById(java.lang.int)
 	 */
 	@Override
-	public Developper getDevelopperById(Integer id) throws GameException {
-		if (id == null || id <= 0) {
+	public Developper getDevelopperById(int id) throws GameException {
+		if (id == 0) {
 			throw new GameException("Cannot retrieve developper :  Id is not correctly set");
 		}
 		
-		String sql = "SELECT DEVELOPPER.ID AS ID, DEVELOPPER.NAME AS NAME, DEVELOPPER.IDCOUNTRY AS COUNTRY_ID " 
+		String sql = "SELECT DEVELOPPER.ID, DEVELOPPER.NAME, DEVELOPPER.COU_ID " 
 				+ "FROM DEVELOPPER "
 				+ "WHERE DEVELOPPER.ID = ?";
 		
@@ -47,7 +47,7 @@ public class DevelopperDAO extends AbstractDAO implements IDevelopperDAO {
 	 */
 	@Override
 	public Developper getDevelopperByName(String name) throws GameException {
-		String sql = "SELECT DEVELOPPER.ID AS ID, DEVELOPPER.NAME AS NAME, DEVELOPPER.IDCOUNTRY AS COUNTRY_ID " 
+		String sql = "SELECT DEVELOPPER.ID, DEVELOPPER.NAME, DEVELOPPER.COU_ID " 
 				+ "FROM DEVELOPPER "
 				+ "WHERE DEVELOPPER.NAME = ?";
 		

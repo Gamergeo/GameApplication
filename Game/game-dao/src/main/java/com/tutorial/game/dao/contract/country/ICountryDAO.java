@@ -9,7 +9,7 @@ public interface ICountryDAO {
 	 * @return the country if exists, ERROR  in other case
 	 * @throws GameException
 	 */
-	Country getCountryById(Integer id) throws GameException;
+	Country getCountryById(int id) throws GameException;
 
 	/**
 	 * @return the country if exists, null in other case

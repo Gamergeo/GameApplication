@@ -20,7 +20,7 @@ public class DisplayGameSaveAction extends AbstractAction {
 	private Game game = new Game();
 
 	public String execute() throws NumberFormatException, GameException {
-		if (game.getId() != null) {
+		if (game.getId() != 0) {
 			game = serviceFactory.getGameService().getGameWithDevelopperAndCountry(game.getId());	
 		}
 		

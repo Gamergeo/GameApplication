@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import com.tutorial.game.dao.contract.country.ICountryDAO;
 import com.tutorial.game.dao.contract.developper.IDevelopperDAO;
 import com.tutorial.game.dao.contract.factory.IDAOFactory;
+import com.tutorial.game.dao.contract.game.IDevelopmentGameDAO;
 import com.tutorial.game.dao.contract.game.IGameDAO;
-import com.tutorial.game.dao.contract.game.IGameDevelopperCountryDAO;
 import com.tutorial.game.dao.contract.game.IReleasedGameDAO;
 
 @Component
@@ -17,7 +17,7 @@ public class DaoFactory implements IDAOFactory {
 	private IGameDAO gameDAO;
 	
 	@Autowired
-	private IGameDevelopperCountryDAO gameDevelopperCountryDAO;
+	private IDevelopmentGameDAO developmentGameDAO;
 	
 	@Autowired
 	private IReleasedGameDAO releasedGameDAO;
@@ -40,8 +40,8 @@ public class DaoFactory implements IDAOFactory {
 	 * @see com.tutorial.game.dao.IDAOFactory#getGameDevelopperCountryDAO()
 	 */
 	@Override
-	public IGameDevelopperCountryDAO getGameDevelopperCountryDAO() {
-		return gameDevelopperCountryDAO;
+	public IDevelopmentGameDAO getDevelopmentGameDAO() {
+		return developmentGameDAO;
 	}
 
 	/* (non-Javadoc)

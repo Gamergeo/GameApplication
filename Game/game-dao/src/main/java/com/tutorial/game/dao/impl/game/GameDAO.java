@@ -1,66 +1,44 @@
 package com.tutorial.game.dao.impl.game;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.tutorial.game.bean.dto.developper.Developper;
 import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.dao.contract.game.IGameDAO;
 import com.tutorial.game.dao.impl.AbstractDAO;
+import com.tutorial.game.dao.impl.rowmapper.game.GameRowMapper;
 import com.tutorial.game.exception.GameException;
 
 @Repository
 public class GameDAO extends AbstractDAO implements IGameDAO {
 	
 	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.game.IGameDAO#getGameById(java.lang.Integer)
+	 * @see com.tutorial.game.dao.game.IGameDAO#getGameById(java.lang.int)
 	 */
 	@Override
-	public Game getGameById(Integer id) throws GameException {
-		Connection connection = null;
-		Game game = null;
+	public Game getGameById(int id) throws GameException {
+		String sql = 
+				"SELECT GAME.ID, GAME.NAME, GAME.DEV_ID " 
+						+ "FROM GAME "
+						+ "WHERE GAME.ID = ?;";
 		
-		try {
-			connection = getConnection();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		
+		List<Game> listGame = jdbcTemplate.query(sql, new GameRowMapper(), id);
+		
+		if (listGame.isEmpty()) {
+			throw new GameException("Cannot retrieve country");
 			
-			final Statement statement = connection.createStatement();
-			final ResultSet resultSet = statement.executeQuery(""
-					+ "SELECT GAME.ID AS ID, GAME.NAME AS NAME, GAME.IDDEV AS ID_DEV " 
-					+ "FROM GAME "
-					+ "WHERE GAME.ID = '" + id.toString() + "';");
+		} else if (listGame.size() > 1) {
+			throw new GameException("Multiple country found for this ID : Check database");
 			
-			if (resultSet.next()) {
-				game = new Game();
-				
-				game.setId(resultSet.getInt("ID"));
-				game.setName(resultSet.getString("NAME"));
-				
-				Developper developper = new Developper();
-				developper.setId(resultSet.getInt("ID_DEV"));
-				
-				game.setDevelopper(developper);
-			}
-			
-		}  catch (Exception exception) {
-			
-			throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			
-		} finally {
-			
-			try {
-				connection.close();
-				
-			} catch (SQLException exception) {
-				throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			}
+		} else {
+			return listGame.get(0);
 		}
-		
-		return game;
 	}
 	
 	/* (non-Javadoc)
@@ -68,85 +46,45 @@ public class GameDAO extends AbstractDAO implements IGameDAO {
 	 */
 	@Override
 	public Game getGameByName(String name) throws GameException {
-		Connection connection = null;
-		Game game = null;
+		String sql = 
+				"SELECT GAME.ID, GAME.NAME, GAME.DEV_ID "  
+						+ "FROM GAME "
+						+ "WHERE GAME.NAME = ?;";
 		
-		try {
-			connection = getConnection();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		
+		List<Game> listGame = jdbcTemplate.query(sql, new GameRowMapper(), name);
+		
+		if (listGame.isEmpty()) {
+			return null;
 			
-			final Statement statement = connection.createStatement();
-			final ResultSet resultSet = statement.executeQuery(""
-					+ "SELECT GAME.ID AS ID, GAME.NAME AS NAME, GAME.IDDEV AS ID_DEV " 
-					+ "FROM GAME "
-					+ "WHERE GAME.NAME = '" + name + "';");
+		} else if (listGame.size() > 1) {
+			throw new GameException("Multiple country found for this ID : Check database");
 			
-			if (resultSet.next()) {
-				game = new Game();
-				
-				game.setId(resultSet.getInt("ID"));
-				game.setName(resultSet.getString("NAME"));
-				
-				Developper developper = new Developper();
-				developper.setId(resultSet.getInt("ID_DEV"));
-				
-				game.setDevelopper(developper);
-			}
-			
-		}  catch (Exception exception) {
-			
-			throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			
-		} finally {
-			
-			try {
-				connection.close();
-				
-			} catch (SQLException exception) {
-				throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			}
+		} else {
+			return listGame.get(0);
 		}
-		
-		return game;
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.tutorial.game.dao.game.IGameDAO#addNewGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
-	public Game addNewGame(Game game) throws GameException {
+	public void insertGame(Game game) throws GameException {
 		
-		if (game.getDevelopper() == null) {
+		if (game.getDevelopper() == null || game.getDevelopper().getId() <= 0) {
 			throw new GameException("Developper is not set !");
 		}
 		
-		Connection connection = null;
+		String sql = "INSERT INTO GAME(NAME, DEV_ID) VALUES (:name, :devId);";
 		
-		try {
-			connection = getConnection();
-			
-			final Statement statement = connection.createStatement();
-			statement.executeUpdate("INSERT INTO Game(name, idDev) VALUES ('" + game.getName() + "'," + game.getDevelopper().getId() + ");");
-
-			final ResultSet resultSet = statement.executeQuery("SELECT ID FROM GAME WHERE name = '" + game.getName() + "';");
-			resultSet.next();
-			
-			game.setId(resultSet.getInt("ID"));
-			
-			return game;
-
-		}  catch (Exception exception) {
-			
-			throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			
-		} finally {
-			
-			try {
-				connection.close();
-				
-			} catch (SQLException exception) {
-				throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			}
-		}	
+		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+		
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("name", game.getName());
+		params.addValue("devId", game.getDevelopper().getId());
+		
+		namedParameterJdbcTemplate.update(sql, params);
 	}
 	
 	
@@ -154,70 +92,41 @@ public class GameDAO extends AbstractDAO implements IGameDAO {
 	 * @see com.tutorial.game.dao.game.IGameDAO#updateGame(com.tutorial.game.bean.dto.game.IGame)
 	 */
 	@Override
-	public Game updateGame(Game game) throws GameException {
+	public void updateGame(Game game) throws GameException {
 		
-		Connection connection = null;
+//		if (game.getDevelopper() == null || game.getDevelopper().getId() == null || game.getDevelopper().getId() <= 0) {
+//			throw new GameException("Developper is not set !");
+//		}
 		
-		try {
-			connection = getConnection();
-			
-			String query = "SELECT id, name FROM GAME WHERE id = ?";
-			
-			final PreparedStatement prepareStatement = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			
-			prepareStatement.setString(1, game.getId().toString());
-			final ResultSet resultSet = prepareStatement.executeQuery();
-			
-			resultSet.first();
-			resultSet.updateString("name", game.getName());
-			
-			resultSet.updateRow();
-			
-			return game;
-
-		}  catch (Exception exception) {
-			
-			throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			
-		} finally {
-			
-			try {
-				connection.close();
-				
-			} catch (SQLException exception) {
-				throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			}
-		}	
+		String sql = "UPDATE GAME SET NAME = :name WHERE id = :id;";
+		
+		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+		
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", game.getId());
+		params.addValue("name", game.getName());
+//		params.addValue("devId", game.getDevelopper().getId());
+		
+		namedParameterJdbcTemplate.update(sql, params);
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.game.IGameDAO#deleteGame(java.lang.Integer)
+	 * @see com.tutorial.game.dao.game.IGameDAO#deleteGame(java.lang.int)
 	 */
 	@Override
-	public void deleteGame(Integer gameId) throws GameException {
+	public void deleteGame(int gameId) throws GameException {
+		String sql = "DELETE FROM GAME WHERE ID = :id";
+		String releasedSql = "DELETE FROM RELEASED_GAME WHERE ID = :id";
+		String developmentSql = "DELETE FROM GAME_DEVELOPMENT WHERE ID = :id";
 		
-		Connection connection = null;
+		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
 		
-		try {
-			connection = getConnection();
-			
-			final Statement statement = connection.createStatement();
-			statement.executeUpdate("DELETE FROM RELEASED_GAME WHERE ID = " + gameId + ";");
-			statement.executeUpdate("DELETE FROM GAME_DEVELOPMENT WHERE ID = " + gameId + ";");
-			statement.executeUpdate("DELETE FROM GAME WHERE ID = " + gameId + ";");
-
-		}  catch (Exception exception) {
-			
-			throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			
-		} finally {
-			
-			try {
-				connection.close();
-				
-			} catch (SQLException exception) {
-				throw new GameException(exception, getClass().toString() + ".getConnection() Message : " + exception.getMessage());
-			}
-		}	
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		
+		params.addValue("id", gameId);
+		
+		namedParameterJdbcTemplate.update(developmentSql, params);
+		namedParameterJdbcTemplate.update(releasedSql, params);
+		namedParameterJdbcTemplate.update(sql, params);
 	}
 }
