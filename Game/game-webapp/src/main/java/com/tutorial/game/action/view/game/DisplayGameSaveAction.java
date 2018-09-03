@@ -20,9 +20,9 @@ public class DisplayGameSaveAction extends AbstractAction {
 	private Game game = new Game();
 
 	public String execute() throws NumberFormatException, GameException {
-		if (game.getId() != 0) {
-			game = serviceFactory.getGameService().getGameWithDevelopperAndCountry(game.getId());	
-		}
+//		if (game.getId() != 0) {
+//			game = serviceFactory.getGameService().getGameWithDevelopperAndCountry(game.getId());	
+//		}
 		
 		// S'il n'y a pas d'erreurs, on retourne le forward "succes"
 		return SUCCESS;

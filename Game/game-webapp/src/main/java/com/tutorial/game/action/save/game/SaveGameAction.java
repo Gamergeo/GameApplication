@@ -31,9 +31,9 @@ public class SaveGameAction extends AbstractAction {
 		
 		// update
 		if (game.getId() != 0) {
-			serviceFactory.getGameService().updateGame(game);
+//			serviceFactory.getGameService().updateGame(game);
 		} else { // create
-			serviceFactory.getGameService().createANewGame(game);
+//			serviceFactory.getGameService().createANewGame(game);
 		}
 		
 		if (method.equals("saveAndAdd")) {
@@ -48,7 +48,7 @@ public class SaveGameAction extends AbstractAction {
 			        type = "redirect")
 	})
 	public String delete() throws GameException {
-		serviceFactory.getGameService().deleteGame(game.getId());
+//		serviceFactory.getGameService().deleteGame(game.getId());
 		
 		return SUCCESS;
 	}

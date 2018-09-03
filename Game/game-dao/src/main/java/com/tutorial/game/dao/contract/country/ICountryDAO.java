@@ -1,26 +1,11 @@
 package com.tutorial.game.dao.contract.country;
 
 import com.tutorial.game.bean.dto.country.Country;
+import com.tutorial.game.dao.contract.IDao;
 import com.tutorial.game.exception.GameException;
 
-public interface ICountryDAO {
+public interface ICountryDAO extends IDao<Country> {
 
-	/**
-	 * @return the country if exists, ERROR  in other case
-	 * @throws GameException
-	 */
-	Country getCountryById(int id) throws GameException;
-
-	/**
-	 * @return the country if exists, null in other case
-	 * @throws GameException
-	 */
-	Country getCountryByName(String name) throws GameException;
-
-	/**
-	 * Add a new country without no check
-	 * @throws GameException 
-	 */
-	void insertCountry(Country country) throws GameException;
+	public Country findCountryByName(String name) throws GameException;
 
 }

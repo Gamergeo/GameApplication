@@ -1,21 +1,28 @@
 package com.tutorial.game.dao.contract.factory;
 
+import com.tutorial.game.dao.contract.IDao;
 import com.tutorial.game.dao.contract.country.ICountryDAO;
-import com.tutorial.game.dao.contract.developper.IDevelopperDAO;
-import com.tutorial.game.dao.contract.game.IDevelopmentGameDAO;
 import com.tutorial.game.dao.contract.game.IGameDAO;
-import com.tutorial.game.dao.contract.game.IReleasedGameDAO;
+import com.tutorial.game.dao.contract.user.IClientDao;
+import com.tutorial.game.dao.contract.user.IEmployeDao;
+import com.tutorial.game.dao.contract.user.IManagerDao;
+import com.tutorial.game.dao.contract.user.IUserDao;
+import com.tutorial.game.exception.DaoNotSetException;
 
 public interface IDAOFactory {
 
-	IGameDAO getGameDAO();
+	public IGameDAO getGameDao();
 
-	IDevelopmentGameDAO getDevelopmentGameDAO();
+	public ICountryDAO getCountryDao();
+	
+	public IUserDao getUserDao();
 
-	IReleasedGameDAO getReleasedGameDAO();
+	public IManagerDao getManagerDao();
 
-	ICountryDAO getCountryDAO();
+	public IClientDao getClientDao();
 
-	IDevelopperDAO getDevelopperDAO();
+	public IEmployeDao getEmployeDao();
 
+	@SuppressWarnings("rawtypes")
+	IDao getDaoForModel(Class clazz) throws DaoNotSetException;
 }

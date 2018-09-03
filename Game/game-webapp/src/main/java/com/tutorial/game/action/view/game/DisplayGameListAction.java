@@ -15,9 +15,9 @@ import com.tutorial.game.bean.dto.user.User;
 import com.tutorial.game.constants.GameConstants;
 import com.tutorial.game.exception.GameException;
 
-@Namespace(value="/")
+@Namespace(value="/game")
 @Action("displayGameList")
-@Result(name="success", location="/jsp/gameList.jsp")
+@Result(name="success", location="/jsp/game/gameList.jsp")
 @Controller
 public class DisplayGameListAction extends AbstractAction {
 
@@ -26,32 +26,38 @@ public class DisplayGameListAction extends AbstractAction {
 	private List<Game> listGame;
 	
 	private List<Game> listGameTest = new ArrayList<Game>();
-
+	
 	public String execute() throws GameException {
+		listGame = serviceFactory.getGameService().getAllGames();
 		
-		User user = new User();
-		user.setName(GameConstants.USER_NAME_MANAGER);
-		
-		listGame = serviceFactory.getGameService().getDisplayedGames(user);
-		
-		if (user.isDevUser() || user.isManagerUser()) {
-			List<Game> listGameTemp = new ArrayList<Game>(listGame);
-			
-			Stream<Game> gameStream = listGame.stream();
-			
-			gameStream = gameStream.filter( (game) -> game.getName().contains("test") );
-			
-			gameStream.forEach((game) -> {
-											listGameTest.add(game);
-											listGameTemp.remove(game);
-										 });
-			
-			listGame = listGameTemp;
-		}
-		
-		// S'il n'y a pas d'erreurs, on retourne le forward "succes"
 		return SUCCESS;
 	}
+
+//	public String execute() throws GameException {
+//		
+//		User user = new User();
+//		user.setName(GameConstants.USER_NAME_MANAGER);
+//		
+//		listGame = serviceFactory.getGameService().getDisplayedGames(user);
+//		
+//		if (user.isDevUser() || user.isManagerUser()) {
+//			List<Game> listGameTemp = new ArrayList<Game>(listGame);
+//			
+//			Stream<Game> gameStream = listGame.stream();
+//			
+//			gameStream = gameStream.filter( (game) -> game.getName().contains("test") );
+//			
+//			gameStream.forEach((game) -> {
+//											listGameTest.add(game);
+//											listGameTemp.remove(game);
+//										 });
+//			
+//			listGame = listGameTemp;
+//		}
+//		
+//		// S'il n'y a pas d'erreurs, on retourne le forward "succes"
+//		return SUCCESS;
+//	}
 
 	public List<Game> getListGame() {
 		return listGame;

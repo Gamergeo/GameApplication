@@ -3,68 +3,101 @@ package com.tutorial.game.dao.impl.factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.tutorial.game.bean.dto.country.Country;
+import com.tutorial.game.bean.dto.game.Game;
+import com.tutorial.game.bean.dto.user.Client;
+import com.tutorial.game.bean.dto.user.Employe;
+import com.tutorial.game.bean.dto.user.Manager;
+import com.tutorial.game.bean.dto.user.User;
+import com.tutorial.game.dao.contract.IDao;
 import com.tutorial.game.dao.contract.country.ICountryDAO;
-import com.tutorial.game.dao.contract.developper.IDevelopperDAO;
 import com.tutorial.game.dao.contract.factory.IDAOFactory;
-import com.tutorial.game.dao.contract.game.IDevelopmentGameDAO;
 import com.tutorial.game.dao.contract.game.IGameDAO;
-import com.tutorial.game.dao.contract.game.IReleasedGameDAO;
+import com.tutorial.game.dao.contract.user.IClientDao;
+import com.tutorial.game.dao.contract.user.IEmployeDao;
+import com.tutorial.game.dao.contract.user.IManagerDao;
+import com.tutorial.game.dao.contract.user.IUserDao;
+import com.tutorial.game.exception.DaoNotSetException;
 
 @Component
 public class DaoFactory implements IDAOFactory {
 	
 	@Autowired
-	private IGameDAO gameDAO;
+	private IGameDAO gameDao;
 	
 	@Autowired
-	private IDevelopmentGameDAO developmentGameDAO;
+	private ICountryDAO countryDao;
 	
 	@Autowired
-	private IReleasedGameDAO releasedGameDAO;
+	private IUserDao userDao;
 	
 	@Autowired
-	private ICountryDAO countryDAO;
+	private IManagerDao managerDao;
 	
 	@Autowired
-	private IDevelopperDAO developperDAO;
+	private IClientDao clientDao;
 
-	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.IDAOFactory#getGameDAO()
-	 */
+	@Autowired
+	private IEmployeDao employeDao;
+	
 	@Override
-	public IGameDAO getGameDAO() {
-		return gameDAO;
+	@SuppressWarnings("rawtypes")
+	public IDao getDaoForModel(Class clazz) throws DaoNotSetException {
+		
+		if (clazz.equals(Game.class)) {
+			return gameDao;
+		}
+		
+		if (clazz.equals(Country.class)) {
+			return countryDao;
+		}
+		
+		if (clazz.equals(User.class)) {
+			return userDao;
+		}
+
+		if (clazz.equals(Manager.class)) {
+			return managerDao;
+		}
+
+		if (clazz.equals(Employe.class)) {
+			return employeDao;
+		}
+
+		if (clazz.equals(Client.class)) {
+			return clientDao;
+		}
+
+		throw new DaoNotSetException();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.IDAOFactory#getGameDevelopperCountryDAO()
-	 */
 	@Override
-	public IDevelopmentGameDAO getDevelopmentGameDAO() {
-		return developmentGameDAO;
+	public IGameDAO getGameDao() {
+		return gameDao;
+	}
+	
+	@Override
+	public ICountryDAO getCountryDao() {
+		return countryDao;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.IDAOFactory#getReleasedGameDAO()
-	 */
 	@Override
-	public IReleasedGameDAO getReleasedGameDAO() {
-		return releasedGameDAO;
+	public IUserDao getUserDao() {
+		return userDao;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.IDAOFactory#getCountryDAO()
-	 */
 	@Override
-	public ICountryDAO getCountryDAO() {
-		return countryDAO;
+	public IManagerDao getManagerDao() {
+		return managerDao;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.tutorial.game.dao.IDAOFactory#getDevelopperDAO()
-	 */
 	@Override
-	public IDevelopperDAO getDevelopperDAO() {
-		return developperDAO;
+	public IClientDao getClientDao() {
+		return clientDao;
+	}
+
+	@Override
+	public IEmployeDao getEmployeDao() {
+		return employeDao;
 	}
 }

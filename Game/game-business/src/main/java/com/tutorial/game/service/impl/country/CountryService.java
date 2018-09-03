@@ -28,9 +28,7 @@ public class CountryService extends AbstractService implements ICountryService {
 		}
 		
 		// On insert en base
-		daoFactory.getCountryDAO().insertCountry(country);
-		
-		country.setId(getCountryByName(country.getName()).getId());
+		daoFactory.getCountryDao().persist(country);
 	}
 	
 	/* (non-Javadoc)
@@ -38,7 +36,7 @@ public class CountryService extends AbstractService implements ICountryService {
 	 */
 	@Override
 	public Country getCountryById(int id) throws GameException {
-		return daoFactory.getCountryDAO().getCountryById(id);
+		return daoFactory.getCountryDao().findById(id);
 	}
 	
 	/* (non-Javadoc)
@@ -46,7 +44,7 @@ public class CountryService extends AbstractService implements ICountryService {
 	 */
 	@Override
 	public Country getCountryByName(String name) throws GameException {
-		return daoFactory.getCountryDAO().getCountryByName(name);
+		return daoFactory.getCountryDao().findCountryByName(name);
 	}
 
 }
