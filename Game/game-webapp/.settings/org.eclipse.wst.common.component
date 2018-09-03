@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                    
+                                        
+    
     
     
     
@@ -8,7 +9,8 @@
     
     
     <wb-module deploy-name="game">
-                                                                
+                                                                        
+        
         
         
         
@@ -16,7 +18,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                                                                        
+                                                                                
+        
         
         
         
@@ -25,7 +28,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-                                                                        
+                                                                                
+        
         
         
         
@@ -34,29 +38,20 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                                        
+                                                
+        
         
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-                                        
+                                                
+        
         
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
-        <dependent-module archiveName="game-business-6.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-business/game-business">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="game-dao-6.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-dao/game-dao">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="game-model-6.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-model/game-model">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="game-technical-6.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-technical/game-technical">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-                                                                        
+                                                                                
+        
         
         
         
@@ -65,7 +60,8 @@
         
         
         <property name="java-output-path" value="/game-webapp/target/classes"/>
-                                                                
+                                                                        
+        
         
         
         
@@ -73,7 +69,8 @@
         
         
         <property name="context-root" value="game"/>
-                                                                    
+                                                                            
+    
     
     
     
@@ -82,7 +79,8 @@
     
     
     </wb-module>
-                                
+                                    
+
 
 
 

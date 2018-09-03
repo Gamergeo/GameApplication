@@ -15,8 +15,9 @@
 			http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- Transaction Manager for Spring -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
     
     <!-- Annotation Transactionnal -->

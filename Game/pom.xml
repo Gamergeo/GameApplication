@@ -4,7 +4,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	    
     <properties>
-    	<revision>6.2-SNAPSHOT</revision>
+    	<revision>7.0-SNAPSHOT</revision>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <servlet.version>4.0.1</servlet.version>
 	    <commons.version>3.6</commons.version>
@@ -22,6 +22,8 @@
 	    <dbcp.version>2.5.0</dbcp.version>
 	    <struts-spring.version>2.5.17</struts-spring.version>
 	    <aspectj.version>1.9.1</aspectj.version>
+	    <hibernate.version>5.3.6.Final</hibernate.version>
+	    <jaxb.version>2.3.0</jaxb.version>
 	</properties>
 
   	<groupId>com.tutorial</groupId>
@@ -248,7 +250,6 @@
 			    <scope>runtime</scope>
 			</dependency>
 			
-            
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
             <!-- Pool de connection -->
 			<dependency>
@@ -257,7 +258,22 @@
 			    <version>${dbcp.version}</version>
 			    <scope>runtime</scope>
 			</dependency>
-            
+			
+			<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+			<dependency>
+			    <groupId>org.hibernate</groupId>
+			    <artifactId>hibernate-core</artifactId>
+			    <version>${hibernate.version}</version>
+			</dependency>
+			
+			
+			<!-- Utile pour hibernate -->
+			<dependency>
+			    <groupId>javax.xml.bind</groupId>
+			    <artifactId>jaxb-api</artifactId>
+			    <version>${jaxb.version}</version>
+			    <scope>runtime</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 </project>
