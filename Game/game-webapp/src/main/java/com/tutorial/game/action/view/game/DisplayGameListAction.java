@@ -2,8 +2,8 @@ package com.tutorial.game.action.view.game;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 
 import com.tutorial.game.action.AbstractAction;
 import com.tutorial.game.bean.dto.game.Game;
-import com.tutorial.game.bean.dto.user.User;
-import com.tutorial.game.constants.GameConstants;
 import com.tutorial.game.exception.GameException;
 
 @Namespace(value="/game")
@@ -28,6 +26,8 @@ public class DisplayGameListAction extends AbstractAction {
 	private List<Game> listGameTest = new ArrayList<Game>();
 	
 	public String execute() throws GameException {
+		
+		((org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false)).reconfigure();
 		listGame = serviceFactory.getGameService().getAllGames();
 		
 		return SUCCESS;

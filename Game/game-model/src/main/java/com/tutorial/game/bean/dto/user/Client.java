@@ -9,8 +9,8 @@ import org.hibernate.annotations.NaturalId;
 import com.tutorial.game.bean.constant.BaseColumnName;
 import com.tutorial.game.bean.constant.BaseTableName;
 
-@Entity
-@Table(name=BaseTableName.TABLE_NAME_CLIENT)
+//@Entity
+//@Table(name=BaseTableName.TABLE_NAME_CLIENT)
 public class Client extends User {
 	
 	@NaturalId

@@ -8,5 +8,7 @@ import com.tutorial.game.exception.GameException;
 public interface IGameService {
 	
 	public List<Game> getAllGames() throws GameException;
+	
+	public Game getGameById(int id) throws GameException;
 
 }

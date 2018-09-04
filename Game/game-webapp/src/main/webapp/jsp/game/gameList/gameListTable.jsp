@@ -7,8 +7,13 @@
 <table border="1">
 	<thead>
 		<tr>
-			<th><s:text name="jsp.gameList.column.id"/></th>
-			<th><s:text name="jsp.gameList.column.gameName"/></th>
+			<th><s:text name="label.game.id"/></th>
+			<th><s:text name="label.game.name"/></th>
+			<th><s:text name="label.user.first.name"/></th>
+			<th><s:text name="label.user.last.name"/></th>
+			<th><s:text name="label.general.view"/></th>
+			<th><s:text name="label.general.edit"/></th>
+			<th><s:text name="label.general.delete"/></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,6 +21,14 @@
 			<tr>
 				<td>${game.id}</td>
 				<td>${game.name}</td>
+				<td>${game.manager.firstName}</td>
+				<td>${game.manager.lastName}</td>
+				<td>
+					<s:url action="../game/displayGameView" var="urlEdit">
+  						<s:param name="game.id">${game.id}</s:param>
+					</s:url>
+					<s:a href="%{urlEdit}"> O </s:a>
+				</td>
 				<td>
 					<s:url action="displayGameSave" var="urlEdit">
   						<s:param name="game.id">${game.id}</s:param>

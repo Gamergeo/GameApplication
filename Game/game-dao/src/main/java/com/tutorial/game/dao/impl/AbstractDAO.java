@@ -25,6 +25,10 @@ public abstract class AbstractDAO<T> implements IDao<T>{
 	
 	protected Class<T> typeParameterClass;
 	
+	public AbstractDAO() {
+		setTypeParameterClass();
+	}
+	
     // Mandatory to set with T.class for proper initialisation of abstract lethod
     protected abstract void setTypeParameterClass();
 	

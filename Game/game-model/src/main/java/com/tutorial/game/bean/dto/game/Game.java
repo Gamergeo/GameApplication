@@ -15,7 +15,7 @@ import org.hibernate.annotations.NaturalId;
 
 import com.tutorial.game.bean.constant.BaseColumnName;
 import com.tutorial.game.bean.constant.BaseTableName;
-import com.tutorial.game.bean.dto.user.Manager;
+import com.tutorial.game.bean.dto.user.User;
 
 @Entity(name=BaseTableName.TABLE_NAME_GAME)
 @Table(name=BaseTableName.TABLE_NAME_GAME)
@@ -32,9 +32,9 @@ public class Game implements Serializable {
 	@Column(name=BaseColumnName.COLUMN_NAME_GAME_NAME)
 	protected String name;
 	
-//	@ManyToOne
-//	@JoinColumn(name=BaseColumnName.COLUMN_NAME_GAME_MANAGER_ID, referencedColumnName=BaseColumnName.COLUMN_NAME_ID)
-//	private Manager manager;
+	@ManyToOne
+	@JoinColumn(name=BaseColumnName.COLUMN_NAME_GAME_MANAGER_ID, referencedColumnName=BaseColumnName.COLUMN_NAME_ID)
+	private User manager;
 	
 	public int getId() {
 		return id;
@@ -52,11 +52,11 @@ public class Game implements Serializable {
 		this.name = name;
 	}
 
-//	public Manager getManager() {
-//		return manager;
-//	}
-//
-//	public void setManager(Manager manager) {
-//		this.manager = manager;
-//	}
+	public User getManager() {
+		return manager;
+	}
+
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
 }

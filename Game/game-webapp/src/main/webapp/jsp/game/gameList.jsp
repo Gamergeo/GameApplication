@@ -13,3 +13,5 @@
 
 <br />
 <br />
+
+<jsp:include page="../header/footer.jsp" />

@@ -1,7 +1,7 @@
 package com.tutorial.game.bean.dto.user;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
@@ -9,8 +9,8 @@ import org.hibernate.annotations.NaturalId;
 import com.tutorial.game.bean.constant.BaseColumnName;
 import com.tutorial.game.bean.constant.BaseTableName;
 
-@Entity
-@Table(name=BaseTableName.TABLE_NAME_EMPLOYE)
+//@Table(name=BaseTableName.TABLE_NAME_EMPLOYE)
+//@MappedSuperclass
 public class Employe extends User {
 	
 	@NaturalId

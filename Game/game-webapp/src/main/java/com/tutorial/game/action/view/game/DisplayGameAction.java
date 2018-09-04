@@ -9,20 +9,34 @@ import com.tutorial.game.action.AbstractAction;
 import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.exception.GameException;
 
-@Namespace(value="/")
-@Action("displayGameSave")
-@Result(name="success", location="/jsp/gameAdd.jsp")
+@Namespace(value="/game")
 @Controller
-public class DisplayGameSaveAction extends AbstractAction {
+public class DisplayGameAction extends AbstractAction {
 	
 	private static final long serialVersionUID = 5257907639559001732L;
 	
 	private Game game = new Game();
+	
+	@Action(value="displayGameView", results= {
+			@Result(name="success", location="/jsp/game/gameView.jsp")})
+	public String displayView() throws GameException {
+		if (game.getId() <= 0) {
+			throw new GameException("Incorrect id " + game.getId());
+			
+		}
+		game = serviceFactory.getGameService().getGameById(game.getId());
+		
+		// On recupère les autres jeux managés
+		game.getManager().getManagedGames();
+		
+		return SUCCESS;
+	}
 
-	public String execute() throws NumberFormatException, GameException {
-//		if (game.getId() != 0) {
+	public String displayEdit() throws GameException {
+		if (game.getId() != 0) {
+			game = serviceFactory.getGameService().getGameById(game.getId());
 //			game = serviceFactory.getGameService().getGameWithDevelopperAndCountry(game.getId());	
-//		}
+		}
 		
 		// S'il n'y a pas d'erreurs, on retourne le forward "succes"
 		return SUCCESS;
