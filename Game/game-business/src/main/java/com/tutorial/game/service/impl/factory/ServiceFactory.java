@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.tutorial.game.service.contract.country.ICountryService;
 import com.tutorial.game.service.contract.factory.IServiceFactory;
 import com.tutorial.game.service.contract.game.IGameService;
+import com.tutorial.game.service.contract.user.IUserService;
 
 @Component
 public final class ServiceFactory implements IServiceFactory {
@@ -16,16 +17,21 @@ public final class ServiceFactory implements IServiceFactory {
 	@Autowired
 	private ICountryService countryService;
 	
+	@Autowired
+	private IUserService userService;
+	
 	@Override
 	public IGameService getGameService() {
 		return gameService;
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.tutorial.game.service.IServiceFactory#getCountryService()
-	 */
+
 	@Override
 	public ICountryService getCountryService() {
 		return countryService;
+	}
+
+	@Override
+	public IUserService getUserService() {
+		return userService;
 	}
 }

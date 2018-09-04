@@ -13,4 +13,8 @@ public class BaseTableName {
 	public final static String TABLE_NAME_GAME = "game";
 
 	public final static String TABLE_NAME_COUNTRY = "country";
+
+	public final static String TABLE_NAME_DEV_GAME = "dev_game";
+
+	public final static String TABLE_NAME_ORDER_GAME = "order_game";
 }

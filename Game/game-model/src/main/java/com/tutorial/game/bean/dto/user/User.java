@@ -1,25 +1,26 @@
 package com.tutorial.game.bean.dto.user;
 
-import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import com.tutorial.game.bean.constant.BaseColumnName;
 import com.tutorial.game.bean.constant.BaseTableName;
-import com.tutorial.game.bean.dto.game.Game;
 
 @Entity(name=BaseTableName.TABLE_NAME_USER)
 @Table(name=BaseTableName.TABLE_NAME_USER)
-public class User {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User implements Serializable {
 	
+	private static final long serialVersionUID = 6659706270334158439L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name=BaseColumnName.COLUMN_NAME_ID)
@@ -34,10 +35,6 @@ public class User {
 	@Column(name=BaseColumnName.COLUMN_NAME_USER_EMAIL, nullable=false)
 	private String email;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name=BaseColumnName.COLUMN_NAME_GAME_MANAGER_ID, referencedColumnName=BaseColumnName.COLUMN_NAME_ID)
-	private List<Game> managedGames;
-
 	public int getId() {
 		return id;
 	}
@@ -68,14 +65,5 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	
-	public List<Game> getManagedGames() {
-		return managedGames;
-	}
-
-	public void setManagedGames(List<Game> managedGames) {
-		this.managedGames = managedGames;
 	}
 }

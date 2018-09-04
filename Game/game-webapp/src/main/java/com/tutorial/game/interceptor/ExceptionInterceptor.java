@@ -32,6 +32,7 @@ public class ExceptionInterceptor implements Interceptor {
 			AbstractAction action = (AbstractAction) invocation.getAction();
 			action.setErrorMessage(exception.getErrorMessage());
 			return "error";
+			
 		} catch (UnexpectedRollbackException exception) {
 			LOG.severe("Transaction rollback");
 			

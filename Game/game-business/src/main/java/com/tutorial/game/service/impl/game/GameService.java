@@ -3,11 +3,9 @@ package com.tutorial.game.service.impl.game;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 
 import com.tutorial.game.bean.dto.game.Game;
-import com.tutorial.game.bean.dto.user.User;
 import com.tutorial.game.exception.GameException;
 import com.tutorial.game.service.contract.game.IGameService;
 import com.tutorial.game.service.impl.AbstractService;

@@ -22,6 +22,13 @@
   	</tr>
 </table>
 
+<div>
+	<s:url action="../user/displayUserView" var="urlManagerView">
+		<s:param name="user.id">${game.manager.id}</s:param>
+	</s:url>
+	<s:a href="%{urlManagerView}"> Show manager </s:a>
+</div>
+
 <c:if test="${not empty game.manager.managedGames}">
 	<div>
 		<p> Other Managed Games <br /> </p>
@@ -29,12 +36,19 @@
 			<tr>
 				<th><s:text name="label.game.id"/></th>
 				<th><s:text name="label.game.name"/></th>
+				<th><s:text name="label.general.view"/></th>
 			</tr>
 			
 			<c:forEach items="${game.manager.managedGames}" var="game">
 				<tr>
 			    	<td>${game.id}</td>
 			    	<td>${game.name}</td>
+					<td>
+						<s:url action="../game/displayGameView" var="urlView">
+							<s:param name="game.id">${game.id}</s:param>
+						</s:url>
+						<s:a href="%{urlView}"> View game </s:a>
+					</td>
 			    </tr>
 			</c:forEach>
 		</table>

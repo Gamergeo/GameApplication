@@ -7,7 +7,7 @@
 		<title><s:text name="jsp.index.title"/></title>
 	</head>
 	<body>
-		euh
+		euhe
 		<s:text name="jsp.index.libelle"/><br />
 		<s:text name="jsp.index.form"/><br />
 		

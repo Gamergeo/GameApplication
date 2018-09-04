@@ -15,7 +15,7 @@ public class DisplayGameAction extends AbstractAction {
 	
 	private static final long serialVersionUID = 5257907639559001732L;
 	
-	private Game game = new Game();
+	private Game game;
 	
 	@Action(value="displayGameView", results= {
 			@Result(name="success", location="/jsp/game/gameView.jsp")})

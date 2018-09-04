@@ -15,6 +15,7 @@
 <table>
 	<tr>
 		<td>Version ${revision}</td>
+		<td> ${ceci.test} : ${environment}</td>
 	</tr>
 	<tr>
 		<td>Date : <s:property value="localDate" /></td>

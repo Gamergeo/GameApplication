@@ -3,7 +3,6 @@ package com.tutorial.game.action.view.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -14,8 +13,6 @@ import com.tutorial.game.bean.dto.game.Game;
 import com.tutorial.game.exception.GameException;
 
 @Namespace(value="/game")
-@Action("displayGameList")
-@Result(name="success", location="/jsp/game/gameList.jsp")
 @Controller
 public class DisplayGameListAction extends AbstractAction {
 
@@ -25,9 +22,10 @@ public class DisplayGameListAction extends AbstractAction {
 	
 	private List<Game> listGameTest = new ArrayList<Game>();
 	
+
+	@Action(value="displayGameList", results = {
+			@Result(name=SUCCESS, location="/jsp/game/gameList.jsp")})
 	public String execute() throws GameException {
-		
-		((org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false)).reconfigure();
 		listGame = serviceFactory.getGameService().getAllGames();
 		
 		return SUCCESS;
