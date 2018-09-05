@@ -1,16 +1,18 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/jsp/header/header_def.jsp" %>
+
 <!DOCTYPE html>
+
+<link rel="stylesheet" href="style.css" type="text/css">
 
 <html>
 	<head>
 		<title><s:text name="jsp.index.title"/></title>
 	</head>
 	<body>
-		euhe
+		<p>euhe</p>
 		<s:text name="jsp.index.libelle"/><br />
 		<s:text name="jsp.index.form"/><br />
 		
-		<s:a action="game/displayGameList">Clique ici fdp</s:a>
+		<s:a action="game/list">Clique ici fdp</s:a>
 	</body>
 </html>

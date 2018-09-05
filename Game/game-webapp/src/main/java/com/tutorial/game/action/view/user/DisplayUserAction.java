@@ -17,7 +17,7 @@ public class DisplayUserAction extends AbstractAction {
 	
 	private User user;
 	
-	@Action(value="displayUserView", results= {
+	@Action(value="view", results= {
 			@Result(name=SUCCESS, location="/jsp/user/userView.jsp")})
 	public String displayView() throws GameException {
 		
@@ -26,6 +26,26 @@ public class DisplayUserAction extends AbstractAction {
 		if (id <= 0) {
 			throw new GameException("Incorrect id " + id);
 			
+		}
+		
+		user = serviceFactory.getUserService().getUserById(id);
+		
+		return SUCCESS;
+	}
+	
+	@Action(value="edit", results= {
+			@Result(name=SUCCESS, location="/jsp/user/userEdit.jsp")})
+	public String displayEdit() throws GameException {
+		
+		if (user == null) { // Add
+			return SUCCESS;
+		}
+		
+		int id = user.getId();
+		
+		if (id <= 0) {
+			throw new GameException("Incorrect id " + id);
+		
 		}
 		
 		user = serviceFactory.getUserService().getUserById(id);

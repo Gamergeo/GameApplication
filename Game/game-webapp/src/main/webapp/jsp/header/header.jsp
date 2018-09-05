@@ -1,29 +1,34 @@
+<%@ include file="../header/header_def.jsp" %>
+
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 
 <html>
 
 <head>
+  	<link rel="stylesheet" href="<c:url value='/css/style.css'/>" type="text/css">
 	<title>${action.getText(param.title)}</title>
 </head>
 
 <body>
 
-<table>
-	<tr>
-		<td>Version ${revision}</td>
-		<td> ${ceci.test} : ${environment}</td>
-	</tr>
-	<tr>
-		<td>Date : <s:property value="localDate" /></td>
-		<td>Time : <s:property value="localTime" /></td>
-	</tr>	
-	<tr>
-		<td>USA Date : <s:property value="USADate" /></td>
-		<td>Time : <s:property value="USATime" /></td>
-	</tr>
-</table>
-<br />
+<div id="bodyWithHeaderInfos">
+	<div id="headerInfos">
+		<table>
+			<tr>
+				<td>Version ${revision}</td>
+				<td> ${ceci.test} : ${environment}</td>
+			</tr>
+			<tr>
+				<td>Date : <s:property value="localDate" /></td>
+				<td>Time : <s:property value="localTime" /></td>
+			</tr>	
+			<tr>
+				<td>USA Date : <s:property value="USADate" /></td>
+				<td>Time : <s:property value="USATime" /></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="bodyWithMenu">
+		<jsp:include page="../menu/menu.jsp" />
+		<div id="body">

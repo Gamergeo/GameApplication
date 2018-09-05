@@ -4,7 +4,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	    
     <properties>
-    	<revision>8.2-SNAPSHOT</revision>
+    	<revision>8.3-SNAPSHOT</revision>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <servlet.version>4.0.1</servlet.version>
 	    <commons.version>3.6</commons.version>

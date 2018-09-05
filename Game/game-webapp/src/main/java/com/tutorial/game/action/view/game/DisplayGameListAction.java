@@ -21,9 +21,8 @@ public class DisplayGameListAction extends AbstractAction {
 	private List<Game> listGame;
 	
 	private List<Game> listGameTest = new ArrayList<Game>();
-	
 
-	@Action(value="displayGameList", results = {
+	@Action(value="list", results = {
 			@Result(name=SUCCESS, location="/jsp/game/gameList.jsp")})
 	public String execute() throws GameException {
 		listGame = serviceFactory.getGameService().getAllGames();

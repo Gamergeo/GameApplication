@@ -1,7 +1,6 @@
+<%@ include file="../header/header_def.jsp" %>
+
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 
 <jsp:include page="../header/header.jsp">
 	<jsp:param value="jsp.addGame.title" name="title"/>
@@ -9,7 +8,7 @@
 
 <table border="1">
 	<tr>
-		<th><s:text name="label.game.id"/></th>
+		<th><s:text name="label.general.id"/></th>
 		<th><s:text name="label.game.name"/></th>
 		<th><s:text name="label.user.first.name"/></th>
 		<th><s:text name="label.user.last.name"/></th>
@@ -23,7 +22,7 @@
 </table>
 
 <div>
-	<s:url action="../user/displayUserView" var="urlManagerView">
+	<s:url action="view" namespace="/user" var="urlManagerView">
 		<s:param name="user.id">${game.manager.id}</s:param>
 	</s:url>
 	<s:a href="%{urlManagerView}"> Show manager </s:a>
@@ -32,26 +31,11 @@
 <c:if test="${not empty game.manager.managedGames}">
 	<div>
 		<p> Other Managed Games <br /> </p>
-		<table border="1">
-			<tr>
-				<th><s:text name="label.game.id"/></th>
-				<th><s:text name="label.game.name"/></th>
-				<th><s:text name="label.general.view"/></th>
-			</tr>
-			
-			<c:forEach items="${game.manager.managedGames}" var="game">
-				<tr>
-			    	<td>${game.id}</td>
-			    	<td>${game.name}</td>
-					<td>
-						<s:url action="../game/displayGameView" var="urlView">
-							<s:param name="game.id">${game.id}</s:param>
-						</s:url>
-						<s:a href="%{urlView}"> View game </s:a>
-					</td>
-			    </tr>
-			</c:forEach>
-		</table>
+		
+	  	<c:set var="managedGames" value="${game.manager.managedGames}" scope="request"/>
+		<jsp:include page="gameList/gameListTable.jsp">
+			<jsp:param value="managedGames" name="listGameName"/>	
+		</jsp:include>
 	</div>
 </c:if>
 

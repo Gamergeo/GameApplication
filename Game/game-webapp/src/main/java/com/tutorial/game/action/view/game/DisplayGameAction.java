@@ -17,7 +17,7 @@ public class DisplayGameAction extends AbstractAction {
 	
 	private Game game;
 	
-	@Action(value="displayGameView", results= {
+	@Action(value="view", results= {
 			@Result(name="success", location="/jsp/game/gameView.jsp")})
 	public String displayView() throws GameException {
 		if (game.getId() <= 0) {

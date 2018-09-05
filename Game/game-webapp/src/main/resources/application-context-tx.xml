@@ -21,6 +21,7 @@
 	</bean>
     
     <!-- Annotation Transactionnal -->
+<!--     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/> -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
     
     <!-- Mise en place des règles transactionnelles par défaut -->

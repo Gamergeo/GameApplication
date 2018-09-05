@@ -23,13 +23,16 @@
                 
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="game-business-8.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-business/game-business">
+        <dependent-module archiveName="game-business-8.3-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-business/game-business">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="game-dao-8.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-dao/game-dao">
+        <dependent-module archiveName="game-dao-8.3-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-dao/game-dao">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="game-model-8.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-model/game-model">
+        <dependent-module archiveName="game-model-8.3-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-model/game-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="game-technical-8.3-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/game-technical/game-technical">
             <dependency-type>uses</dependency-type>
         </dependent-module>
                                                                                                                 

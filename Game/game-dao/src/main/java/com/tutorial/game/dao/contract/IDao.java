@@ -13,4 +13,6 @@ public interface IDao<T> {
     public void delete(T type);
 
 	public List<T> findAll();
+	
+	public void delete(int id);
 }

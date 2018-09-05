@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ include file="../../header/header_def.jsp" %>
 
 <c:set var="listGameTable" value="${requestScope[param.listGameName]}" scope="page" />
 
 <table border="1">
 	<thead>
 		<tr>
-			<th><s:text name="label.game.id"/></th>
+			<th><s:text name="label.general.id"/></th>
 			<th><s:text name="label.game.name"/></th>
 			<th><s:text name="label.user.first.name"/></th>
 			<th><s:text name="label.user.last.name"/></th>
@@ -24,10 +22,10 @@
 				<td>${game.manager.firstName}</td>
 				<td>${game.manager.lastName}</td>
 				<td>
-					<s:url action="../game/displayGameView" var="urlEdit">
+					<s:url action="view" namespace="/game" var="urlView">
   						<s:param name="game.id">${game.id}</s:param>
 					</s:url>
-					<s:a href="%{urlEdit}"> O </s:a>
+					<s:a href="%{urlView}"> O </s:a>
 				</td>
 				<td>
 					<s:url action="displayGameSave" var="urlEdit">

@@ -50,19 +50,30 @@ public abstract class AbstractDAO<T> implements IDao<T>{
 		return sessionFactory.getCurrentSession();
 	}
 	
+	@Override
     public void persist(T type) {
         getCurrentSession().save(type);
     }
     
+	@Override
     public void update(T type) {
         getCurrentSession().update(type);
     }
 
+	@Override
     public T findById(int id) {
     	return getCurrentSession().get(typeParameterClass, id);
     }
  
+	@Override
     public void delete(T type) {
+        getCurrentSession().delete(type);
+    }
+    
+	@Override
+    public void delete(int id) {
+        T type = (T) getCurrentSession().load(typeParameterClass, id);
+        
         getCurrentSession().delete(type);
     }
     
